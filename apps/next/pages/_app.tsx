@@ -8,6 +8,29 @@ import React from 'react'
 import '../global.css'
 import { AppProps } from 'next/app'
 
+import { Inter, Raleway, Unbounded } from 'next/font/google'
+
+const inter = Inter({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+const raleway = Raleway({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-raleway',
+  display: 'swap',
+})
+
+const unbounded = Unbounded({
+  weight: ['600'],
+  subsets: ['latin'],
+  variable: '--font-unbounded',
+  display: 'swap',
+})
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -20,7 +43,11 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Provider>
-        <Component {...pageProps} />
+        <main
+          className={`${inter.variable} ${raleway.variable}  ${unbounded.variable} font-sans`}
+        >
+          <Component {...pageProps} />
+        </main>
       </Provider>
     </>
   )

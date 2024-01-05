@@ -8,7 +8,7 @@ export function P({
   className,
   ...rest
 }: { className?: string } & ComponentProps<typeof Text>) {
-  const defaultStyles = 'text-base text-black'
+  const defaultStyles = 'text-base text-gray-600'
   return <Text className={`${defaultStyles} ${className}`} {...rest} />
 }
 
@@ -19,12 +19,27 @@ export function H1({
   className,
   ...rest
 }: { className?: string } & ComponentProps<typeof Text>) {
-  const defaultStyles = 'my-4 text-3xl font-extrabold'
+  const defaultStyles = 'my-4 text-3xl font-extrabold font-unbounded'
   return (
     <Text
       className={`${defaultStyles} ${className}`}
       {...rest}
       accessibilityLevel={1}
+      accessibilityRole="header"
+    ></Text>
+  )
+}
+
+export function H2({
+  className,
+  ...rest
+}: { className?: string } & ComponentProps<typeof Text>) {
+  const defaultStyles = 'font-extrabold font-unbounded'
+  return (
+    <Text
+      className={`${defaultStyles} ${className}`}
+      {...rest}
+      accessibilityLevel={2}
       accessibilityRole="header"
     ></Text>
   )
