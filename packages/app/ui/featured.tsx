@@ -46,7 +46,7 @@ export function Featured() {
         <View className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-center">
           <View className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <View className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
-              <P className="text-blue-brand text-base font-semibold leading-7">
+              <P className="text-blue-brand font-semibold leading-7">
                 Enjoy our features
               </P>
               <H2 className="font-unbounded mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -63,10 +63,10 @@ export function Featured() {
                       {feature.icon && feature.icon({})}
                     </View>
                     <View className="relative max-w-fit pl-9">
-                      <View className="font-semibold text-gray-900">
+                      <P className="font-semibold leading-8 text-gray-900">
                         {feature.name}
-                      </View>
-                      <View className="inline">{feature.description}</View>
+                      </P>
+                      <P className="inline leading-8">{feature.description}</P>
                     </View>
                   </View>
                 ))}

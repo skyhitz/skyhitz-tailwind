@@ -9,16 +9,15 @@ import Svg, {
   Rect,
   ForeignObject,
 } from 'react-native-svg'
-import { SolitoImage } from 'solito/image'
 
 export const Hero = ({ title, description }) => {
   return (
-    <View className="mx-auto max-w-7xl px-6 py-8 md:flex-row lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+    <View className="mx-auto max-w-7xl px-6 pb-32 pt-8 md:flex-row lg:flex lg:items-center lg:gap-x-10 lg:px-8">
       <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
         <H1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
           {title}
         </H1>
-        <P className="mt-6 text-lg leading-8 text-gray-600">{description}</P>
+        <P className="mt-6 leading-8 text-gray-600">{description}</P>
         <View className="mt-10 flex flex-row items-center gap-x-6">
           <A
             href="#"

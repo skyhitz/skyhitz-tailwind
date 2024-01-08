@@ -1,13 +1,12 @@
-import { A, H1, P } from 'app/design/typography'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
+import BlogSection from 'app/ui/blog-section'
 import CtaBanner from 'app/ui/cta-banner'
 import Faq from 'app/ui/faq'
 import { Featured } from 'app/ui/featured'
+import Footer from 'app/ui/footer'
 import { Hero } from 'app/ui/hero'
 import Navbar from 'app/ui/navbar'
 import { View } from 'react-native'
-
-import { MotiLink } from 'solito/moti'
 
 export function HomeScreen() {
   const insets = useSafeArea()
@@ -26,31 +25,8 @@ export function HomeScreen() {
       <CtaBanner />
       <Featured />
       <Faq />
-      <View className="flex-1 items-center justify-center p-3">
-        <H1 className="font-unbounded">Join the future of music ownership</H1>
-        <View className="h-[32px]" />
-        <View className="space-x-8">
-          <MotiLink
-            href="/user/fernando"
-            animate={({ hovered, pressed }) => {
-              'worklet'
-
-              return {
-                scale: pressed ? 0.95 : hovered ? 1.1 : 1,
-                rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
-              }
-            }}
-            transition={{
-              type: 'timing',
-              duration: 150,
-            }}
-          >
-            <P selectable={false} className="text-base font-bold">
-              Link
-            </P>
-          </MotiLink>
-        </View>
-      </View>
+      <BlogSection />
+      <Footer />
     </View>
   )
 }

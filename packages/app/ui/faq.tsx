@@ -45,78 +45,72 @@ export default function Faq() {
   }
 
   return (
-    <View className="bg-white">
-      <View className="mx-auto w-full max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
-        <View className="mx-auto w-full max-w-4xl divide-y divide-gray-900/10">
-          <H2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
-            Frequently asked questions
-          </H2>
-          <View className="mt-10 space-y-6 divide-y divide-gray-900/10">
-            {faqs.map((faq, index) => {
-              return (
-                <View key={index} className="pt-6">
-                  <Pressable onPress={() => handleOnPress(index)}>
-                    <View className="flex flex-row justify-between">
-                      <P className="text-base font-semibold leading-7">
-                        {faq.question}
-                      </P>
-                      <AnimatePresence exitBeforeEnter>
-                        {openFaq === index && (
-                          <MotiView
-                            from={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ type: 'timing', duration: 250 }}
-                            exit={{
-                              opacity: 0,
-                            }}
-                            key="minus"
-                          >
-                            <P className="text-base leading-7 text-gray-600">
-                              -
-                            </P>
-                          </MotiView>
-                        )}
-                        {openFaq !== index && (
-                          <MotiView
-                            from={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ type: 'timing', duration: 250 }}
-                            exit={{
-                              opacity: 0,
-                            }}
-                            key="plus"
-                          >
-                            <P className="text-base leading-7 text-gray-600">
-                              +
-                            </P>
-                          </MotiView>
-                        )}
-                      </AnimatePresence>
-                    </View>
-                  </Pressable>
-
-                  <AnimateHeight hide={openFaq !== index}>
-                    <AnimatePresence>
+    <View className="mx-auto w-full max-w-7xl px-6 pb-24 sm:pb-32 lg:px-8">
+      <View className="mx-auto w-full divide-y divide-gray-900/10">
+        <H2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
+          Frequently asked questions
+        </H2>
+        <View className="mt-10 space-y-6 divide-y divide-gray-900/10">
+          {faqs.map((faq, index) => {
+            return (
+              <View key={index} className="pt-6">
+                <Pressable onPress={() => handleOnPress(index)}>
+                  <View className="flex flex-row justify-between">
+                    <P className="text-base font-semibold leading-7">
+                      {faq.question}
+                    </P>
+                    <AnimatePresence exitBeforeEnter>
                       {openFaq === index && (
                         <MotiView
                           from={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
-                          transition={{ type: 'timing', duration: 600 }}
+                          transition={{ type: 'timing', duration: 250 }}
                           exit={{
                             opacity: 0,
                           }}
+                          key="minus"
                         >
-                          <P className="text-base leading-7 text-gray-600">
-                            {faq.answer}
-                          </P>
+                          <P className="text-2xl leading-7 text-gray-600">-</P>
+                        </MotiView>
+                      )}
+                      {openFaq !== index && (
+                        <MotiView
+                          from={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ type: 'timing', duration: 250 }}
+                          exit={{
+                            opacity: 0,
+                          }}
+                          key="plus"
+                        >
+                          <P className="text-2xl leading-7 text-gray-600">+</P>
                         </MotiView>
                       )}
                     </AnimatePresence>
-                  </AnimateHeight>
-                </View>
-              )
-            })}
-          </View>
+                  </View>
+                </Pressable>
+
+                <AnimateHeight hide={openFaq !== index}>
+                  <AnimatePresence>
+                    {openFaq === index && (
+                      <MotiView
+                        from={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ type: 'timing', duration: 600 }}
+                        exit={{
+                          opacity: 0,
+                        }}
+                      >
+                        <P className="text-base leading-7 text-gray-600">
+                          {faq.answer}
+                        </P>
+                      </MotiView>
+                    )}
+                  </AnimatePresence>
+                </AnimateHeight>
+              </View>
+            )
+          })}
         </View>
       </View>
     </View>
