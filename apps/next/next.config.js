@@ -33,4 +33,8 @@ const nextConfig = {
   },
 }
 
+require('dotenv').config({
+  path: '../../.env',
+})
+
 module.exports = withExpo(nextConfig)

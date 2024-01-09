@@ -10,7 +10,12 @@ import Svg, {
   ForeignObject,
 } from 'react-native-svg'
 
-export const Hero = ({ title, description }) => {
+type HeroProps = {
+  title: string
+  description: string
+}
+
+export const Hero = ({ title, description }: HeroProps) => {
   return (
     <View className="mx-auto max-w-7xl px-6 pb-32 pt-8 md:flex-row lg:flex lg:items-center lg:gap-x-10 lg:px-8">
       <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">

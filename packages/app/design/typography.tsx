@@ -24,8 +24,8 @@ export function H1({
     <Text
       className={`${defaultStyles} ${className}`}
       {...rest}
-      accessibilityLevel={1}
-      accessibilityRole="header"
+      aria-level={1}
+      role="heading"
     ></Text>
   )
 }
@@ -39,8 +39,8 @@ export function H2({
     <Text
       className={`${defaultStyles} ${className}`}
       {...rest}
-      accessibilityLevel={2}
-      accessibilityRole="header"
+      aria-level={2}
+      role="heading"
     ></Text>
   )
 }
@@ -54,8 +54,8 @@ export function H3({
     <Text
       className={`${defaultStyles} ${className}`}
       {...rest}
-      accessibilityLevel={3}
-      accessibilityRole="header"
+      aria-level={3}
+      role="heading"
     ></Text>
   )
 }
@@ -93,7 +93,7 @@ export const A = forwardRef<Text, AProps>(function A(
 
   return (
     <Text
-      accessibilityRole="link"
+      role="link"
       className={`text-blue-500 ${className} cursor-pointer`}
       {...props}
       {...nativeAProps}
