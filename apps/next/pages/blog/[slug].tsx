@@ -10,11 +10,11 @@ export async function getStaticPaths() {
     hitsPerPage: 1000,
   })
 
-  const ids = filter(
+  const slugs = filter(
     isSome,
     map((post) => {
-      if (post.id) {
-        return { params: { id: post.id } }
+      if (post.slug) {
+        return { params: { slug: post.slug } }
       }
       return null
     }, res.hits as Post[]),
@@ -24,15 +24,15 @@ export async function getStaticPaths() {
     return { props: {} }
   }
   return {
-    paths: ids,
+    paths: slugs,
     fallback: 'blocking',
   }
 }
 
 export const getStaticProps: GetStaticProps = async (props) => {
-  const id = props.params?.slug as string
+  const slug = props.params?.slug as string
   const res = await blogIndex.search('', {
-    filters: `objectID:${id}`,
+    filters: `objectID:${slug}`,
   })
 
   if (isEmpty(res.hits)) {

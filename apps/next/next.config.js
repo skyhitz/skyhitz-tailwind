@@ -20,6 +20,7 @@ const nextConfig = {
     'react-native-css-interop',
     'react-native-svg',
     'react-native-safe-area-context',
+    'react-native-htmlview',
   ],
   images: {
     remotePatterns: [

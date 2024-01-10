@@ -5,4 +5,6 @@ export type Post = {
   id: string
   imageUrl: string
   tag: string
+  slug: string
+  publishedAtTimestamp: number
 }
