@@ -30,6 +30,12 @@ const nextConfig = {
         port: '',
         pathname: '/img/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'ipfs.skyhitz.io',
+        port: '',
+        pathname: '/ipfs/**',
+      },
     ],
   },
 }
