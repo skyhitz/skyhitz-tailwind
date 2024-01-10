@@ -8,9 +8,10 @@ export default function Card({
   category = 'Business',
   description = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
   title = 'Skyhitz reaches 20M MRR',
+  slug = 'skyhitz-reaches',
 }) {
   return (
-    <A href="/blog">
+    <A href={`/blog/${slug}`}>
       <View className="flex shrink flex-col items-start justify-between rounded-xl shadow-lg">
         <View className="relative w-full">
           <View className="aspect-[3/2] w-full object-cover">

@@ -1,4 +1,5 @@
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
+import { Post } from 'app/types'
 import BlogSection from 'app/ui/blog-section'
 import CtaBanner from 'app/ui/cta-banner'
 import Faq from 'app/ui/faq'
@@ -8,7 +9,7 @@ import { Hero } from 'app/ui/hero'
 import Navbar from 'app/ui/navbar'
 import { View } from 'react-native'
 
-export function HomeScreen() {
+export function HomeScreen({ posts }: { posts: Post[] }) {
   const insets = useSafeArea()
 
   return (
@@ -25,7 +26,7 @@ export function HomeScreen() {
       <CtaBanner />
       <Featured />
       <Faq />
-      <BlogSection />
+      <BlogSection posts={posts} />
       <Footer />
     </View>
   )

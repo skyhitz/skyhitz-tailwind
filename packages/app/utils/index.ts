@@ -2,7 +2,7 @@ export function isSome<T>(maybe: T | null | undefined): maybe is T {
   return maybe !== null && maybe !== undefined
 }
 
-export function formattedDate(publishedAtTimestamp) {
+export function formattedDate(publishedAtTimestamp: number) {
   const formatedDate = new Date(publishedAtTimestamp).toLocaleDateString(
     'en-us',
     {
