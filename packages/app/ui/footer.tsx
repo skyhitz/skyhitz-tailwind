@@ -1,6 +1,5 @@
-import { A, H2, H3, P } from 'app/design/typography'
+import { A, H3, P } from 'app/design/typography'
 import { View } from 'react-native'
-import { SolitoImage } from 'solito/image'
 import { SkyhitzLogo } from 'app/ui/logo'
 
 const navigation = {
@@ -11,8 +10,9 @@ const navigation = {
   ],
   support: [
     { name: 'FAQ', href: '/faq' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: 'mailto:support@skyhitz.io' },
     { name: 'Terms', href: '/terms' },
+    { name: 'Privacy', href: '/privacy' },
   ],
   connect: [
     { name: 'Blog', href: '/blog' },

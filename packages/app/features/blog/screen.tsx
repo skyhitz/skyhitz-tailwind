@@ -1,4 +1,4 @@
-import { A, Button, H1, H2, P } from 'app/design/typography'
+import { A, Button, H1, H2, P, ActivityIndicator } from 'app/design/typography'
 import { useBlogPosts } from 'app/hooks/algolia/useBlogPosts'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { Post } from 'app/types'
@@ -6,9 +6,7 @@ import Footer from 'app/ui/footer'
 import Navbar from 'app/ui/navbar'
 import { View } from 'react-native'
 import { SolitoImage } from 'solito/image'
-import { ActivityIndicator } from 'react-native'
 import { formattedDate } from 'app/utils'
-const { theme } = require('app/design/tailwind/theme')
 
 const PostWrapper = ({ imageUrl, title, publishedAtTimestamp, slug }: Post) => {
   return (
@@ -60,10 +58,7 @@ export function BlogScreen({ posts }: { posts: Post[] }) {
         </View>
         <View className="mt-16 flex h-12 items-center  justify-center">
           {isLoadingMore ? (
-            <ActivityIndicator
-              color={theme.extend.colors.blue.brand}
-              size={'small'}
-            />
+            <ActivityIndicator size={'small'} />
           ) : (
             loadMoreEnabled && (
               <Button

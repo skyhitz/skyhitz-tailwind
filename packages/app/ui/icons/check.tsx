@@ -1,0 +1,20 @@
+import Svg, { G, Path } from 'react-native-svg'
+
+function Icon(props) {
+  return (
+    <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <G
+        fill="none"
+        stroke="currentcolor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+      >
+        <Path d="M18 7l-6.38 8.66a1 1 0 01-.68.4 1 1 0 01-.75-.21L6 12.5" />
+        <Path d="M.5 12a11.5 11.5 0 1023 0 11.5 11.5 0 10-23 0" />
+      </G>
+    </Svg>
+  )
+}
+
+export default Icon

@@ -1,5 +1,12 @@
 import { ComponentProps, forwardRef } from 'react'
-import { Text, Platform, Linking, Pressable } from 'react-native'
+import {
+  Text,
+  Platform,
+  Linking,
+  Pressable,
+  ActivityIndicator as NativeActivityIndicator,
+} from 'react-native'
+import { theme } from './tailwind/theme'
 
 /**
  * You can use this pattern to create components with default styles
@@ -114,5 +121,17 @@ export function Button({
     >
       <Text className={`${defaultStyles} ${className}`} {...rest} />
     </Pressable>
+  )
+}
+
+export function ActivityIndicator({
+  className,
+  ...rest
+}: { className?: string } & ComponentProps<typeof NativeActivityIndicator>) {
+  return (
+    <NativeActivityIndicator
+      color={theme?.extend?.colors?.['blue']['brand']}
+      {...rest}
+    />
   )
 }

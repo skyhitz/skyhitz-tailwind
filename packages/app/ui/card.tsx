@@ -5,7 +5,7 @@ import { SolitoImage } from 'solito/image'
 export default function Card({
   imageUrl = '/img/landing-3.png',
   dateTime = 'Jan 5, 2023',
-  category = 'Business',
+  tag = 'Business',
   description = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
   title = 'Skyhitz reaches 20M MRR',
   slug = 'skyhitz-reaches',
@@ -31,8 +31,8 @@ export default function Card({
               {title}
             </H3>
             <View className="bg-blue-brand/20 relative z-10 mt-5 w-min rounded-full px-3 py-1  hover:bg-gray-100">
-              <P className="font-inter text-xs font-medium text-gray-600">
-                {category}
+              <P className="font-inter text-xs font-medium capitalize text-gray-600">
+                {tag}
               </P>
             </View>
             <P className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">

@@ -2,6 +2,15 @@ const { withExpo } = require('@expo/next-adapter')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/.well-known/apple-app-site-association',
+        destination: '/api/.well-known/apple-app-site-association',
+        permanent: false,
+      },
+    ]
+  },
   // reanimated (and thus, Moti) doesn't work with strict mode currently...
   // https://github.com/nandorojo/moti/issues/224
   // https://github.com/necolas/react-native-web/pull/2330
@@ -11,6 +20,8 @@ const nextConfig = {
   transpilePackages: [
     'react-native',
     'react-native-web',
+    'expo-linking',
+    'expo-modules-core',
     'solito',
     'moti',
     'app',

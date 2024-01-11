@@ -19,9 +19,12 @@ const theme = {
         track: '#292b33',
         light: '#00aeefe6',
         brand: '#1dadff',
+        start: '#63AADF',
+        middle: '#21ACFE',
+        end: '#D4EFFF',
       },
       red: {
-        DEFAULT: '#d9544f',
+        DEFAULT: '#ff444a',
         dark: '#241e22',
       },
       white: {
@@ -32,7 +35,10 @@ const theme = {
         dark: '#2B3033',
         light: '#dbdbdb',
       },
-      lightGreen: '#5CE67E',
+      green: {
+        DEFAULT: '#5ce67e',
+      },
+      lightGreen: '#5ce67e',
       valid: {
         DEFAULT: 'rgba(15,172,141,.8)',
         dark: '#192225',
