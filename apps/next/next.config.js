@@ -21,6 +21,8 @@ const nextConfig = {
     'react-native',
     'react-native-web',
     'expo-linking',
+    'expo-av',
+    'expo-asset',
     'expo-modules-core',
     'solito',
     'moti',
@@ -32,6 +34,10 @@ const nextConfig = {
     'react-native-svg',
     'react-native-safe-area-context',
     'react-native-htmlview',
+    'react-native-toast-notifications',
+    '@react-native-community',
+    '@shopify/flash-list',
+    'recyclerlistview',
   ],
   images: {
     remotePatterns: [
@@ -46,6 +52,12 @@ const nextConfig = {
         hostname: 'ipfs.skyhitz.io',
         port: '',
         pathname: '/ipfs/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*',
+        port: '',
+        pathname: '/**',
       },
     ],
   },

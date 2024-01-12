@@ -27,6 +27,7 @@ export type ErrorType = {
 export type IconProps = {
   color?: string
   size?: number
+  className?: string
 }
 export type MintForm = {
   artist: string

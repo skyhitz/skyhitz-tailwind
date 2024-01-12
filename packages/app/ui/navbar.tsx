@@ -26,7 +26,7 @@ const Navbar = () => {
         {user ? null : (
           <View className="ml-8 hidden flex-row items-center sm:flex">
             <TextLink href="/dashboard/chart">
-              <Text className="mr-4 text-sm">Top Chart</Text>
+              <Text className="mr-4 text-sm">Chart</Text>
             </TextLink>
             <TextLink href="/dashboard/search">
               <Text className="mr-4 text-sm">Search</Text>

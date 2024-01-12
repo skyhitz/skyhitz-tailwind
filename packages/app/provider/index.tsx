@@ -3,15 +3,18 @@ import { RecoilRoot } from 'recoil'
 
 import { SafeArea } from './safe-area'
 import { SolitoImageProvider } from 'solito/image'
+import SkyhitzToastProvider from './toast'
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
     <SkyhitzApolloProvider>
       <SafeArea>
         <RecoilRoot>
-          <SolitoImageProvider nextJsURL="https://skyhitz.io">
-            {children}
-          </SolitoImageProvider>
+          <SkyhitzToastProvider>
+            <SolitoImageProvider nextJsURL="https://skyhitz.io">
+              {children}
+            </SolitoImageProvider>
+          </SkyhitzToastProvider>
         </RecoilRoot>
       </SafeArea>
     </SkyhitzApolloProvider>
