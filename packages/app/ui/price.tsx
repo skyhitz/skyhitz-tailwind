@@ -30,7 +30,7 @@ export default function Price({ className, entry, hovered }: PriceProps) {
   } else
     return (
       <View className={`flex flex-row items-center ${className}`}>
-        <Dollar size={10} className="text-white" />
+        <Dollar size={16} className="text-gray" />
         <P className="ml-1 text-sm">
           {(offer.price * offer.amount).toFixed()} for{' '}
           {(offer.amount * 100).toFixed()}%

@@ -28,7 +28,7 @@ export function BuyNowBtn({ entry }: Props) {
   }
 
   return (
-    <ComponentAuthGuard>
+    <ComponentAuthGuard linkToAuth>
       <Button
         text="Buy Now"
         className="flex-row-reverse"

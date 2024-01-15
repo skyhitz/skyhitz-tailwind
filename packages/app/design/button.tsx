@@ -74,7 +74,7 @@ const Button = ({
 
   return (
     <PressableComponent
-      className={`flex-row items-center justify-center rounded-full ${
+      className={`flex-row items-center justify-center rounded-md ${
         containerStyle[size]
       } ${disabled ? disabledStyle[variant] : containerStyle[variant]} ${
         className ?? ''

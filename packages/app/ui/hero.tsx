@@ -24,13 +24,13 @@ export const Hero = ({ title, description }: HeroProps) => {
         </H1>
         <P className="mt-6 leading-8 text-gray-600">{description}</P>
         <View className="mt-10 flex flex-row items-center gap-x-6">
-          <A
-            href="#"
-            className="bg-blue-brand hover:bg-blue-brand focus-visible:outline-blue-brand rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-          >
+          <A href="/sign-up" variant="primary">
             Get started
           </A>
-          <A href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <A
+            href="#mission"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Learn more →
           </A>
         </View>

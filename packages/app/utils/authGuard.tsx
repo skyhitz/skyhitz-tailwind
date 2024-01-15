@@ -3,17 +3,20 @@ import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { useRouter } from 'solito/router'
 import { SplashScreen } from 'app/features/splash/splashScreen'
+import { A } from 'app/design/typography'
 
 type Props = {
   children: ReactNode
   redirect?: boolean
   fallback?: () => ReactNode
+  linkToAuth?: boolean
 }
 
 export function AuthGuard({
   children,
   redirect = true,
   fallback = SplashScreen,
+  linkToAuth = false,
 }: Props) {
   const user = useRecoilValue(userAtom)
   const { push } = useRouter()
@@ -29,13 +32,23 @@ export function AuthGuard({
     return <>{children}</>
   }
 
+  if (linkToAuth) {
+    return <A href={'/sign-in'}>{children}</A>
+  }
+
   /* otherwise return fallback, will do a redirect from useEffect */
   return <>{fallback()}</>
 }
 
-export function ComponentAuthGuard({ children }: { children: ReactNode }) {
+export function ComponentAuthGuard({
+  children,
+  ...rest
+}: {
+  children: ReactNode
+  linkToAuth?: boolean
+}) {
   return (
-    <AuthGuard fallback={() => null} redirect={false}>
+    <AuthGuard fallback={() => null} redirect={false} {...rest}>
       {children}
     </AuthGuard>
   )

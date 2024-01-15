@@ -101,7 +101,7 @@ export default function Faq() {
                           opacity: 0,
                         }}
                       >
-                        <P className="text-base leading-7 text-gray-600">
+                        <P className="mt-4 text-base leading-7 text-gray-600">
                           {faq.answer}
                         </P>
                       </MotiView>

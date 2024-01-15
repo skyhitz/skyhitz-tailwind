@@ -39,7 +39,7 @@ function LikeButton({ size, className, entry }: Props) {
 
   const likeColor = active
     ? theme?.extend?.colors?.['blue']['brand']
-    : theme?.extend?.colors?.['white']['DEFAULT']
+    : theme?.extend?.colors?.['grey']['DEFAULT']
   return (
     <Pressable className={className} onPress={update}>
       <Like size={size} color={likeColor} fill={active} />
@@ -49,7 +49,7 @@ function LikeButton({ size, className, entry }: Props) {
 
 export default function LikeBtn(props: Props) {
   return (
-    <ComponentAuthGuard>
+    <ComponentAuthGuard linkToAuth>
       <LikeButton {...props} />
     </ComponentAuthGuard>
   )

@@ -44,10 +44,10 @@ export function BlogScreen({ posts }: { posts: Post[] }) {
       className={`flex h-full w-full pt-[${insets.top}px] pb-[${insets.bottom}px]`}
     >
       <Navbar />
-      <View className="mx-auto mb-32 w-full max-w-4xl px-6 lg:px-8">
+      <View className="mx-auto mb-32 w-full max-w-7xl px-6 lg:px-8">
         <H1 className="mb-4 mt-10 text-4xl">Blog</H1>
         <View className="my-8 border-b border-gray-200" />
-        <View className="gap-8">
+        <View className="gap-2">
           {posts.map((props, index) => {
             return <PostWrapper key={index} {...props} />
           })}

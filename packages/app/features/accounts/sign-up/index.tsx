@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { P } from 'app/design/typography'
+import { A, P } from 'app/design/typography'
 import { Button } from 'app/design/button'
 import { Platform, TextInput, KeyboardAvoidingView } from 'react-native'
 // import BackgroundImage from 'app/ui/backgroundImage'
@@ -160,6 +160,14 @@ export function SignUp() {
                   handleSubmit()
                 }}
               /> */}
+              <View className="mt-8 flex-row">
+                <P className="min-h-5 w-full text-center text-sm text-white">
+                  Already have an account?{' '}
+                  <A className="mx-2 text-gray-700" href="/sign-up">
+                    Sign In
+                  </A>
+                </P>
+              </View>
             </View>
           )}
         </Formik>

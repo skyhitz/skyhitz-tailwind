@@ -31,13 +31,17 @@ export function BeatListEntry({
     <Pressable onPress={() => playEntry(entry, playlist)} className="flex">
       {({ hovered }: PressableState): ReactElement => {
         return (
-          <View className="flex flex-row items-center py-2">
-            <SolitoImage
-              width={40}
-              height={40}
-              src={imageUrlSmall(entry.imageUrl)}
-              alt={entry.title}
-            />
+          <View className="flex h-14 flex-row items-center py-2">
+            <View className="aspect-[2/2] w-16 object-cover">
+              <SolitoImage
+                src={imageUrlSmall(entry.imageUrl)}
+                alt={entry.title}
+                contentFit="cover"
+                fill
+                sizes="4rem"
+                style={{ borderRadius: 6 }}
+              />
+            </View>
             {spot && (
               <P className="ml-2 w-11 text-center text-2xl leading-none">
                 {spot}
@@ -55,17 +59,13 @@ export function BeatListEntry({
               </P>
             </View>
             <View className="flex flex-row items-center">
-              <Price
-                entry={entry}
-                className="mr-3 hover:hidden"
-                hovered={hovered}
-              />
+              <Price entry={entry} className="mr-3" hovered={hovered} />
               <LikeButton size={20} entry={entry} />
               <Pressable
                 onPress={() => {
                   push(`/dashboard/beat/${entry.id}`)
                 }}
-                className="text-white"
+                className="text-grey-600"
               >
                 <VerticalDots size={30} />
               </Pressable>

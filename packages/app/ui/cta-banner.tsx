@@ -1,4 +1,4 @@
-import { H2, P, A } from 'app/design/typography'
+import { H2, P, A, Button } from 'app/design/typography'
 import { View } from 'react-native'
 import { SolitoImage } from 'solito/image'
 
@@ -16,7 +16,10 @@ export default function CtaBanner() {
           />
         </View>
       </View>
-      <View className="relative mx-auto max-w-7xl py-12 sm:py-24 lg:px-8 lg:py-24">
+      <View
+        className="relative mx-auto max-w-7xl py-12 sm:py-24 lg:px-8 lg:py-24"
+        id="mission"
+      >
         <View className="pl-6 pr-6 md:ml-auto md:w-2/3 md:pl-16 lg:w-1/2 lg:pl-24 lg:pr-0 xl:pl-32">
           <P className="!text-blue-brand font-unbounded text-base font-semibold leading-7">
             Our Mission
@@ -30,14 +33,11 @@ export default function CtaBanner() {
             and the industry is reshaped through the innovative use of
             blockchain technology.
           </P>
-          {/* <View className="mt-8">
-            <A
-              href="#"
-              className="inline-flex rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              Visit the help center
+          <View className="mt-8">
+            <A variant="primary" href="/dashboard/chart">
+              Explore Music
             </A>
-          </View> */}
+          </View>
         </View>
       </View>
     </View>

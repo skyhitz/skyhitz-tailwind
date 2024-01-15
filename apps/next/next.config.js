@@ -24,6 +24,7 @@ const nextConfig = {
     'expo-av',
     'expo-asset',
     'expo-modules-core',
+    'expo-intent-launcher',
     'solito',
     'moti',
     'app',

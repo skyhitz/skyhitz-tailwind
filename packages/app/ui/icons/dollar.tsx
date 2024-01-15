@@ -1,6 +1,6 @@
 import Svg, { G, Path } from 'react-native-svg'
 
-function Icon({ size = 24, color = 'white', ...props }) {
+function Icon({ size = 24, color = 'currentColor', ...props }) {
   return (
     <Svg width={size} height={size} viewBox="0 0 236.36 200" {...props}>
       <G id="Layer_2" data-name="Layer 2">
