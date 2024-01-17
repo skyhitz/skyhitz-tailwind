@@ -37,12 +37,13 @@ function LikeButton({ size, className, entry }: Props) {
     }
   }
 
-  const likeColor = active
-    ? theme?.extend?.colors?.['blue']['brand']
-    : theme?.extend?.colors?.['grey']['DEFAULT']
   return (
     <Pressable className={className} onPress={update}>
-      <Like size={size} color={likeColor} fill={active} />
+      <Like
+        className={active ? 'text-blue-brand' : 'text-gray-600'}
+        size={size}
+        fill={active}
+      />
     </Pressable>
   )
 }

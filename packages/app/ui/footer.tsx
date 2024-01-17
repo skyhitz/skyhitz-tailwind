@@ -6,7 +6,7 @@ const navigation = {
   explore: [
     { name: 'Artists', href: '/artists' },
     { name: 'Genres', href: '/genres' },
-    { name: 'Trending', href: '/trending' },
+    { name: 'Trending', href: '/dashboard/chart' },
   ],
   support: [
     { name: 'FAQ', href: '/faq' },

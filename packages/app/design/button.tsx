@@ -65,8 +65,8 @@ const Button = ({
 }: Props) => {
   const defaultIconProps = {
     color: disabled
-      ? theme?.extend?.colors?.['grey']['DEFAULT']
-      : theme?.extend?.colors?.['white']['DEFAULT'],
+      ? (theme as any)?.extend?.colors?.['grey']['DEFAULT']
+      : (theme as any)?.extend?.colors?.['white']['DEFAULT'],
     size: 22,
   }
 
@@ -88,10 +88,7 @@ const Button = ({
       }}
     >
       {loading ? (
-        <ActivityIndicator
-          size="small"
-          color={theme?.extend?.colors?.['white']['DEFAULT']}
-        />
+        <ActivityIndicator size="small" className="text-white" />
       ) : (
         <>
           <P

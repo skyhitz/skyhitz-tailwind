@@ -1,14 +1,12 @@
 import { P } from 'app/design/typography'
 import { SkyhitzLogo } from './logo'
-// import { userAtom } from 'app/state/user'
-// import { useRecoilValue } from 'recoil'
+import { userAtom } from 'app/state/user'
+import { useRecoilValue } from 'recoil'
 import { Text, View } from 'react-native'
 import { MotiLink as TextLink } from 'solito/moti'
 
 const Navbar = () => {
-  //   const user = useRecoilValue(userAtom)
-
-  const user = null
+  const user = useRecoilValue(userAtom)
 
   return (
     <View className="w-full flex-row flex-wrap items-center justify-center p-3 sm:justify-between">
@@ -17,7 +15,7 @@ const Navbar = () => {
           <View className="flex flex-row items-center justify-start">
             <View className="flex flex-row items-center">
               <SkyhitzLogo />
-              <Text className="font-raleway pl-4 text-lg tracking-[12px]">
+              <Text className="font-raleway pl-4 text-lg tracking-[12px] text-gray-600">
                 SKYHITZ
               </Text>
             </View>
@@ -26,10 +24,10 @@ const Navbar = () => {
         {user ? null : (
           <View className="ml-8 hidden flex-row items-center sm:flex">
             <TextLink href="/dashboard/chart">
-              <Text className="mr-4 text-sm">Chart</Text>
+              <P className="mr-4 text-sm">Chart</P>
             </TextLink>
             <TextLink href="/dashboard/search">
-              <Text className="mr-4 text-sm">Search</Text>
+              <P className="mr-4 text-sm">Search</P>
             </TextLink>
           </View>
         )}

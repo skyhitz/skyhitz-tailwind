@@ -5,6 +5,7 @@ import {
   Linking,
   Pressable,
   ActivityIndicator as NativeActivityIndicator,
+  Role,
 } from 'react-native'
 import { theme } from './tailwind/theme'
 
@@ -16,7 +17,13 @@ export function P({
   ...rest
 }: { className?: string } & ComponentProps<typeof Text>) {
   const defaultStyles = 'text-base text-gray-600'
-  return <Text className={`${defaultStyles} ${className}`} {...rest} />
+  return (
+    <Text
+      className={`${defaultStyles} ${className}`}
+      {...rest}
+      role={'paragraph' as Role}
+    />
+  )
 }
 
 /**
@@ -135,7 +142,7 @@ export function ActivityIndicator({
 }: { className?: string } & ComponentProps<typeof NativeActivityIndicator>) {
   return (
     <NativeActivityIndicator
-      color={theme?.extend?.colors?.['blue']['brand']}
+      color={(theme as any)?.extend?.colors?.['blue']['brand']}
       {...rest}
     />
   )

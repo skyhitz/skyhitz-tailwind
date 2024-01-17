@@ -4036,6 +4036,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@stellar/js-xdr@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@stellar/js-xdr@npm:3.0.1"
+  checksum: facea20e627f12bfbd87c8e9f67f663cf7de04421883ce917378b9f18f9152a038abc912697f156359709e4f902cb9cdedca0054cdfeb489335c8c1ddda2c55b
+  languageName: node
+  linkType: hard
+
 "@swc/helpers@npm:0.5.2":
   version: 0.5.2
   resolution: "@swc/helpers@npm:0.5.2"
@@ -4640,8 +4647,9 @@ __metadata:
     nativewind: 4.0.22
     ramda: ^0.28.0
     react-native-toast-notifications: ^3.4.0
-    recoil: ^0.7.4
+    recoil: ^0.7.7
     solito: 4.2.0
+    stellar-base: ^10.0.1
     swr: ^1.3.0
     yup: ^0.32.11
   languageName: unknown
@@ -5145,6 +5153,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base32.js@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "base32.js@npm:0.1.0"
+  checksum: e1ac2c4c405794bfb30e47c708718544091055371c61040c3d85aba56dd699646f1ae840fb686df9f6da8d9fdee9bbe0a07d04be79d2c13e9bb39595aedecb78
+  languageName: node
+  linkType: hard
+
 "base64-js@npm:^1.1.2, base64-js@npm:^1.2.3, base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
@@ -5165,6 +5180,13 @@ __metadata:
   version: 1.6.51
   resolution: "big-integer@npm:1.6.51"
   checksum: 3d444173d1b2e20747e2c175568bedeebd8315b0637ea95d75fd27830d3b8e8ba36c6af40374f36bdaea7b5de376dcada1b07587cb2a79a928fccdb6e6e3c518
+  languageName: node
+  linkType: hard
+
+"bignumber.js@npm:^9.1.2":
+  version: 9.1.2
+  resolution: "bignumber.js@npm:9.1.2"
+  checksum: 582c03af77ec9cb0ebd682a373ee6c66475db94a4325f92299621d544aa4bd45cb45fd60001610e94aef8ae98a0905fa538241d9638d4422d57abbeeac6fadaf
   languageName: node
   linkType: hard
 
@@ -5327,6 +5349,16 @@ __metadata:
     base64-js: ^1.3.1
     ieee754: ^1.1.13
   checksum: e2cf8429e1c4c7b8cbd30834ac09bd61da46ce35f5c22a78e6c2f04497d6d25541b16881e30a019c6fd3154150650ccee27a308eff3e26229d788bbdeb08ab84
+  languageName: node
+  linkType: hard
+
+"buffer@npm:^6.0.3":
+  version: 6.0.3
+  resolution: "buffer@npm:6.0.3"
+  dependencies:
+    base64-js: ^1.3.1
+    ieee754: ^1.2.1
+  checksum: 5ad23293d9a731e4318e420025800b42bf0d264004c0286c8cc010af7a270c7a0f6522e84f54b9ad65cbd6db20b8badbfd8d2ebf4f80fa03dab093b89e68c3f9
   languageName: node
   linkType: hard
 
@@ -8745,7 +8777,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ieee754@npm:^1.1.13":
+"ieee754@npm:^1.1.13, ieee754@npm:^1.2.1":
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
   checksum: 5144c0c9815e54ada181d80a0b810221a253562422e7c6c3a60b1901154184f49326ec239d618c416c1c5945a2e197107aee8d986a3dd836b53dffefd99b5e7e
@@ -11172,6 +11204,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-gyp-build@npm:^4.6.0":
+  version: 4.8.0
+  resolution: "node-gyp-build@npm:4.8.0"
+  bin:
+    node-gyp-build: bin.js
+    node-gyp-build-optional: optional.js
+    node-gyp-build-test: build-test.js
+  checksum: b82a56f866034b559dd3ed1ad04f55b04ae381b22ec2affe74b488d1582473ca6e7f85fccf52da085812d3de2b0bf23109e752a57709ac7b9963951c710fea40
+  languageName: node
+  linkType: hard
+
 "node-gyp@npm:latest":
   version: 9.3.1
   resolution: "node-gyp@npm:9.3.1"
@@ -12754,7 +12797,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"recoil@npm:^0.7.4":
+"recoil@npm:^0.7.7":
   version: 0.7.7
   resolution: "recoil@npm:0.7.7"
   dependencies:
@@ -13174,7 +13217,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"safe-buffer@npm:~5.2.0":
+"safe-buffer@npm:^5.0.1, safe-buffer@npm:~5.2.0":
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: b99c4b41fdd67a6aaf280fcd05e9ffb0813654894223afb78a31f14a19ad220bba8aba1cb14eddce1fcfb037155fe6de4e861784eb434f7d11ed58d1e70dd491
@@ -13405,6 +13448,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sha.js@npm:^2.3.6":
+  version: 2.4.11
+  resolution: "sha.js@npm:2.4.11"
+  dependencies:
+    inherits: ^2.0.1
+    safe-buffer: ^5.0.1
+  bin:
+    sha.js: ./bin.js
+  checksum: ebd3f59d4b799000699097dadb831c8e3da3eb579144fd7eb7a19484cbcbb7aca3c68ba2bb362242eb09e33217de3b4ea56e4678184c334323eca24a58e3ad07
+  languageName: node
+  linkType: hard
+
 "shallow-clone@npm:^3.0.0":
   version: 3.0.1
   resolution: "shallow-clone@npm:3.0.1"
@@ -13588,6 +13643,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sodium-native@npm:^4.0.1":
+  version: 4.0.5
+  resolution: "sodium-native@npm:4.0.5"
+  dependencies:
+    node-gyp: latest
+    node-gyp-build: ^4.6.0
+  checksum: d14e6f3a90a62e873f68f951f40fb9d94ccdbfff992745da67001620839bb2ecaeb1684172119f29b8d81966e4d046bcc9a59b5be60cc650d50a5175c4c2e330
+  languageName: node
+  linkType: hard
+
 "solito@npm:4.2.0":
   version: 4.2.0
   resolution: "solito@npm:4.2.0"
@@ -13722,6 +13787,24 @@ __metadata:
   version: 1.5.0
   resolution: "statuses@npm:1.5.0"
   checksum: c469b9519de16a4bb19600205cffb39ee471a5f17b82589757ca7bd40a8d92ebb6ed9f98b5a540c5d302ccbc78f15dc03cc0280dd6e00df1335568a5d5758a5c
+  languageName: node
+  linkType: hard
+
+"stellar-base@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "stellar-base@npm:10.0.1"
+  dependencies:
+    "@stellar/js-xdr": ^3.0.1
+    base32.js: ^0.1.0
+    bignumber.js: ^9.1.2
+    buffer: ^6.0.3
+    sha.js: ^2.3.6
+    sodium-native: ^4.0.1
+    tweetnacl: ^1.0.3
+  dependenciesMeta:
+    sodium-native:
+      optional: true
+  checksum: 97ea05e057eb66b0490fb22815b623f470524d26ab7d3853e73948673a54d0986603a3b0432c61d9f66aeb17addb403f1fa588fbdbe16b8469514eb956f71eb3
   languageName: node
   linkType: hard
 
@@ -14476,6 +14559,13 @@ __metadata:
   bin:
     turbo: bin/turbo
   checksum: 6dcfd7b38e2dd9abe279bda54e474be3463df51428f0b91c5e0539e9fd8c9b1efec562df629946f5ca92ede05f0aba35027481065d054249334e11692085ddb7
+  languageName: node
+  linkType: hard
+
+"tweetnacl@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tweetnacl@npm:1.0.3"
+  checksum: e4a57cac188f0c53f24c7a33279e223618a2bfb5fea426231991652a13247bea06b081fd745d71291fcae0f4428d29beba1b984b1f1ce6f66b06a6d1ab90645c
   languageName: node
   linkType: hard
 

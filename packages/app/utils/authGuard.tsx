@@ -33,7 +33,11 @@ export function AuthGuard({
   }
 
   if (linkToAuth) {
-    return <A href={'/sign-in'}>{children}</A>
+    return (
+      <A className="flex text-gray-600" href={'/sign-in'}>
+        {children}
+      </A>
+    )
   }
 
   /* otherwise return fallback, will do a redirect from useEffect */

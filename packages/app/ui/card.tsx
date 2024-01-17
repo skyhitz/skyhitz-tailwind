@@ -6,10 +6,11 @@ export default function Card({
   imageUrl = '/img/landing-3.png',
   dateTime = 'Jan 5, 2023',
   tag = 'Business',
-  description = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
+  content = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
   title = 'Skyhitz reaches 20M MRR',
   slug = 'skyhitz-reaches',
 }) {
+  const summary = content.replace(/<\/?[^>]+(>|$)/g, '')
   return (
     <A href={`/blog/${slug}`}>
       <View className="flex shrink flex-col items-start justify-between rounded-xl shadow-lg">
@@ -36,7 +37,7 @@ export default function Card({
               </P>
             </View>
             <P className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-              {description}
+              {summary}
             </P>
           </View>
           <View className="mt-5 flex items-start gap-4">

@@ -65,7 +65,7 @@ export function BeatListEntry({
                 onPress={() => {
                   push(`/dashboard/beat/${entry.id}`)
                 }}
-                className="text-grey-600"
+                className="text-gray-600"
               >
                 <VerticalDots size={30} />
               </Pressable>
