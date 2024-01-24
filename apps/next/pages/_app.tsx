@@ -5,6 +5,8 @@ import { Provider } from 'app/provider'
 import Head from 'next/head'
 
 import '../global.css'
+import { WebNavigation } from 'app/navigation/web'
+
 import { AppProps } from 'next/app'
 
 import { Inter, Raleway, Unbounded } from 'next/font/google'
@@ -126,13 +128,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="canonical" href="https://skyhitz.io" />
         <link rel="icon" href="/icon.png" />
       </Head>
-      <Provider>
-        <main
-          className={`${inter.variable} ${raleway.variable}  ${unbounded.variable} font-sans text-gray-600`}
-        >
-          <Component {...pageProps} />
-        </main>
-      </Provider>
+
+      <main
+        className={`${inter.variable} ${raleway.variable}  ${unbounded.variable} font-sans text-gray-600`}
+      >
+        <Provider>
+          <WebNavigation>
+            <Component {...pageProps} />
+          </WebNavigation>
+        </Provider>
+      </main>
     </>
   )
 }

@@ -31,7 +31,7 @@ const theme = {
         DEFAULT: '#ffffff',
       },
       grey: {
-        DEFAULT: '#858586',
+        DEFAULT: '#4b5563',
         dark: '#2B3033',
         light: '#dbdbdb',
       },

@@ -5,11 +5,13 @@ import { useRecoilValue } from 'recoil'
 import { Text, View } from 'react-native'
 import { MotiLink as TextLink } from 'solito/moti'
 
-const Navbar = () => {
+const Navbar = ({ className }: { className?: string }) => {
   const user = useRecoilValue(userAtom)
 
   return (
-    <View className="w-full flex-row flex-wrap items-center justify-center p-3 sm:justify-between">
+    <View
+      className={`w-full flex-row flex-wrap items-center justify-center p-3 sm:justify-between ${className}`}
+    >
       <View className="flex sm:flex-row">
         <TextLink href="/">
           <View className="flex flex-row items-center justify-start">
@@ -41,9 +43,9 @@ const Navbar = () => {
             </P>
           </TextLink>
 
-          <View className="rounded-full bg-white px-3">
+          <View className="bg-blue rounded-full px-3">
             <TextLink href="/sign-up">
-              <P className="font-raleway tracking-0.5 p-2 text-sm font-bold text-black">
+              <P className="font-raleway tracking-0.5 p-2 text-sm font-bold text-white">
                 Sign Up
               </P>
             </TextLink>

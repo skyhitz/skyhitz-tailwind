@@ -13,7 +13,7 @@ import { Line } from 'app/ui/orSeparator'
 import { useState } from 'react'
 import { useToast } from 'react-native-toast-notifications'
 import { useErrorReport } from 'app/hooks/useErrorReport'
-import { SkyhitzSlider } from 'app/ui/SkyhitzSlider'
+import { Slider } from 'app/ui/SkyhitzSlider'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SolitoImage } from 'solito/image'
 import { P } from 'app/design/typography'
@@ -133,13 +133,11 @@ export function PaymentConfirmationModal({
             <GestureHandlerRootView
               style={{ flexDirection: 'row', width: '100%' }}
             >
-              <SkyhitzSlider
-                minimumValue={1}
-                maximumValue={initialEquityForSale * 100}
-                value={initialEquityForSale * 100}
+              <Slider
+                progress={initialEquityForSale}
                 key={entry.id}
                 onValueChange={(value: number) => {
-                  setEquityForSale(parseFloat((value / 100).toFixed(2)))
+                  setEquityForSale(parseFloat(value.toFixed(2)))
                 }}
               />
             </GestureHandlerRootView>

@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "@react-native-community/slider": "4.4.2",
     "@shopify/flash-list": "1.4.3",
     "app": "*",
     "babel-plugin-inline-dotenv": "^1.7.0",

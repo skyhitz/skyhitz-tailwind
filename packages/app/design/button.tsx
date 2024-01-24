@@ -1,7 +1,4 @@
-import {
-  Pressable,
-  TouchableOpacity as TouchableWithoutFeedback,
-} from 'react-native'
+import { Pressable } from 'react-native'
 import { ActivityIndicator, P } from 'app/design/typography'
 import { IconProps } from 'app/types'
 import { ReactElement } from 'react'
@@ -70,10 +67,8 @@ const Button = ({
     size: 22,
   }
 
-  const PressableComponent = useTouchable ? TouchableWithoutFeedback : Pressable
-
   return (
-    <PressableComponent
+    <Pressable
       className={`flex-row items-center justify-center rounded-md ${
         containerStyle[size]
       } ${disabled ? disabledStyle[variant] : containerStyle[variant]} ${
@@ -103,7 +98,7 @@ const Button = ({
           {icon !== undefined && icon(iconProps ?? defaultIconProps)}
         </>
       )}
-    </PressableComponent>
+    </Pressable>
   )
 }
 

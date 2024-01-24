@@ -54,6 +54,8 @@ export default function BeatScreen(props: Props) {
                   fill
                   alt={entry.title}
                   style={{ borderRadius: 12 }}
+                  sizes="(max-width: 768px) 100vw"
+                  priority
                 />
               </View>
 
@@ -77,6 +79,8 @@ export default function BeatScreen(props: Props) {
               fill
               alt={entry.title}
               style={{ borderRadius: 12 }}
+              sizes="(max-width: 768px) 100vw"
+              priority
             />
           </View>
           <BeatSummaryColumn entry={entry} holders={details?.holders} />
@@ -97,7 +101,6 @@ export default function BeatScreen(props: Props) {
 
   return (
     <View className="flex flex-1">
-      <Navbar />
       <ScrollView contentContainerClassName="flex min-h-full items-start w-full max-w-screen-xl mx-auto p-4">
         <Content />
       </ScrollView>

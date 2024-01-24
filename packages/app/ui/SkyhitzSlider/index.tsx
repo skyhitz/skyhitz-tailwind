@@ -1,154 +1,137 @@
-import { View } from 'react-native'
-import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  runOnUI,
-  runOnJS,
-} from 'react-native-reanimated'
-import { GestureDetector, Gesture } from 'react-native-gesture-handler'
-import { useEffect, useMemo, useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import {
+  View,
+  PanResponder,
+  Pressable,
+  useWindowDimensions,
+} from 'react-native'
+import { MotiView } from 'moti'
+import { theme } from 'app/design/tailwind/theme'
 
-type Props = {
-  minimumValue: number
-  maximumValue: number
-  value: number
-  onSlidingStart?: () => void
-  onValueChange?: (newValue: number) => void
-  onSlidingComplete?: (newValue: number) => void
-}
-
-export function SkyhitzSlider({
-  minimumValue,
-  maximumValue,
-  value,
-  onSlidingStart,
+export const Slider = ({
   onValueChange,
+  onSlidingStart,
   onSlidingComplete,
-}: Props) {
-  const [sliderWidth, setSliderWidth] = useState<number>(0)
-  const [sliderHeight, setSliderHeight] = useState<number>(0)
-  const x = useSharedValue(0)
-  const dragStart = useSharedValue(x.value)
-  const isSliding = useSharedValue(false)
+  progress,
+}: {
+  onValueChange: (val: number) => void
+  onSlidingStart?: (val: number) => void
+  onSlidingComplete?: (val: number) => void
+  progress: number
+}) => {
+  const [sliderWidth, setSliderWidth] = useState(0)
+  const [progressSync, setProgressSync] = useState(true)
+  const [sliderPosition, setSliderPosition] = useState(0)
+  const { width: screenWidth } = useWindowDimensions()
 
   useEffect(() => {
-    const worklet = (num: number) => {
-      'worklet'
-      if (!isSliding.value) {
-        x.value = num
-      }
+    if (progressSync) {
+      const newPosition = progress * sliderWidth
+      setSliderPosition(newPosition)
     }
-    const num = value / (maximumValue - minimumValue)
-    if (!isNaN(num)) {
-      runOnUI(worklet)(num)
+  }, [progress, sliderWidth, progressSync])
+
+  const calculateValue = (newLeft) => {
+    return newLeft / sliderWidth
+  }
+
+  const updatePosition = (newPosition) => {
+    if (newPosition < 0) {
+      newPosition = 0
+    } else if (newPosition > sliderWidth) {
+      newPosition = sliderWidth
     }
-  }, [value, maximumValue, minimumValue])
+    setSliderPosition(newPosition)
+    const value = calculateValue(newPosition)
+    onValueChange && onValueChange(value)
+  }
 
-  const panGestureHandler = useMemo(
-    () =>
-      Gesture.Pan()
-        .onStart(() => {
-          dragStart.value = x.value * sliderWidth
-        })
-        .onUpdate((event) => {
-          x.value =
-            Math.min(
-              sliderWidth,
-              Math.max(0, dragStart.value + event.translationX),
-            ) / sliderWidth
-          if (onValueChange) {
-            runOnJS(onValueChange)(x.value * (maximumValue - minimumValue))
-          }
-        })
-        .onEnd(() => {
-          isSliding.value = false
-          if (onSlidingComplete) {
-            runOnJS(onSlidingComplete)(x.value * (maximumValue - minimumValue))
-          }
-        })
-        .hitSlop(10),
-    [
-      sliderWidth,
-      dragStart,
-      maximumValue,
-      minimumValue,
-      onSlidingComplete,
-      onValueChange,
-    ],
-  )
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderGrant: () => {
+      const value = calculateValue(sliderPosition)
+      onSlidingStart && onSlidingStart(value)
+    },
+    onPanResponderMove: (event, gestureState) => {
+      updatePosition(gestureState.moveX - (screenWidth - sliderWidth) / 2)
+    },
+    onPanResponderRelease: () => {
+      const value = calculateValue(sliderPosition)
+      onSlidingComplete && onSlidingComplete(value)
+    },
+    onPanResponderTerminationRequest: () => true, // Handle responder termination for complex gestures
+  })
 
-  const tapGestureHandler = useMemo(
-    () =>
-      Gesture.Tap()
-        .onTouchesDown((event) => {
-          if (event.allTouches[0]) {
-            isSliding.value = true
-            x.value = event.allTouches[0].x / sliderWidth
-            if (onValueChange) {
-              runOnJS(onValueChange)(x.value * (maximumValue - minimumValue))
-            }
-            if (onSlidingStart) {
-              runOnJS(onSlidingStart)()
-            }
-          }
-        })
-        .onTouchesUp(() => {
-          isSliding.value = false
-          if (onSlidingComplete) {
-            runOnJS(onSlidingComplete)(x.value * (maximumValue - minimumValue))
-          }
-        })
-        .hitSlop(10),
-    [
-      sliderWidth,
-      maximumValue,
-      minimumValue,
-      onValueChange,
-      onSlidingComplete,
-      onSlidingStart,
-    ],
-  )
+  const handleBarPress = (event) => {
+    let touchPosition
 
-  const gestureHandler = useMemo(
-    () => Gesture.Simultaneous(tapGestureHandler, panGestureHandler),
-    [tapGestureHandler, panGestureHandler],
-  )
-
-  const sliderStyle = useAnimatedStyle(() => {
-    return {
-      width: x.value * sliderWidth,
+    if (event.nativeEvent.locationX !== undefined) {
+      // For mobile
+      touchPosition = event.nativeEvent.locationX
+    } else if (event.nativeEvent.clientX !== undefined) {
+      // For web
+      const sliderBar = event.currentTarget.getBoundingClientRect()
+      touchPosition = event.nativeEvent.clientX - sliderBar.left
     }
-  }, [sliderWidth])
 
-  const thumbStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          translateX: x.value * sliderWidth - sliderHeight / 2,
-        },
-      ],
+    if (touchPosition !== undefined) {
+      setProgressSync(false)
+      updatePosition(touchPosition)
+      const value = calculateValue(touchPosition)
+      onSlidingComplete && onSlidingComplete(value)
+      setProgressSync(true)
     }
-  }, [sliderHeight, sliderWidth])
+  }
 
   return (
-    <GestureDetector gesture={gestureHandler}>
-      <View
-        className="min-h-2 max-h-2 flex-1 flex-row rounded-md"
-        onLayout={(e) => {
-          setSliderWidth(e.nativeEvent.layout.width)
-          setSliderHeight(e.nativeEvent.layout.height)
-        }}
-      >
-        <Animated.View
-          className="min-h-2 max-h-2 rounded-l-md"
-          style={[sliderStyle]}
+    <Pressable
+      onLayout={(event) => {
+        const { width } = event.nativeEvent.layout
+        setSliderWidth(width)
+      }}
+      onPress={handleBarPress}
+      style={{
+        width: '100%',
+        height: 20,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <View className="relative w-full rounded-full">
+        <View
+          style={{
+            position: 'absolute',
+            left: 0,
+            height: 4,
+            backgroundColor: theme?.extend?.colors?.['grey']['light'],
+            width: sliderWidth,
+            borderRadius: 9999,
+          }}
         />
-
-        <Animated.View
-          className="absolute h-full rounded-full bg-white"
-          style={[{ width: sliderHeight }, thumbStyle]}
+        <View
+          style={{
+            position: 'absolute',
+            left: 0,
+            height: 4,
+            backgroundColor: theme?.extend?.colors?.['blue']['brand'], // Color of the progress part
+            width: sliderPosition,
+            borderRadius: 9999,
+          }}
+        />
+        <MotiView
+          style={{
+            width: 12,
+            height: 12,
+            borderRadius: 6,
+            backgroundColor: theme?.extend?.colors?.['blue']['brand'],
+            position: 'absolute',
+            left: sliderPosition - 6, // Center the slider
+            top: -4,
+          }}
+          {...panResponder.panHandlers}
         />
       </View>
-    </GestureDetector>
+    </Pressable>
   )
 }
