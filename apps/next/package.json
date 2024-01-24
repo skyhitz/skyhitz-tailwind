@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@expo/next-adapter": "5.0.2",
+    "@expo/next-adapter": "^6.0.0",
     "app": "*",
     "dotenv": "^16.0.2",
     "next": "^14.0.4",

@@ -2574,16 +2574,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@expo/next-adapter@npm:5.0.2":
-  version: 5.0.2
-  resolution: "@expo/next-adapter@npm:5.0.2"
+"@expo/next-adapter@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@expo/next-adapter@npm:6.0.0"
   peerDependencies:
-    expo: ^46
-    next: ^13
-    react: ^18
-    react-native-web: ~0.18.0
+    expo: ">=46"
+    react-native-web: ^0.18 || ^0.19
     webpack: ^4.46.0 || ^5.74.0
-  checksum: 950a813aaa0e54e58494bdd91469083e7f7168046a06b9277ea3c3704273cdae07cab2307d430a30785bd47fdb774eaf01ebaacafedfce805b479cf217f8d54e
+  checksum: 09aca6350bc6bc6d56b3e14295c2ce8412e22cf0714732a5d6040c7db8d24b9950451c8b8372cadd4f1a7ed50a113bb6cee6af1fa34cd9313a6d81963333efd4
   languageName: node
   linkType: hard
 
@@ -11062,7 +11060,7 @@ __metadata:
   resolution: "next-app@workspace:apps/next"
   dependencies:
     "@cloudflare/next-on-pages": ^1.8.5
-    "@expo/next-adapter": 5.0.2
+    "@expo/next-adapter": ^6.0.0
     "@types/node": 17.0.21
     app: "*"
     autoprefixer: ^10.4.7

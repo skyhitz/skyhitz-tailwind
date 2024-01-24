@@ -31,11 +31,11 @@ export const Slider = ({
     }
   }, [progress, sliderWidth, progressSync])
 
-  const calculateValue = (newLeft) => {
+  const calculateValue = (newLeft: number) => {
     return newLeft / sliderWidth
   }
 
-  const updatePosition = (newPosition) => {
+  const updatePosition = (newPosition: number) => {
     if (newPosition < 0) {
       newPosition = 0
     } else if (newPosition > sliderWidth) {
@@ -62,7 +62,7 @@ export const Slider = ({
     onPanResponderTerminationRequest: () => true, // Handle responder termination for complex gestures
   })
 
-  const handleBarPress = (event) => {
+  const handleBarPress = (event: any) => {
     let touchPosition
 
     if (event.nativeEvent.locationX !== undefined) {
@@ -104,7 +104,7 @@ export const Slider = ({
             position: 'absolute',
             left: 0,
             height: 4,
-            backgroundColor: theme?.extend?.colors?.['grey']['light'],
+            backgroundColor: (theme as any)?.extend?.colors?.['grey']['light'],
             width: sliderWidth,
             borderRadius: 9999,
           }}
@@ -114,7 +114,7 @@ export const Slider = ({
             position: 'absolute',
             left: 0,
             height: 4,
-            backgroundColor: theme?.extend?.colors?.['blue']['brand'], // Color of the progress part
+            backgroundColor: (theme as any)?.extend?.colors?.['blue']['brand'], // Color of the progress part
             width: sliderPosition,
             borderRadius: 9999,
           }}
@@ -124,7 +124,7 @@ export const Slider = ({
             width: 12,
             height: 12,
             borderRadius: 6,
-            backgroundColor: theme?.extend?.colors?.['blue']['brand'],
+            backgroundColor: (theme as any)?.extend?.colors?.['blue']['brand'],
             position: 'absolute',
             left: sliderPosition - 6, // Center the slider
             top: -4,
