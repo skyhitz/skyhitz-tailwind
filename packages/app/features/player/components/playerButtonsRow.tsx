@@ -15,9 +15,10 @@ const style = {
 
 type Props = {
   size?: 'default' | 'large'
+  className?: string
 }
 
-export function PlayerButtonsRow({ size = 'default' }: Props) {
+export function PlayerButtonsRow({ size = 'default', className }: Props) {
   const {
     playPause,
     skipForward,
@@ -32,7 +33,7 @@ export function PlayerButtonsRow({ size = 'default' }: Props) {
 
   return (
     <View
-      className={`flex w-full max-w-[18rem] flex-row items-center justify-evenly ${style[size]}`}
+      className={`flex w-full max-w-[18rem] flex-row items-center justify-evenly ${style[size]} ${className}`}
     >
       <Pressable onPress={toggleShuffle}>
         <ShuffleIcon

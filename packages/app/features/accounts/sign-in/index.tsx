@@ -15,7 +15,7 @@ export function SignIn() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      className="from-blue-start via-blue-middle to-blue-end absolute inset-0 flex items-center justify-center bg-gradient-to-r from-5% via-35% to-95%"
+      className="from-blue-start via-blue-middle to-blue-end absolute inset-0 flex h-screen items-center justify-center bg-gradient-to-r from-5% via-35% to-95%"
     >
       {signInParam ? (
         <AuthenticationView signInParam={signInParam} />

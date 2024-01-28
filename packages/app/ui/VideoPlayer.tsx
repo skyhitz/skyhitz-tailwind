@@ -1,26 +1,32 @@
 import { ResizeMode, Video } from 'expo-av'
 import { useEffect, useMemo, useState } from 'react'
-import { Platform, ViewStyle, View, useWindowDimensions } from 'react-native'
+import {
+  Platform,
+  ViewStyle,
+  View,
+  useWindowDimensions,
+  PixelRatio,
+} from 'react-native'
 import { useRecoilValue } from 'recoil'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { userAtom } from 'app/state/user'
 import { min } from 'ramda'
 import { SolitoImage } from 'solito/image'
 import { imageUrlMedium, imageUrlSmall } from 'app/utils/entry'
+import { cssInterop, remapProps } from 'nativewind'
 
 type Props = {
-  maxHeight?: number
-  fixedSize?: number
   style?: ViewStyle
+  className?: string
+  videoClassName?: string
 }
 
-export function VideoPlayer({ fixedSize, maxHeight, style }: Props) {
-  const { width: windowWidth } = useWindowDimensions()
+cssInterop(Video, {
+  className: 'style',
+  videoClassName: 'videoStyle',
+})
 
-  if (!maxHeight) {
-    maxHeight = windowWidth
-  }
-
+export function VideoPlayer({ style, className, videoClassName }: Props) {
   const user = useRecoilValue(userAtom)
   const [aspectRatio, setAspectRatio] = useState<number>(0)
   const {
@@ -65,31 +71,9 @@ export function VideoPlayer({ fixedSize, maxHeight, style }: Props) {
     }
   }, [playbackState])
 
-  let posterSize = 0
-  let playerWidth = fixedSize ?? min(maxHeight * aspectRatio, windowWidth)
-  let playerHeight = fixedSize ?? min(playerWidth / aspectRatio, maxHeight)
-
-  if (aspectRatio === 0) {
-    posterSize = fixedSize ?? min(windowWidth, maxHeight)
-    // we have to set it to 1 instead of 0 so it will load properly on android
-    playerWidth = 1
-    playerHeight = 1
-  }
-
-  const posterUri = useMemo(() => {
-    if (entry?.imageUrl) {
-      if (posterSize <= 80) {
-        return imageUrlSmall(entry.imageUrl)
-      } else {
-        return imageUrlMedium(entry.imageUrl)
-      }
-    }
-    return undefined
-  }, [posterSize, entry])
-
   return (
     <View className="items-center justify-center" style={[style]}>
-      {posterUri && (
+      {/* {posterUri && (
         <SolitoImage
           width={posterSize}
           height={posterSize}
@@ -101,7 +85,7 @@ export function VideoPlayer({ fixedSize, maxHeight, style }: Props) {
           alt="player"
           contentFit="cover"
         />
-      )}
+      )} */}
       <Video
         source={getVideoUri()}
         ref={(ref) => {
@@ -111,15 +95,20 @@ export function VideoPlayer({ fixedSize, maxHeight, style }: Props) {
         }}
         onPlaybackStatusUpdate={onPlaybackStatusUpdate}
         resizeMode={ResizeMode.COVER}
-        style={{
-          height: playerHeight,
-          width: playerWidth,
-          alignItems: 'center',
-          justifyContent: 'center',
-          borderRadius: fixedSize ? 6 : 0,
-          aspectRatio: 1 / 1,
+        // @ts-ignore
+        videoClassName={`h-full w-full max-h-[50vh]  ${
+          videoClassName ? videoClassName : 'md:max-w-[3.5rem]'
+        }`}
+        videoStyle={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          top: 0,
         }}
-        videoStyle={{ height: playerHeight, width: playerWidth }}
+        className={`aspect-square max-h-[50vh] w-screen items-center justify-center  md:rounded-md ${
+          className ? className : 'md:max-w-[3.5rem]'
+        }`}
         onReadyForDisplay={(event: any) => {
           let videoAspectRatio = 0
           if (event.naturalSize) {

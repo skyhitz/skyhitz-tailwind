@@ -18,6 +18,7 @@ import {
 import { Platform, View, useWindowDimensions } from 'react-native'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
+import { MotiView } from 'moti'
 
 const fullAnimationDuration = 400
 
@@ -33,14 +34,14 @@ export function MobileTabBarWrapper({
   const { height } = useWindowDimensions()
 
   const tabBarHeight = useMemo(() => {
-    let height = 54 + insets.bottom
-    if (playbackState !== 'IDLE' && playbackState !== 'ERROR') {
-      height = height + 40
-    }
+    let height = 54 + insets.bottom + 40
+    // if (playbackState !== 'IDLE' && playbackState !== 'ERROR') {
+    //   height = height + 40
+    // }
     return height
   }, [insets, playbackState]) // 52 + 2 border + 40 miniplayer
 
-  const maxHeight = useMemo(() => height + insets.top, [insets])
+  const maxHeight = useMemo(() => height + insets.top, [insets, height])
 
   const y = useSharedValue(tabBarHeight)
   const dragStart = useSharedValue(tabBarHeight)
@@ -101,6 +102,12 @@ export function MobileTabBarWrapper({
   }, [tabBarHeight, maxHeight, y])
 
   const tabBarStyle = useAnimatedStyle(() => {
+    const opacity = interpolate(
+      y.value,
+      [tabBarHeight, maxHeight / 3],
+      [1, 0],
+      Extrapolation.CLAMP,
+    )
     const translation = interpolate(
       y.value,
       [tabBarHeight, maxHeight],
@@ -109,6 +116,7 @@ export function MobileTabBarWrapper({
     )
 
     return {
+      opacity,
       transform: [
         {
           translateY: translation,
@@ -141,11 +149,12 @@ export function MobileTabBarWrapper({
   return (
     <GestureHandlerRootView>
       <GestureDetector gesture={gestureHandler}>
-        <Animated.View
+        <MotiView
           style={[
             { justifyContent: 'space-between', display: 'flex' },
             draggableStyle,
           ]}
+          className="md:!h-20 md:border-t md:border-gray-200"
         >
           <View>
             <MiniPlayerBar
@@ -158,10 +167,10 @@ export function MobileTabBarWrapper({
             />
           </View>
 
-          <Animated.View style={[{ zIndex: 10 }, tabBarStyle]}>
+          <MotiView style={[{ zIndex: 10 }, tabBarStyle]}>
             <DashboardTabBar currentTabName={currentTabName} />
-          </Animated.View>
-        </Animated.View>
+          </MotiView>
+        </MotiView>
       </GestureDetector>
     </GestureHandlerRootView>
   )

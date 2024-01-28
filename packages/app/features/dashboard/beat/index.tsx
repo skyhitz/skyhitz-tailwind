@@ -14,6 +14,7 @@ import { useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
 import { SkeletonContainer } from 'app/ui/skeletons/SkeletonContainer'
 import { SolitoImage } from 'solito/image'
 import Navbar from 'app/ui/navbar'
+import { VideoPlayer } from 'app/ui/VideoPlayer'
 
 type Props = {
   entry?: Entry
@@ -48,7 +49,7 @@ export default function BeatScreen(props: Props) {
         <View className="hidden md:flex">
           <View className="w-full flex-row">
             <View className="mr-4 flex flex-1 items-center">
-              <View className="max-w-125 max-h-125 aspect-square w-full rounded-md">
+              <View className="relative aspect-square w-full rounded-md">
                 <SolitoImage
                   src={imageUrlMedium(entry.imageUrl)}
                   fill
@@ -56,6 +57,11 @@ export default function BeatScreen(props: Props) {
                   style={{ borderRadius: 12 }}
                   sizes="(max-width: 768px) 100vw"
                   priority
+                  contentFit="cover"
+                />
+                <VideoPlayer
+                  className="!max-h-none !w-full"
+                  videoClassName="!max-h-none !w-full"
                 />
               </View>
 

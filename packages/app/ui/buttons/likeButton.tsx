@@ -8,6 +8,8 @@ import { isSome } from 'app/utils'
 import { useToast } from 'react-native-toast-notifications'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
 import { theme } from 'app/design/tailwind/theme'
+import { useRecoilValue } from 'recoil'
+import { userAtom } from 'app/state/user'
 
 type Props = {
   size: number
@@ -16,6 +18,8 @@ type Props = {
 }
 
 function LikeButton({ size, className, entry }: Props) {
+  const user = useRecoilValue(userAtom)
+
   const [likeEntry] = useLikeEntryMutation()
   const toast = useToast()
   const { data: userLikesData } = useUserLikesQuery()
@@ -26,6 +30,7 @@ function LikeButton({ size, className, entry }: Props) {
   )
 
   const update = async () => {
+    if (!user) return
     active ? removeLikeFromCache(entry) : addLikeToCache(entry)
     try {
       await likeEntry({ variables: { id: entry.id, like: !active } })

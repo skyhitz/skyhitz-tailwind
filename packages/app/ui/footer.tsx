@@ -26,7 +26,7 @@ export default function Footer() {
   return (
     <View className="mx-auto w-full max-w-7xl px-6 pb-16 sm:pb-24 lg:px-8 lg:pb-32">
       <View className="xl:grid xl:grid-cols-2 xl:gap-8">
-        <SkyhitzLogo />
+        <SkyhitzLogo size={25} />
         <View className="md:grid md:grid-cols-3 md:gap-8">
           <View className="mt-10 md:mt-0">
             <H3 className="text-sm font-semibold leading-6 text-gray-900">

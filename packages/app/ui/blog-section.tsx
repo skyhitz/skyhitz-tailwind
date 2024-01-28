@@ -15,7 +15,7 @@ export default function BlogSection({ posts }: { posts: Post[] }) {
             See all →
           </A>
         </View>
-        <View className="mt-10 flex w-full flex-col gap-4 sm:flex-row lg:gap-8">
+        <View className="mt-10 flex min-h-fit w-full flex-col gap-4 sm:flex-row lg:gap-8">
           {posts && posts.map((post) => <Card key={post.slug} {...post} />)}
         </View>
       </View>

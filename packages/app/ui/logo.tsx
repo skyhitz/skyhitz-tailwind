@@ -9,7 +9,7 @@ export const SkyhitzLogo = ({ size = 30 }) => {
       preserveAspectRatio="xMidYMid"
     >
       <LinearGradient
-        id="a"
+        id={`a_${size}`}
         gradientUnits="userSpaceOnUse"
         x1={69.6}
         y1={106.8}
@@ -22,7 +22,7 @@ export const SkyhitzLogo = ({ size = 30 }) => {
       </LinearGradient>
       <Path
         d="M76 67c-6 1-3-66-3-66s21 72 62 103c25 18-54-37-59-37zm-11 0c-5 0-84 55-59 37C48 73 69 1 69 1s2 67-4 66z"
-        fill="url(#a)"
+        fill={`url(#a_${size})`}
       />
     </Svg>
   )

@@ -1,13 +1,13 @@
-import { Pressable } from 'react-native'
+import { GestureResponderEvent, Pressable } from 'react-native'
 import { ActivityIndicator, P } from 'app/design/typography'
 import { IconProps } from 'app/types'
-import { ReactElement } from 'react'
+import { FormEvent, ReactElement } from 'react'
 import { theme } from './tailwind/theme'
 
 type Props = {
   loading?: boolean
   text: string
-  onPress: () => void
+  onPress: (e?: GestureResponderEvent | FormEvent<HTMLFormElement>) => void
   size?: 'default' | 'large' | 'small'
   variant?: 'primary' | 'secondary' | 'white' | 'text'
   icon?: (_props: IconProps) => ReactElement
@@ -74,11 +74,11 @@ const Button = ({
       } ${disabled ? disabledStyle[variant] : containerStyle[variant]} ${
         className ?? ''
       }`}
-      onPress={() => {
+      onPress={(e) => {
         if (disabled && onDisabledPress) {
           onDisabledPress()
         } else if (!disabled) {
-          onPress()
+          onPress(e)
         }
       }}
     >

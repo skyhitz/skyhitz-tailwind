@@ -33,6 +33,7 @@ export function BuyNowBtn({ entry }: Props) {
         text="Buy Now"
         className="flex-row-reverse"
         onPress={() => {
+          if (!user) return
           setModalVisible(true)
         }}
         useTouchable

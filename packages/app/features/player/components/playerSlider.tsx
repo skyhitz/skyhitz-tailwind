@@ -4,7 +4,7 @@ import { usePlayback } from 'app/hooks/usePlayback'
 import { any, equals } from 'ramda'
 import { Slider } from 'app/ui/SkyhitzSlider'
 
-export function PlayerSlider() {
+export function PlayerSlider({ className }: { className?: string }) {
   const { startSeeking, onSeekCompleted, duration, position, playbackState } =
     usePlayback()
   const [seekPosition, setSeekPosition] = useState<number>(position)
@@ -13,7 +13,9 @@ export function PlayerSlider() {
     playbackState === 'SEEKING' ? seekPosition / 1000 : position / 1000
 
   return (
-    <View className="flex w-full max-w-lg flex-row items-center justify-between">
+    <View
+      className={`flex w-full max-w-lg flex-row items-center justify-between ${className}`}
+    >
       <Text className="mr-3 mt-0.5 w-10 text-right text-[.65rem] text-gray-600">
         {Math.floor(currentTime / 60)}:
         {Math.floor(currentTime % 60)

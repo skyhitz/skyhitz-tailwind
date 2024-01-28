@@ -40,7 +40,7 @@ export default function DashboardTabBar({
 
   return (
     <View
-      className={`flex ${rootViewStyle} pb-[${insets.bottom}px] ${className}`}
+      className={`flex ${rootViewStyle} pb-[${insets.bottom}px] ${className} md:hidden`}
     >
       <Link viewProps={{ style: LinkStyle }} href="/dashboard/search">
         <Search

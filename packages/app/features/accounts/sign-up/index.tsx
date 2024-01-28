@@ -62,7 +62,7 @@ export function SignUp() {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-      className="from-blue-start via-blue-middle to-blue-end absolute inset-0 flex items-center justify-center bg-gradient-to-r from-5% via-35% to-95%"
+      className="from-blue-start via-blue-middle to-blue-end absolute inset-0 flex h-screen items-center justify-center bg-gradient-to-r from-5% via-35% to-95%"
     >
       {/* <BackgroundImage /> */}
       <View className="w-72 backdrop-blur-sm md:w-96">
@@ -163,7 +163,7 @@ export function SignUp() {
               <View className="mt-8 flex-row">
                 <P className="min-h-5 w-full text-center text-sm text-white">
                   Already have an account?{' '}
-                  <A className="mx-2 text-gray-700" href="/sign-up">
+                  <A className="mx-2 text-gray-700" href="/sign-in">
                     Sign In
                   </A>
                 </P>

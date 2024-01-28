@@ -27,7 +27,7 @@ export default function Card({
         </View>
         <View className="max-w-xl px-6 py-8">
           <View className="group relative">
-            <H3 className="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+            <H3 className="line-clamp-2 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
               <View className="absolute inset-0" />
               {title}
             </H3>

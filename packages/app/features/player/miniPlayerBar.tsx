@@ -3,10 +3,10 @@ import { Pressable, ViewStyle } from 'react-native'
 import ChevronUp from 'app/ui/icons/chevron-up'
 import PlayIcon from 'app/ui/icons/play'
 import PauseIcon from 'app/ui/icons/pause'
-import Animated from 'react-native-reanimated'
 
 import { usePlayback } from 'app/hooks/usePlayback'
 import { ActivityIndicator, P } from 'app/design/typography'
+import { MotiView } from 'app/design/moti'
 
 type Props = {
   onTogglePress?: () => void
@@ -17,24 +17,12 @@ export function MiniPlayerBar({ onTogglePress, animatedStyle }: Props) {
   const { playPause, playbackState, entry } = usePlayback()
 
   return (
-    <Animated.View
-      style={[
-        animatedStyle,
-        {
-          display:
-            playbackState === 'IDLE' || playbackState === 'ERROR'
-              ? 'none'
-              : 'flex',
-          height: 40,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          paddingHorizontal: 10,
-        },
-      ]}
+    <MotiView
+      className="z-10 flex h-10 flex-row items-center justify-between px-2.5 opacity-100 md:hidden"
+      style={[animatedStyle]}
     >
       <Pressable onPress={onTogglePress}>
-        <View className="flex flex-row items-center">
+        <View className="flex flex-row items-center md:hidden">
           <ChevronUp className="text-gray-600" />
           <P className="ml-2.5 pl-1 text-sm">
             {entry?.title} - {entry?.artist}
@@ -52,6 +40,6 @@ export function MiniPlayerBar({ onTogglePress, animatedStyle }: Props) {
           )}
         </Pressable>
       )}
-    </Animated.View>
+    </MotiView>
   )
 }
