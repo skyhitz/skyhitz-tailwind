@@ -138,11 +138,18 @@ export function Button({
 
 export function ActivityIndicator({
   className,
+  grey,
   ...rest
-}: { className?: string } & ComponentProps<typeof NativeActivityIndicator>) {
+}: { className?: string; grey?: boolean } & ComponentProps<
+  typeof NativeActivityIndicator
+>) {
   return (
     <NativeActivityIndicator
-      color={(theme as any)?.extend?.colors?.['blue']['brand']}
+      color={
+        grey
+          ? (theme as any)?.extend?.colors?.['grey']['DEFAULT']
+          : (theme as any)?.extend?.colors?.['blue']['brand']
+      }
       {...rest}
     />
   )

@@ -1,11 +1,5 @@
 import { Entry, EntryHolder } from 'app/api/graphql'
-import {
-  ActivityIndicator,
-  Pressable,
-  Text,
-  View,
-  Platform,
-} from 'react-native'
+import { Pressable, Text, View, Platform } from 'react-native'
 import InfoCircle from 'app/ui/icons/info-circle'
 import { PriceContainer } from './PriceContainer'
 import { usePlayback } from 'app/hooks/usePlayback'
@@ -21,7 +15,7 @@ import { AssetBids } from './bids/AssetBids'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { useMemo } from 'react'
-import { H1, P } from 'app/design/typography'
+import { ActivityIndicator, H1, P } from 'app/design/typography'
 
 type Props = {
   entry: Entry
@@ -66,7 +60,7 @@ function PlayBeatButton({ currentEntry }: { currentEntry: Entry }) {
 
   if (entry?.id === currentEntry.id) {
     if (playbackState === 'LOADING' || playbackState === 'FALLBACK') {
-      return <ActivityIndicator />
+      return <ActivityIndicator grey />
     }
 
     return (

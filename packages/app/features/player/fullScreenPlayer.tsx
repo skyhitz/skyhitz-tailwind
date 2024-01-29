@@ -37,7 +37,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
           <ChevronDown className="text-gray-600" size={24} />
         </Pressable>
         <View className="w-full items-center justify-between gap-y-8 md:flex-row">
-          {/* <VideoPlayer /> */}
+          <VideoPlayer />
 
           {playbackState === 'ERROR' || !entry ? (
             <View>
@@ -55,7 +55,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
                   {entry?.title}
                 </Text>
                 <Text
-                  className="text-center text-base text-gray-600"
+                  className="text-center text-base text-gray-600 md:text-xs"
                   ellipsizeMode="tail"
                   numberOfLines={1}
                 >
@@ -70,6 +70,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
                 <PlayerButtonsRow />
                 <PlayerSlider />
               </View>
+              <View className="hidden h-full w-64 lg:flex" />
               {entry && (
                 <LikesList
                   entry={entry}

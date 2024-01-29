@@ -45,7 +45,7 @@ export function PlayerButtonsRow({ size = 'default', className }: Props) {
         <PrevIcon className={'text-gray-600'} size={18 + sizeModificator} />
       </Pressable>
       {playbackState === 'LOADING' || playbackState === 'FALLBACK' ? (
-        <ActivityIndicator />
+        <ActivityIndicator grey />
       ) : (
         <Pressable onPress={playPause}>
           {playbackState === 'PLAYING' ? (

@@ -12,9 +12,10 @@ import BeatPageSkeleton from 'app/ui/skeletons/BeatPageSkeleton'
 import { Owners } from './BeatOwners'
 import { useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
 import { SkeletonContainer } from 'app/ui/skeletons/SkeletonContainer'
-import { SolitoImage } from 'solito/image'
 import Navbar from 'app/ui/navbar'
 import { VideoPlayer } from 'app/ui/VideoPlayer'
+import { SolitoImage } from 'app/design/solito-image'
+import { usePlayback } from 'app/hooks/usePlayback'
 
 type Props = {
   entry?: Entry
@@ -34,10 +35,24 @@ export default function BeatScreen(props: Props) {
 
   useEffect(() => {
     x.value = withRepeat(withTiming(1.2, { duration: 1000 }), -1)
-  }, [])
+  }, [x])
 
   const entry = props.entry ?? getEntryResult.entry
   const details = data?.entry
+
+  const {
+    playEntry,
+    playback,
+    playbackState,
+    entry: currentEntry,
+  } = usePlayback()
+
+  useEffect(() => {
+    // play the last played entry
+    if (playback && playbackState === 'IDLE' && entry && !currentEntry) {
+      playEntry(entry, [], false)
+    }
+  }, [playback, playEntry, playbackState, entry, currentEntry])
 
   if (!entry) {
     return <BeatPageSkeleton />
@@ -58,10 +73,6 @@ export default function BeatScreen(props: Props) {
                   sizes="(max-width: 768px) 100vw"
                   priority
                   contentFit="cover"
-                />
-                <VideoPlayer
-                  className="!max-h-none !w-full"
-                  videoClassName="!max-h-none !w-full"
                 />
               </View>
 
@@ -87,6 +98,7 @@ export default function BeatScreen(props: Props) {
               style={{ borderRadius: 12 }}
               sizes="(max-width: 768px) 100vw"
               priority
+              contentFit="cover"
             />
           </View>
           <BeatSummaryColumn entry={entry} holders={details?.holders} />
