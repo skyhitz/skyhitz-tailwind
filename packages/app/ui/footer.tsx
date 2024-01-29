@@ -24,11 +24,11 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <View className="mx-auto w-full max-w-7xl px-6 pb-16 sm:pb-24 lg:px-8 lg:pb-32">
+    <View className="mx-auto w-full max-w-7xl px-6 pb-12 lg:px-8">
       <View className="xl:grid xl:grid-cols-2 xl:gap-8">
-        <SkyhitzLogo size={25} />
-        <View className="md:grid md:grid-cols-3 md:gap-8">
-          <View className="mt-10 md:mt-0">
+        <View />
+        <View className="gap-8 md:grid md:grid-cols-3">
+          <View>
             <H3 className="text-sm font-semibold leading-6 text-gray-900">
               Explore
             </H3>
@@ -62,7 +62,7 @@ export default function Footer() {
               ))}
             </View>
           </View>
-          <View className="mt-10 md:mt-0">
+          <View>
             <H3 className="text-sm font-semibold leading-6 text-gray-900">
               Connect
             </H3>
@@ -81,8 +81,9 @@ export default function Footer() {
           </View>
         </View>
       </View>
-      <P className="mt-8 text-xs">
-        © {new Date().getFullYear()} Skyhitz - All Rights Reserved.
+      <P className="mt-16 flex flex-row items-center gap-4 text-xs">
+        <SkyhitzLogo size={25} /> © {new Date().getFullYear()} Skyhitz - All
+        Rights Reserved.
       </P>
     </View>
   )
