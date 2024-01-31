@@ -44,9 +44,7 @@ export const editProfileFormSchema: SchemaOf<EditProfileForm> = object().shape({
 })
 
 export const signInFormSchema: SchemaOf<SignInForm> = Yup.object().shape({
-  usernameOrEmail: Yup.string()
-    .required('Username or email is required')
-    .min(2, 'Username should contain at least 2 characters'),
+  usernameOrEmail: emailSchema,
 })
 
 export const signUpFormSchema = Yup.object().shape({

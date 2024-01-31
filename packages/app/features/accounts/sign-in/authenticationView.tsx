@@ -52,7 +52,7 @@ export function AuthenticationView({
       ) : (
         <>
           <ActivityIndicator size="large" />
-          <P className="mt-2 text-center text-lg">Authentication</P>
+          <P className="mt-2 text-center text-lg text-white">Authentication</P>
         </>
       )}
     </View>

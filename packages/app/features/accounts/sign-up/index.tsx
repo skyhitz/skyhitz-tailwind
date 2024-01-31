@@ -67,7 +67,7 @@ export function SignUp() {
       {/* <BackgroundImage /> */}
       <View className="w-72 backdrop-blur-sm md:w-96">
         <View className="my-4 flex w-full items-center">
-          <SkyhitzLogo size={42} />
+          <SkyhitzLogo id="sign-up" size={42} />
         </View>
 
         <Formik

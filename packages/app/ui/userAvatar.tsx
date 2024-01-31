@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import { compose, head, join, map, split, take, toUpper } from 'ramda'
 import { imageUrlSmall } from 'app/utils/entry'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 
 const classNames = {
   default: {
@@ -50,6 +50,8 @@ export function UserAvatar({
           src={imageUrlSmall(avatarUrl)}
           contentFit="cover"
           alt="Avatar"
+          // @ts-ignore
+          className="rounded-full"
         />
       </View>
     )

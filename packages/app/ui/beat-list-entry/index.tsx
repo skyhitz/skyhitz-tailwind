@@ -31,7 +31,7 @@ export function BeatListEntry({
     <Pressable onPress={() => playEntry(entry, playlist)} className="flex">
       {({ hovered }: PressableState): ReactElement => {
         return (
-          <View className="flex h-14 flex-row items-center py-2">
+          <View className="flex flex-row items-center py-2">
             <View className="aspect-[2/2] w-16 object-cover">
               <SolitoImage
                 src={imageUrlSmall(entry.imageUrl)}

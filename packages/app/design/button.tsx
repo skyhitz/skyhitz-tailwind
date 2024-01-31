@@ -83,7 +83,7 @@ const Button = ({
       }}
     >
       {loading ? (
-        <ActivityIndicator size="small" className="text-white" />
+        <ActivityIndicator size="small" color={'#FFFFFF'} />
       ) : (
         <>
           <P

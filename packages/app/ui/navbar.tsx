@@ -16,7 +16,7 @@ const Navbar = ({ className }: { className?: string }) => {
         <TextLink href="/">
           <View className="flex flex-row items-center justify-start">
             <View className="flex flex-row items-center">
-              <SkyhitzLogo />
+              <SkyhitzLogo id="navbar" />
               <Text className="font-raleway pl-4 text-lg tracking-[12px] text-gray-600">
                 SKYHITZ
               </Text>

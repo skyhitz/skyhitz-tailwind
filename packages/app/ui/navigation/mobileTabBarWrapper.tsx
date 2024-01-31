@@ -168,7 +168,10 @@ export function MobileTabBarWrapper({
           </View>
 
           <MotiView style={[{ zIndex: 10 }, tabBarStyle]}>
-            <DashboardTabBar currentTabName={currentTabName} />
+            <DashboardTabBar
+              currentTabName={currentTabName}
+              className="md:hidden"
+            />
           </MotiView>
         </MotiView>
       </GestureDetector>

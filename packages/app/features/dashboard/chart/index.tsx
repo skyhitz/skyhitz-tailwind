@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { BeatListEntry } from 'app/ui/beat-list-entry'
 import { ActivityIndicator, H1, Button } from 'app/design/typography'
 import { useTopChart } from 'app/hooks/algolia/useTopChart'
@@ -29,51 +29,53 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
 
   return (
     <View
-      className={`flex h-full w-full pt-[${insets.top}px] pb-[${insets.bottom}px] overflow-y-scroll`}
+      className={`mx-auto flex w-full max-w-7xl flex-1 pt-[${insets.top}px] pb-[${insets.bottom}px]`}
     >
-      <View className="mx-auto mb-32 w-full max-w-7xl px-6 lg:px-8">
-        <H1 className="mb-4 mt-10 text-4xl">Trending</H1>
-        <View className="my-8 border-b border-gray-200" />
-        <View className="gap-8">
-          {entries.map((entry, index) => {
-            return (
-              <BeatListEntry
-                key={index}
-                entry={entry}
-                spot={index + 1}
-                playlist={entries}
-              />
-            )
-          })}
+      <ScrollView>
+        <View className="mx-auto mb-32 w-full max-w-7xl px-4 lg:px-8">
+          <H1 className="mb-4 mt-10 text-4xl">Trending</H1>
+          <View className="my-8 border-b border-gray-200" />
+          <View className="gap-8">
+            {entries.map((entry, index) => {
+              return (
+                <BeatListEntry
+                  key={index}
+                  entry={entry}
+                  spot={index + 1}
+                  playlist={entries}
+                />
+              )
+            })}
 
-          {extraEntries.map((entry, index) => {
-            return (
-              <BeatListEntry
-                key={index}
-                entry={entry}
-                spot={index + 1}
-                playlist={entries}
-              />
-            )
-          })}
+            {extraEntries.map((entry, index) => {
+              return (
+                <BeatListEntry
+                  key={index}
+                  entry={entry}
+                  spot={index + 1}
+                  playlist={entries}
+                />
+              )
+            })}
+          </View>
+          <View className="mt-16 flex h-12 items-center  justify-center">
+            {isLoadingMore ? (
+              <ActivityIndicator size={'small'} />
+            ) : (
+              loadMoreEnabled && (
+                <Button
+                  onPress={() => {
+                    onNextPage()
+                  }}
+                >
+                  Load More →
+                </Button>
+              )
+            )}
+          </View>
         </View>
-        <View className="mt-16 flex h-12 items-center  justify-center">
-          {isLoadingMore ? (
-            <ActivityIndicator size={'small'} />
-          ) : (
-            loadMoreEnabled && (
-              <Button
-                onPress={() => {
-                  onNextPage()
-                }}
-              >
-                Load More →
-              </Button>
-            )
-          )}
-        </View>
-      </View>
-      <Footer />
+        <Footer />
+      </ScrollView>
     </View>
   )
 }

@@ -28,7 +28,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
       style={[animatedStyle]}
       className="absolute z-[1] w-full opacity-0 md:z-10 md:flex md:py-2 md:!opacity-100"
     >
-      <SafeAreaView className="flex h-full items-center px-4">
+      <SafeAreaView className="flex h-full items-center bg-white px-4">
         <Pressable
           className="flex w-full flex-row items-center py-4 md:hidden"
           onPress={onTogglePress}

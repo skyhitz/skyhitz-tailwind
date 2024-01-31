@@ -24,7 +24,7 @@ export function DashboardNavigation({
       <View className="flex flex-1 flex-row">
         {!!user && (
           <DashboardTabBar
-            className="md:hidden"
+            className="hidden md:flex"
             currentTabName={currentTabName}
             column
           />

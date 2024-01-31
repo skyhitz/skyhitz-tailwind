@@ -82,8 +82,8 @@ export default function Footer() {
         </View>
       </View>
       <P className="mt-16 flex flex-row items-center gap-4 text-xs">
-        <SkyhitzLogo size={25} /> © {new Date().getFullYear()} Skyhitz - All
-        Rights Reserved.
+        <SkyhitzLogo size={25} id="footer" /> © {new Date().getFullYear()}{' '}
+        Skyhitz - All Rights Reserved.
       </P>
     </View>
   )

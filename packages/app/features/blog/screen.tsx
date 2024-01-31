@@ -56,7 +56,7 @@ export function BlogScreen({ posts }: { posts: Post[] }) {
             return <PostWrapper key={index} {...props} />
           })}
         </View>
-        <View className="mt-16 flex h-12 items-center  justify-center">
+        <View className="mt-16 flex h-12 items-center justify-center">
           {isLoadingMore ? (
             <ActivityIndicator size={'small'} />
           ) : (

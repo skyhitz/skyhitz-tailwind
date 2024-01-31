@@ -1,6 +1,5 @@
-import { View } from 'react-native'
+import { View, StyleProp, ViewStyle } from 'react-native'
 import { useCallback } from 'react'
-import { StyleProp, ViewStyle } from 'react-native'
 import { Link } from 'solito/link'
 import Search from 'app/ui/icons/search'
 import User from 'app/ui/icons/user'
@@ -40,7 +39,7 @@ export default function DashboardTabBar({
 
   return (
     <View
-      className={`flex ${rootViewStyle} pb-[${insets.bottom}px] ${className} md:hidden`}
+      className={`flex ${rootViewStyle} pb-[${insets.bottom}px] ${className}`}
     >
       <Link viewProps={{ style: LinkStyle }} href="/dashboard/search">
         <Search
@@ -56,7 +55,7 @@ export default function DashboardTabBar({
               : 'flex h-8 w-8 items-center justify-center rounded-full border-2 border-gray-600 pb-1'
           }
         >
-          <SkyhitzLogo size={20} />
+          <SkyhitzLogo size={20} id={`dashboard${column}`} />
         </View>
       </Link>
       {user && (
