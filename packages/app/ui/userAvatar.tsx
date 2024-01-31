@@ -23,9 +23,9 @@ const classNames = {
   },
 
   xlarge: {
-    size: 'h-30 w-30',
+    size: 'h-28 w-28',
     border: 'border border-white',
-    textSize: 'text-2xl',
+    textSize: 'text-xl',
   },
 }
 

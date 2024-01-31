@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { Text, TextInput, View, TextInputProps } from 'react-native'
+import { Text, View, TextInputProps, TextInput } from 'react-native'
 import { IconProps } from 'app/types'
 import { theme } from 'app/design/tailwind/theme'
 
@@ -29,7 +29,7 @@ export function FormInputWithIcon({
       <View className="flex w-full flex-row items-center">
         {icon(iconProps ?? defaultIconProps)}
         <TextInput
-          className="ml-4 grow text-white"
+          className="ml-4 grow text-gray-600 outline-none"
           style={[style]}
           placeholderTextColor={
             placeholderTextColor ?? (theme as any)?.colors?.['white']['DEFAULT']

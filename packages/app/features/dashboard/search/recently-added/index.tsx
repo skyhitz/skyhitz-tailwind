@@ -37,5 +37,5 @@ export default function RecentlyAddedList() {
 }
 
 function ListHeader() {
-  return <P className="mt-0.5 pb-4">Recently Added</P>
+  return <P className="font-unbounded mt-0.5 pb-4">Recently Added</P>
 }

@@ -51,7 +51,7 @@ export default function BeatPageSkeleton() {
   }
 
   return (
-    <View className="bg-blue-dark flex flex-1">
+    <View className="flex flex-1">
       <ScrollView contentContainerClassName="flex min-h-full items-start w-full max-w-screen-xl mx-auto p-4 bg-blue-dark">
         <Content />
       </ScrollView>

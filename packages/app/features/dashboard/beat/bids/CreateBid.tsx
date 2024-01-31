@@ -14,6 +14,7 @@ import { useSWRConfig } from 'swr'
 import { getUserBidsUrl } from 'app/hooks/useUserBids'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
+import { P } from 'app/design/typography'
 
 type Props = {
   entry: Entry
@@ -90,10 +91,8 @@ export function CreateBid({ entry }: Props) {
   return (
     <>
       <ComponentAuthGuard>
-        <View className="border-grey-light bg-blue-transparent mt-4 flex items-center rounded-lg border-[0.5px] p-4 md:items-start">
-          <Text className="text-grey-light mb-3 text-sm">
-            Create a bid for this asset
-          </Text>
+        <View className="border-grey-light mt-4 flex items-center rounded-lg border-[0.5px] p-4 md:items-start">
+          <P className="mb-3 text-sm">Create a bid for this asset</P>
           <View className="mb-3 flex items-center md:flex-row">
             <FormInputWithIcon
               containerClassNames="border border-white rounded p-5 md:mr-2 mb-2 md:mb-0"

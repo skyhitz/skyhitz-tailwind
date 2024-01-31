@@ -33,7 +33,8 @@ export function H1({
   className,
   ...rest
 }: { className?: string } & ComponentProps<typeof Text>) {
-  const defaultStyles = 'my-4 text-3xl font-extrabold font-unbounded'
+  const defaultStyles =
+    'my-4 text-3xl font-extrabold font-unbounded text-gray-600'
   return (
     <Text
       className={`${defaultStyles} ${className}`}
