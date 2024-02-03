@@ -1,23 +1,17 @@
-import { ResizeMode, Video } from 'expo-av'
 import { useEffect, useMemo, useState } from 'react'
 import { Platform, ViewStyle, View } from 'react-native'
 import { useRecoilValue } from 'recoil'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { userAtom } from 'app/state/user'
 import { imageUrlMedium } from 'app/utils/entry'
-import { cssInterop } from 'nativewind'
 import { SolitoImage } from 'app/design/solito-image'
+import { Video, ResizeMode } from 'app/design/video'
 
 type Props = {
   style?: ViewStyle
   className?: string
   videoClassName?: string
 }
-
-cssInterop(Video, {
-  className: 'style',
-  videoClassName: 'videoStyle',
-})
 
 export function VideoPlayer({ style, className, videoClassName }: Props) {
   const user = useRecoilValue(userAtom)

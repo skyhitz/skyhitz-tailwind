@@ -101,7 +101,7 @@ export default function EditProfileScreen() {
             displayName={user!.displayName!}
           />
 
-          <View className="mt-5 px-4">
+          <View className="mt-10 px-4">
             <ChangeImages
               onAvatarChange={setAvatar}
               onBackgroundChange={setBackground}
@@ -136,7 +136,7 @@ export default function EditProfileScreen() {
             <Line />
             <FormInputWithIcon
               value={values.twitter ?? ''}
-              placeholder="Twitter username"
+              placeholder="X username"
               onChangeText={handleChange('twitter')}
               icon={Twitter}
               error={errors.twitter}

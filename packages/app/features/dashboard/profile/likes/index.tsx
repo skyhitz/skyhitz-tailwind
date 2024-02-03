@@ -10,7 +10,7 @@ export default function LikesScreen() {
 
   return (
     <View className="w-full flex-1">
-      <P className="web:flex font-unbounded ml-8 hidden text-lg font-bold">
+      <P className="web:flex font-unbounded my-4 ml-8 hidden text-lg font-bold">
         Likes
       </P>
       <ProfileBeatsList

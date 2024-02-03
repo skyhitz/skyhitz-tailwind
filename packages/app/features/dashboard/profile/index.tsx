@@ -1,7 +1,10 @@
 import { Text, View } from 'react-native'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
-import { ProfileHeader } from 'app/features/dashboard/profile/ProfileHeader'
+import {
+  ProfileHeader,
+  SocialLinks,
+} from 'app/features/dashboard/profile/ProfileHeader'
 import Cog from 'app/ui/icons/cog'
 import { CopyWalletPublicKeyButton } from 'app/ui/buttons/CopyWalletPublicKeyButton'
 import { SafeAreaView } from 'app/design/safe-area-view'
@@ -48,22 +51,26 @@ export function ProfileScreen() {
           avatar={user.avatarUrl}
           background={user.backgroundUrl!}
           displayName={user!.displayName!}
-          twitter={user!.twitter!}
-          instagram={user.instagram!}
-          profileUrl={`${Config.APP_URL}/dashboard/beatmaker/${user.id}`}
         />
       </View>
-      <View className="ml-2 mt-3 flex">
-        <View className="flex-row">
-          <P className="font-unbounded my-4 mr-2.5 text-xl font-bold">
-            {user.displayName}
-          </P>
-          <Link href="/dashboard/profile/edit">
-            <Cog className="text-white" size={18} />
-          </Link>
+      <View className="ml-2 mt-8 flex">
+        <View className="flex-row items-center justify-between">
+          <View className="flex-row items-center">
+            <P className="font-unbounded my-4 mr-2.5 text-xl font-bold">
+              {user.displayName}
+            </P>
+            <Link href="/dashboard/profile/edit">
+              <Cog className="text-gray-600" size={18} />
+            </Link>
+          </View>
+          <SocialLinks
+            twitter={user!.twitter!}
+            instagram={user.instagram!}
+            profileUrl={`${Config.APP_URL}/dashboard/beatmaker/${user.id}`}
+          />
         </View>
         {!!credits?.userCredits && (
-          <View className="my-2 flex-row items-center">
+          <View className="flex-row items-center">
             <Dollar size={22} className="text-gray-600" />
             <P className="ml-1 mr-2.5 font-bold">
               {credits.userCredits.toFixed(2)}
@@ -85,7 +92,7 @@ export function ProfileScreen() {
         <ProfileRow
           icon={<StarBorder size={24} className="text-blue" />}
           trailingNumber={userCollectionData?.userEntries?.length}
-          title="Collections"
+          title="Collection"
           onPress={() => push('/dashboard/profile/collection')}
         />
         <ProfileRow

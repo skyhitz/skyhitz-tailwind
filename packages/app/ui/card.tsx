@@ -1,10 +1,11 @@
 import { A, H3, P } from 'app/design/typography'
+import { formattedDate } from 'app/utils'
 import { View } from 'react-native'
 import { SolitoImage } from 'solito/image'
 
 export default function Card({
   imageUrl = '/img/landing-3.png',
-  dateTime = 'Jan 5, 2023',
+  publishedAtTimestamp,
   tag = 'Business',
   content = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
   title = 'Skyhitz reaches 20M MRR',
@@ -41,7 +42,9 @@ export default function Card({
             </P>
           </View>
           <View className="mt-5 flex items-start gap-4">
-            <P className="text-xs font-bold text-gray-700">{dateTime}</P>
+            <P className="text-xs font-bold text-gray-700">
+              {formattedDate(publishedAtTimestamp)}
+            </P>
           </View>
         </View>
       </View>

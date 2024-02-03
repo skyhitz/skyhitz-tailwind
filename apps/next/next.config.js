@@ -24,6 +24,8 @@ const nextConfig = {
     'expo-av',
     'expo-asset',
     'expo-modules-core',
+    'expo-image-picker',
+    'expo-document-picker',
     'expo-intent-launcher',
     'solito',
     'moti',

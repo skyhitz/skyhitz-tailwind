@@ -4,9 +4,12 @@ import { userAtom } from 'app/state/user'
 import { useRecoilValue } from 'recoil'
 import { Text, View } from 'react-native'
 import { MotiLink as TextLink } from 'solito/moti'
+import { ClientOnly } from './client-only'
 
 const Navbar = ({ className }: { className?: string }) => {
   const user = useRecoilValue(userAtom)
+
+  console.log(user)
 
   return (
     <View
@@ -23,35 +26,38 @@ const Navbar = ({ className }: { className?: string }) => {
             </View>
           </View>
         </TextLink>
-        {user ? null : (
-          <View className="ml-8 hidden flex-row items-center sm:flex">
-            <TextLink href="/dashboard/chart">
-              <P className="mr-4 text-sm">Chart</P>
-            </TextLink>
-            <TextLink href="/dashboard/search">
-              <P className="mr-4 text-sm">Search</P>
-            </TextLink>
-          </View>
-        )}
+        <ClientOnly>
+          {user ? null : (
+            <View className="ml-8 hidden flex-row items-center sm:flex">
+              <TextLink href="/dashboard/chart">
+                <P className="mr-4 text-sm">Chart</P>
+              </TextLink>
+              <TextLink href="/dashboard/search">
+                <P className="mr-4 text-sm">Search</P>
+              </TextLink>
+            </View>
+          )}
+        </ClientOnly>
       </View>
-
-      {user ? null : (
-        <View className="hidden flex-row items-center justify-end sm:flex">
-          <TextLink href="/sign-in">
-            <P className="font-raleway tracking-0.5 mr-4 text-sm font-bold">
-              Log in
-            </P>
-          </TextLink>
-
-          <View className="bg-blue rounded-full px-3">
-            <TextLink href="/sign-up">
-              <P className="font-raleway tracking-0.5 p-2 text-sm font-bold text-white">
-                Sign Up
+      <ClientOnly>
+        {user ? null : (
+          <View className="hidden flex-row items-center justify-end sm:flex">
+            <TextLink href="/sign-in">
+              <P className="font-raleway tracking-0.5 mr-4 text-sm font-bold">
+                Log in
               </P>
             </TextLink>
+
+            <View className="bg-blue rounded-full px-3">
+              <TextLink href="/sign-up">
+                <P className="font-raleway tracking-0.5 p-2 text-sm font-bold text-white">
+                  Sign Up
+                </P>
+              </TextLink>
+            </View>
           </View>
-        </View>
-      )}
+        )}
+      </ClientOnly>
     </View>
   )
 }

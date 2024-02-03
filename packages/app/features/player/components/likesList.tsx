@@ -45,7 +45,6 @@ export function LikesList({
       <CollapsableView icon={FilledLike} headerText="Likes">
         <View className={`flex w-full p-5 ${classname}`}>
           <View className="flex flex-row items-center justify-between">
-            <P className="text-sm">Liked By</P>
             {showLikeButton && <LikeButton size={24} entry={entry} />}
           </View>
           <View className="min-h-10 mt-2.5 flex flex-row">

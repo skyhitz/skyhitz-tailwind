@@ -19,16 +19,16 @@ export function ChangeImages({
   activeSubmission,
 }: Props) {
   return (
-    <View className="flex md:flex-row">
+    <View className="mb-5 mt-5 flex md:flex-row">
       <ChangeImageButton
-        text="Change Profile Photo"
+        text="Update Photo"
         onChange={onAvatarChange}
         classNames="mb-2 md:mb-0 md:mr-2"
         validator={validateProfilePicture}
         activeSubmission={activeSubmission}
       />
       <ChangeImageButton
-        text="Change Background"
+        text="Update Background"
         onChange={onBackgroundChange}
         validator={validateBackgroundImage}
         activeSubmission={activeSubmission}
@@ -79,7 +79,7 @@ function ChangeImageButton({
       onPress={pickMedia}
       text={text}
       variant="primary"
-      className={`w-50 h-10 p-2 ${classNames ?? ''}`}
+      className={`h-10 w-auto p-2 ${classNames ?? ''}`}
     />
   )
 }

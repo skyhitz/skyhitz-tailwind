@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { SkyhitzLogo } from '../logo'
+import { ClientOnly } from '../client-only'
 
 const LinkStyle: StyleProp<ViewStyle> = {
   flex: 1,
@@ -58,14 +59,16 @@ export default function DashboardTabBar({
           <SkyhitzLogo size={20} id={`dashboard${column}`} />
         </View>
       </Link>
-      {user && (
-        <Link viewProps={{ style: LinkStyle }} href="/dashboard/profile">
-          <User
-            size={28}
-            className={isActive('profile') ? 'text-blue' : 'text-white'}
-          />
-        </Link>
-      )}
+      <ClientOnly>
+        {user && (
+          <Link viewProps={{ style: LinkStyle }} href="/dashboard/profile">
+            <User
+              size={28}
+              className={isActive('profile') ? 'text-blue' : 'text-white'}
+            />
+          </Link>
+        )}
+      </ClientOnly>
     </View>
   )
 }

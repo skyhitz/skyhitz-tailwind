@@ -71,14 +71,14 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
                 <PlayerSlider />
               </View>
               <View className="hidden h-full w-64 lg:flex" />
-              {entry && (
+              {/* {entry && (
                 <LikesList
                   entry={entry}
                   showLikeButton
                   useAndroidHorizontalList={Platform.OS === 'android'}
                   classname="md:hidden"
                 />
-              )}
+              )} */}
             </>
           )}
         </View>

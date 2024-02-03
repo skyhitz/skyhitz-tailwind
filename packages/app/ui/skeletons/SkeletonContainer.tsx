@@ -23,7 +23,7 @@ export function SkeletonContainer({ className, sharedValue }: Props) {
 
   return (
     <View
-      className={`bg-grey overflow-hidden rounded-md ${className}`}
+      className={`overflow-hidden rounded-md bg-gray-200 ${className}`}
       onLayout={(event) => {
         if (!width && event.nativeEvent.layout.width) {
           setWidth(event.nativeEvent.layout.width)

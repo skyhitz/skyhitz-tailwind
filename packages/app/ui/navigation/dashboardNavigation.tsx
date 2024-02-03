@@ -6,6 +6,7 @@ import { MobileTabBarWrapper } from './mobileTabBarWrapper'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { useNextRouter } from 'solito/build/router/use-next-router'
+import { ClientOnly } from '../client-only'
 
 export function DashboardNavigation({
   children,
@@ -22,13 +23,15 @@ export function DashboardNavigation({
       <Navbar className="hidden md:flex" />
 
       <View className="flex flex-1 flex-row">
-        {!!user && (
-          <DashboardTabBar
-            className="hidden md:flex"
-            currentTabName={currentTabName}
-            column
-          />
-        )}
+        <ClientOnly>
+          {!!user && (
+            <DashboardTabBar
+              className="hidden md:flex"
+              currentTabName={currentTabName}
+              column
+            />
+          )}
+        </ClientOnly>
         {children}
       </View>
 

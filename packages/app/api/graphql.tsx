@@ -519,6 +519,7 @@ export type SignInWithTokenMutation = {
   signInWithToken: {
     __typename?: 'User'
     avatarUrl: string
+    backgroundUrl: string
     displayName?: string | null
     username: string
     id: string
@@ -1468,6 +1469,7 @@ export const SignInWithTokenDocument = gql`
   mutation signInWithToken($token: String!, $uid: String!) {
     signInWithToken(token: $token, uid: $uid) {
       avatarUrl
+      backgroundUrl
       displayName
       username
       id

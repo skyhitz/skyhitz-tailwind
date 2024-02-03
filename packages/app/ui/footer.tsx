@@ -4,8 +4,7 @@ import { SkyhitzLogo } from 'app/ui/logo'
 
 const navigation = {
   explore: [
-    { name: 'Artists', href: '/artists' },
-    { name: 'Genres', href: '/genres' },
+    { name: 'Music', href: '/dashboard/search' },
     { name: 'Trending', href: '/dashboard/chart' },
   ],
   support: [

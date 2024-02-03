@@ -1,4 +1,5 @@
 import { A, H1, P } from 'app/design/typography'
+import { Video, ResizeMode } from 'app/design/video'
 import { View } from 'react-native'
 import Svg, {
   LinearGradient,
@@ -60,12 +61,23 @@ export const Hero = ({ title, description }: HeroProps) => {
             transform="translate(24 24)"
             clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
           >
-            {/* <SolitoImage
-              src="https://tailwindui.com/img/component-images/mobile-app-screenshot.png"
-              alt="screen"
-              width={316}
-              height={684}
-            /> */}
+            <Video
+              className="h-full w-full"
+              // @ts-ignore
+              videoClassName="w-full h-full"
+              source={{ uri: 'http://localhost:3000/video/landing.mp4' }}
+              videoStyle={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                top: 0,
+              }}
+              resizeMode={ResizeMode.COVER}
+              shouldPlay
+              isLooping
+              isMuted
+            />
           </ForeignObject>
         </Svg>
       </View>

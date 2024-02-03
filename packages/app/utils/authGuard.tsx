@@ -4,6 +4,7 @@ import { userAtom } from 'app/state/user'
 import { useRouter } from 'solito/router'
 import { SplashScreen } from 'app/features/splash/splashScreen'
 import { A } from 'app/design/typography'
+import { ClientOnly } from 'app/ui/client-only'
 
 type Props = {
   children: ReactNode
@@ -12,7 +13,7 @@ type Props = {
   linkToAuth?: boolean
 }
 
-export function AuthGuard({
+export function AuthWrap({
   children,
   redirect = true,
   fallback = SplashScreen,
@@ -52,8 +53,18 @@ export function ComponentAuthGuard({
   linkToAuth?: boolean
 }) {
   return (
-    <AuthGuard fallback={() => null} redirect={false} {...rest}>
-      {children}
-    </AuthGuard>
+    <ClientOnly>
+      <AuthWrap fallback={() => null} redirect={false} {...rest}>
+        {children}
+      </AuthWrap>
+    </ClientOnly>
+  )
+}
+
+export function AuthGuard({ children, ...props }) {
+  return (
+    <ClientOnly>
+      <AuthWrap {...props}>{children}</AuthWrap>
+    </ClientOnly>
   )
 }

@@ -15,7 +15,7 @@ export function BidsScreen() {
 
   return (
     <View className="w-full flex-1">
-      <P className="web:flex font-unbounded mb-4 ml-8 hidden text-lg font-bold">
+      <P className="web:flex font-unbounded my-4 mb-4 ml-8 hidden text-lg font-bold">
         Your bids
       </P>
       <View className="mx-auto w-full max-w-6xl flex-1">
@@ -29,7 +29,7 @@ export function BidsScreen() {
             )}
             ListEmptyComponent={
               <View className="mt-8 flex flex-1 items-center justify-center">
-                <Text>You don&apos;t have any active bids</Text>
+                <P>You don&apos;t have any active bids</P>
               </View>
             }
           />
