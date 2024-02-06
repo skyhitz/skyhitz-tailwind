@@ -13,18 +13,18 @@ const defaultToastContext = {
 
 const ToastContext = createContext(defaultToastContext)
 
-export const ToastProvider = ({ children }) => {
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasts, setToasts] = useState<Toast[]>([])
-  const [timeouts, setTimeouts] = useState({})
+  const [timeouts, setTimeouts] = useState<any>({})
 
   const hide = useCallback(
-    (id) => {
+    (id: Toast['id']) => {
       setToasts((currentToasts) =>
         currentToasts.filter((toast) => toast.id !== id),
       )
       if (timeouts[id]) {
         clearTimeout(timeouts[id])
-        setTimeouts((currentTimeouts) => {
+        setTimeouts((currentTimeouts: any) => {
           const updatedTimeouts = { ...currentTimeouts }
           delete updatedTimeouts[id]
           return updatedTimeouts
@@ -35,14 +35,14 @@ export const ToastProvider = ({ children }) => {
   )
 
   const show = useCallback(
-    (message, options) => {
+    (message: Toast['message'], options: Toast['options']) => {
       const duration = options.duration || 5000
       const id = Date.now()
       setToasts((currentToasts) => [...currentToasts, { message, options, id }])
 
       if (duration) {
         const timeoutId = setTimeout(() => hide(id), duration)
-        setTimeouts((currentTimeouts) => ({
+        setTimeouts((currentTimeouts: any) => ({
           ...currentTimeouts,
           [id]: timeoutId,
         }))

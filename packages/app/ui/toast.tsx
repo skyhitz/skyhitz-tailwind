@@ -5,7 +5,15 @@ import X from 'app/ui/icons/x'
 import Check from 'app/ui/icons/check'
 import { MotiView } from 'app/design/moti'
 
-const ToastComponent = ({ message, type, onDismiss }) => {
+const ToastComponent = ({
+  message,
+  type,
+  onDismiss,
+}: {
+  message: string
+  type: string
+  onDismiss: () => void
+}) => {
   const handleDismiss = useCallback(() => {
     onDismiss()
   }, [onDismiss])
