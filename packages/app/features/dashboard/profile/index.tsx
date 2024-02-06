@@ -66,17 +66,16 @@ export function ProfileScreen() {
           <SocialLinks
             twitter={user!.twitter!}
             instagram={user.instagram!}
-            profileUrl={`${Config.APP_URL}/dashboard/beatmaker/${user.id}`}
+            profileUrl={`${Config.APP_URL}/dashboard/collector/${user.id}`}
           />
         </View>
-        {!!credits?.userCredits && (
-          <View className="flex-row items-center">
-            <Dollar size={22} className="text-gray-600" />
-            <P className="ml-1 mr-2.5 font-bold">
-              {credits.userCredits.toFixed(2)}
-            </P>
-          </View>
-        )}
+
+        <View className="flex-row items-center">
+          <Dollar size={22} className="text-gray-600" />
+          <P className="ml-1 mr-2.5 font-bold">
+            {credits?.userCredits.toFixed(2)}
+          </P>
+        </View>
         <View className="my-4">
           <CopyWalletPublicKeyButton walletPublicKey={user.publicKey} />
         </View>

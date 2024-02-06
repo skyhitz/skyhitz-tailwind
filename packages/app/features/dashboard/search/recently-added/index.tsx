@@ -3,20 +3,9 @@ import { BeatListEntry } from 'app/ui/beat-list-entry'
 import { useRecentlyAdded } from 'app/hooks/algolia/useRecentlyAdded'
 import { BeatSkeleton } from 'app/ui/skeletons/BeatSkeleton'
 import { P } from 'app/design/typography'
-import { usePlayback } from 'app/hooks/usePlayback'
-import { useEffect } from 'react'
 
 export default function RecentlyAddedList() {
   const { data, onNextPage, loading } = useRecentlyAdded()
-
-  const { playEntry, playback, playbackState } = usePlayback()
-
-  useEffect(() => {
-    // play the last played entry
-    if (playback && playbackState === 'IDLE' && data[0]) {
-      playEntry(data[0], data, false)
-    }
-  }, [playback, playEntry, playbackState, data])
 
   if (loading) {
     return <BeatSkeleton />

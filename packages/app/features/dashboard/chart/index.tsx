@@ -5,8 +5,6 @@ import { useTopChart } from 'app/hooks/algolia/useTopChart'
 import { Entry } from 'app/api/graphql'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import Footer from 'app/ui/footer'
-import { usePlayback } from 'app/hooks/usePlayback'
-import { useEffect } from 'react'
 
 export function ChartScreen({ entries }: { entries: Entry[] }) {
   const insets = useSafeArea()
@@ -17,15 +15,6 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
     onNextPage,
     loadMoreEnabled,
   } = useTopChart(1)
-
-  const { playEntry, playback, playbackState } = usePlayback()
-
-  useEffect(() => {
-    // play the last played entry
-    if (playback && playbackState === 'IDLE' && entries[0]) {
-      playEntry(entries[0], entries, false)
-    }
-  }, [playback, playEntry, playbackState, entries])
 
   return (
     <View

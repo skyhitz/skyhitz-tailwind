@@ -85,6 +85,7 @@ export function PlaybackProvider({ children }: { children: React.ReactNode }) {
   const [playlist, setPlaylist] = useState<Entry[]>([])
   const [shouldPlay, setShouldPlay] = useState<boolean>(false)
   const [shuffle, setShuffle] = useState<boolean>(false)
+  const [skipping, setSkipping] = useState<boolean>(false)
   const [setLastPlayedEntry] = useSetLastPlayedEntryMutation()
   const reportError = useErrorReport()
   const [timeoutId, setTimeoutId] = useState<
@@ -236,6 +237,8 @@ export function PlaybackProvider({ children }: { children: React.ReactNode }) {
   )
 
   const skipForward = useCallback(async () => {
+    console.log('skip forward')
+
     const currentIndex = findIndex((item) => item?.id === entry?.id, playlist)
     if (currentIndex < 0) return
     let nextIndex: number
@@ -245,9 +248,14 @@ export function PlaybackProvider({ children }: { children: React.ReactNode }) {
       nextIndex = (currentIndex + 1) % playlist.length
     }
     setPlaybackState('PAUSED')
+
     await playback?.pauseAsync()
-    await loadBeat(playlist[nextIndex]!)
-  }, [playback, entry, loadBeat, shuffle, playlist, setPlaybackState])
+    const nextEntry = playlist[nextIndex]
+    if (nextEntry) {
+      await loadBeat(nextEntry)
+    }
+    setSkipping(false)
+  }, [playback, entry, loadBeat, shuffle, playlist, setPlaybackState, skipping])
 
   const skipBackward = useCallback(async () => {
     const previousEntry = last(init(playingHistory))
@@ -276,13 +284,20 @@ export function PlaybackProvider({ children }: { children: React.ReactNode }) {
     setLooping(!looping)
   }, [playback, looping, setLooping])
 
+  useEffect(() => {
+    if (skipping) {
+      skipForward()
+    }
+  }, [skipping])
+
   const onPlaybackStatusUpdate = useCallback(
     (status: AVPlaybackStatus) => {
       if (!status.isLoaded) {
         return
       }
       if (status.didJustFinish && playbackState === 'PLAYING' && !looping) {
-        skipForward()
+        console.log('before skip forward')
+        setSkipping(true)
       }
 
       if (
@@ -301,7 +316,7 @@ export function PlaybackProvider({ children }: { children: React.ReactNode }) {
         setPosition(status.positionMillis)
       }
     },
-    [skipForward, setPosition, setDuration, looping, playbackState],
+    [setPosition, setDuration, looping, playbackState],
   )
 
   const onReadyForDisplay = useCallback(async () => {

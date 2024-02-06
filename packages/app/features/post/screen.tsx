@@ -17,6 +17,7 @@ export function PostScreen({ post }: { post: Post }) {
     <View
       className={`flex h-full w-full pt-[${insets.top}px] pb-[${insets.bottom}px] `}
     >
+      <Navbar />
       <View className="mx-auto mb-32 w-full max-w-4xl px-6 lg:px-8">
         <H1 className="mb-4 mt-10 text-4xl lg:text-6xl">{title}</H1>
         <P className="mt-4 text-left">{formattedDate(publishedAtTimestamp)}</P>

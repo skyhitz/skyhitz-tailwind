@@ -94,7 +94,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <meta property="og:image:height" content="480" />
             <meta
               property="og:url"
-              content={`${Config.APP_URL}/dashboard/beatmaker/${beatmaker.id}`}
+              content={`${Config.APP_URL}/dashboard/collector/${beatmaker.id}`}
             />
           </>
         ) : (

@@ -12,10 +12,7 @@ import BeatPageSkeleton from 'app/ui/skeletons/BeatPageSkeleton'
 import { Owners } from './BeatOwners'
 import { useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
 import { SkeletonContainer } from 'app/ui/skeletons/SkeletonContainer'
-import Navbar from 'app/ui/navbar'
-import { VideoPlayer } from 'app/ui/VideoPlayer'
 import { SolitoImage } from 'app/design/solito-image'
-import { usePlayback } from 'app/hooks/usePlayback'
 
 type Props = {
   entry?: Entry
@@ -39,20 +36,6 @@ export default function BeatScreen(props: Props) {
 
   const entry = props.entry ?? getEntryResult.entry
   const details = data?.entry
-
-  const {
-    playEntry,
-    playback,
-    playbackState,
-    entry: currentEntry,
-  } = usePlayback()
-
-  useEffect(() => {
-    // play the last played entry
-    if (playback && playbackState === 'IDLE' && entry && !currentEntry) {
-      playEntry(entry, [], false)
-    }
-  }, [playback, playEntry, playbackState, entry, currentEntry])
 
   if (!entry) {
     return <BeatPageSkeleton />

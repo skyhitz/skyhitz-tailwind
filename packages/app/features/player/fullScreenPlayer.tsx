@@ -39,7 +39,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
         <View className="w-full items-center justify-between gap-y-8 md:flex-row">
           <VideoPlayer />
 
-          {playbackState === 'ERROR' || !entry ? (
+          {playbackState === 'ERROR' ? (
             <View>
               <Text className="text-red">Something went wrong. Try again.</Text>
             </View>
@@ -63,7 +63,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
                 </Text>
               </View>
               <View className="md:hidden">
-                <BuyNowBtn entry={entry!} />
+                {entry && <BuyNowBtn entry={entry!} />}
               </View>
               <PlayerButtonsRow size="large" className="md:hidden" />
               <View className="hidden grow items-center justify-evenly pb-1 md:flex">

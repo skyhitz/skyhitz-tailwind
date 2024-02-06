@@ -22,6 +22,7 @@ import { withdrawFormSchema } from 'app/validation'
 import { useToast } from 'app/provider/toast'
 import { convertToString } from 'app/utils'
 import { Button } from 'app/design/button'
+import { P } from 'app/design/typography'
 
 export function WithdrawCredits() {
   const [modalVisible, setModalVisible] = useState(false)
@@ -66,20 +67,20 @@ export function WithdrawCredits() {
       <Button text="Withdraw" onPress={() => setModalVisible(true)} />
       <Modal visible={modalVisible} transparent>
         <KeyboardAvoidingView behavior="padding" className="flex-1">
-          <SafeAreaView className="bg-blue-field/70 flex flex-1 items-center justify-center px-2">
-            <View className="bg-blue-field flex w-full max-w-lg items-center p-4">
+          <SafeAreaView className="flex flex-1 items-center justify-center px-2">
+            <View className="flex w-full max-w-lg items-center rounded-xl border border-gray-300 p-8">
               <Pressable
-                className="absolute right-2 top-2 "
+                className="absolute right-4 top-4"
                 onPress={() => setModalVisible(false)}
               >
-                <X className="text-white" />
+                <X className="text-gray-600" />
               </Pressable>
               <View className="flex w-72 items-center">
-                <Text className="text-lg font-bold">Withdraw credits</Text>
-                <Text className="mt-16 w-full">
+                <P className="text-lg font-bold">Withdraw credits</P>
+                <P className="mt-16 w-full">
                   Current Balance: {convertToString(credits?.userCredits ?? 0)}
                   XLM
-                </Text>
+                </P>
                 <Formik
                   initialValues={initialValues}
                   onSubmit={onSubmit}
@@ -124,25 +125,25 @@ export function WithdrawCredits() {
                       />
 
                       <Line />
-                      <Text className="my-4 text-xs leading-none">
+                      <P className="my-4 text-xs leading-none">
                         Withdraw to Stellar Public Network address only. Do not
                         send if a memo is required, funds will be lost if you
                         send to a wallet that requires a Memo
-                      </Text>
+                      </P>
                       <Line />
-                      <Text className="my-4 text-xs leading-none">
+                      <P className="my-4 text-xs leading-none">
                         We collect a transaction fee that equals 6% of the
                         withdrawal amount.
-                      </Text>
+                      </P>
                       <Line />
-                      <Text className="my-4 text-sm leading-none">
+                      <P className="my-4 text-sm leading-none">
                         Withdrawal fee: {convertToString(values.amount * 0.06)}{' '}
                         XLM
-                      </Text>
+                      </P>
                       {(errors.address || errors.amount || error) && (
-                        <Text className="min-h-5 my-4 w-full text-center text-sm text-[#d9544f]">
+                        <P className="min-h-5 my-4 w-full text-center text-sm text-[#d9544f]">
                           {errors.address || errors.amount || error?.message}
-                        </Text>
+                        </P>
                       )}
 
                       <Button

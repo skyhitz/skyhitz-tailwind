@@ -47,7 +47,7 @@ export function BlogScreen({ posts }: { posts: Post[] }) {
       <View className="mx-auto mb-32 w-full max-w-7xl px-6 lg:px-8">
         <H1 className="mb-4 mt-10 text-4xl">Blog</H1>
         <View className="my-8 border-b border-gray-200" />
-        <View className="gap-2">
+        <View className="gap-16">
           {posts.map((props, index) => {
             return <PostWrapper key={index} {...props} />
           })}

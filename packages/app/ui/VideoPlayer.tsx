@@ -39,13 +39,6 @@ export function VideoPlayer({ style, className, videoClassName }: Props) {
   }
 
   useEffect(() => {
-    return () => {
-      // resets player when component is unmounted
-      resetPlayer()
-    }
-  }, [resetPlayer])
-
-  useEffect(() => {
     // play the last played entry
     if (playback && playbackState === 'IDLE' && user?.lastPlayedEntry) {
       playEntry(user.lastPlayedEntry, [user.lastPlayedEntry], false)
