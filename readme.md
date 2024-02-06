@@ -11,10 +11,8 @@ https://skyhitz-expo-next.vercel.app/
 ## 📦 Included packages
 
 - `solito` for cross-platform navigation
-- `dripsy` for theming/design (you can bring your own, too)
-- Expo SDK 44
-- Next.js 12
-- React Navigation 6
+- Expo SDK 49
+- Next.js 14
 
 ## 🗂 Folder layout
 
