@@ -11,6 +11,7 @@ import Svg, {
 import { ClientOnly } from './client-only'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
+import { Config } from 'app/config'
 
 type HeroProps = {
   title: string
@@ -66,7 +67,7 @@ export const Hero = ({ title, description }: HeroProps) => {
               className="h-full w-full"
               // @ts-ignore
               videoClassName="w-full h-full"
-              source={{ uri: 'http://localhost:3000/video/landing.mp4' }}
+              source={{ uri: `${Config.APP_URL}/video/landing.mp4` }}
               videoStyle={{
                 position: 'absolute',
                 bottom: 0,
