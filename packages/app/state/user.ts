@@ -3,8 +3,8 @@ import { User } from 'app/api/graphql'
 import { SecureStorage } from 'app/utils/secure-storage'
 
 const localForageEffect =
-  (key) =>
-  ({ setSelf, onSet, trigger }) => {
+  (key: string) =>
+  ({ setSelf, onSet, trigger }: { setSelf: any; onSet: any; trigger: any }) => {
     // If there's a persisted value - set it on load
     const loadPersisted = async () => {
       const savedValue = await SecureStorage.get(key)
@@ -20,7 +20,7 @@ const localForageEffect =
     }
 
     // Subscribe to state changes and persist them to localForage
-    onSet((newValue, _, isReset) => {
+    onSet((newValue: any, _: any, isReset: any) => {
       isReset
         ? SecureStorage.clear(key)
         : SecureStorage.save(key, JSON.stringify(newValue))

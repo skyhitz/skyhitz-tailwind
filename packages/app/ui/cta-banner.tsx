@@ -17,7 +17,7 @@ export default function CtaBanner() {
         </View>
       </View>
       <View
-        className="relative mx-auto max-w-7xl py-12 sm:py-24 lg:px-8 lg:py-24"
+        className="relative mx-auto max-w-7xl pb-0 pt-24 sm:py-24 lg:px-8 lg:py-24"
         id="mission"
       >
         <View className="pl-6 pr-6 md:ml-auto md:w-2/3 md:pl-16 lg:w-1/2 lg:pl-24 lg:pr-0 xl:pl-32">

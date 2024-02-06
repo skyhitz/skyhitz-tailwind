@@ -45,9 +45,9 @@ export default function Faq() {
   }
 
   return (
-    <View className="mx-auto w-full max-w-7xl px-6 pb-24 sm:pb-32 lg:px-8">
+    <View className="mx-auto w-full max-w-7xl px-6 pb-24 md:pb-32 lg:px-8">
       <View className="mx-auto w-full divide-y divide-gray-900/10">
-        <H2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">
+        <H2 className="text-2xl font-bold leading-10 tracking-tight">
           Frequently asked questions
         </H2>
         <View className="mt-10 space-y-6 divide-y divide-gray-900/10">
@@ -70,7 +70,7 @@ export default function Faq() {
                           }}
                           key="minus"
                         >
-                          <P className="text-2xl leading-7 text-gray-600">-</P>
+                          <P className="text-2xl leading-7">-</P>
                         </MotiView>
                       )}
                       {openFaq !== index && (
@@ -83,7 +83,7 @@ export default function Faq() {
                           }}
                           key="plus"
                         >
-                          <P className="text-2xl leading-7 text-gray-600">+</P>
+                          <P className="text-2xl leading-7">+</P>
                         </MotiView>
                       )}
                     </AnimatePresence>
@@ -101,9 +101,7 @@ export default function Faq() {
                           opacity: 0,
                         }}
                       >
-                        <P className="mt-4 text-base leading-7 text-gray-600">
-                          {faq.answer}
-                        </P>
+                        <P className="mt-4 text-base leading-7">{faq.answer}</P>
                       </MotiView>
                     )}
                   </AnimatePresence>

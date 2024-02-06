@@ -39,9 +39,7 @@ export function AuthenticationView({
     <View className="flex w-72 items-center">
       {error ? (
         <>
-          <P className="w-full text-center text-lg text-[#d9544f]">
-            {error.message}
-          </P>
+          <P className="w-full text-center text-[#d9544f]">{error.message}</P>
           <Button
             text="Go back"
             onPress={() => push('/')}
@@ -52,7 +50,7 @@ export function AuthenticationView({
       ) : (
         <>
           <ActivityIndicator size="large" />
-          <P className="mt-2 text-center text-lg text-white">Authentication</P>
+          <P className="mt-2 text-center text-white">Authentication</P>
         </>
       )}
     </View>

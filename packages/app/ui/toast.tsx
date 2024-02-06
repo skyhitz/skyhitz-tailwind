@@ -1,35 +1,36 @@
-import { ToastProps } from 'react-native-toast-notifications/lib/typescript/toast'
-import { View } from 'react-native'
+import { useCallback } from 'react'
+import { Pressable } from 'react-native'
 import { P } from 'app/design/typography'
 import X from 'app/ui/icons/x'
-import { ReactElement } from 'react'
 import Check from 'app/ui/icons/check'
+import { MotiView } from 'app/design/moti'
 
-type SupportedToastTypes = 'danger' | 'success'
+const ToastComponent = ({ message, type, onDismiss }) => {
+  const handleDismiss = useCallback(() => {
+    onDismiss()
+  }, [onDismiss])
 
-const containerClassNames: Record<SupportedToastTypes | 'default', string> = {
-  danger: 'border-red bg-red-dark',
-  success: 'border-valid bg-valid-dark',
-  default: '',
-}
-
-const icons: Record<SupportedToastTypes | 'default', ReactElement> = {
-  danger: <X className="text-red" />,
-  success: <Check className="text-green" />,
-  default: <></>,
-}
-
-export const Toast: (_toastOptions: ToastProps) => JSX.Element = (
-  toastOptions,
-) => {
-  const type = (toastOptions.type as SupportedToastTypes) ?? 'default'
+  const bgColorClass = type === 'success' ? 'bg-green-200' : 'bg-red-400'
+  const borderColorClass = type === 'success' ? 'border-green' : 'border-red'
+  const iconColorClass = type === 'success' ? 'text-green' : 'text-red'
 
   return (
-    <View
-      className={`w-80vw m-1.5 h-12 max-w-sm flex-row items-center rounded-xl border-[0.5px] px-2 ${containerClassNames[type]}`}
+    <MotiView
+      from={{ translateY: -100, opacity: 0 }}
+      animate={{ translateY: 0, opacity: 1 }}
+      exit={{ translateY: -100, opacity: 0 }}
+      className={`${borderColorClass} absolute left-4 right-4 top-4 z-10 flex-row items-center justify-between gap-4 rounded-lg border p-4 md:left-auto md:w-auto  ${bgColorClass}`}
     >
-      {icons[type]}
-      <P className="ml-2 flex-1 text-sm">{toastOptions.message}</P>
-    </View>
+      <P className="flex-grow text-sm text-gray-400">{message}</P>
+      <Pressable onPress={handleDismiss}>
+        {type === 'success' ? (
+          <Check className={iconColorClass} />
+        ) : (
+          <X className={iconColorClass} />
+        )}
+      </Pressable>
+    </MotiView>
   )
 }
+
+export default ToastComponent

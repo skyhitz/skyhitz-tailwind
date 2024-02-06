@@ -38,7 +38,15 @@ export function ProfileHeader({ background, avatar, displayName }: Props) {
   )
 }
 
-export function SocialLinks({ twitter, instagram, profileUrl }) {
+export function SocialLinks({
+  twitter,
+  instagram,
+  profileUrl,
+}: {
+  twitter: string
+  instagram: string
+  profileUrl: string
+}) {
   return (
     <View className="flex min-h-[1.5rem] flex-row-reverse">
       {!!twitter && (

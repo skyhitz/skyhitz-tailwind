@@ -408,8 +408,7 @@ export default function TermsScreen() {
         <P>
           These Terms of Service and any separate agreements whereby we provide
           you Services shall be governed by and construed in accordance with the
-          laws of 2nd Floor, Mill Mall Tower Wickhams Cay 1 Road Town, Tortola,
-          1110, Virgin Islands, British.
+          laws of Delaware.
         </P>
         <P className="my-4 font-semibold">
           SECTION 19 - CHANGES TO TERMS OF SERVICE

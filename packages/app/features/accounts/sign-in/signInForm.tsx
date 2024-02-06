@@ -15,9 +15,8 @@ type SignInFormProps = {
 }
 
 export function SignInForm({
-  onEmailSend,
-} // onWalletConnected,
-: SignInFormProps) {
+  onEmailSend, // onWalletConnected,
+}: SignInFormProps) {
   const [requestToken, { loading, error }] = useRequestTokenMutation({
     onCompleted: onEmailSend,
   })

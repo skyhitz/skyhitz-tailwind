@@ -61,7 +61,12 @@ export function ComponentAuthGuard({
   )
 }
 
-export function AuthGuard({ children, ...props }) {
+export function AuthGuard({
+  children,
+  ...props
+}: {
+  children: React.ReactNode
+}) {
   return (
     <ClientOnly>
       <AuthWrap {...props}>{children}</AuthWrap>

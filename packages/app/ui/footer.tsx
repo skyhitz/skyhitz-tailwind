@@ -26,11 +26,9 @@ export default function Footer() {
     <View className="mx-auto w-full max-w-7xl px-6 pb-12 lg:px-8">
       <View className="xl:grid xl:grid-cols-2 xl:gap-8">
         <View />
-        <View className="gap-8 md:grid md:grid-cols-3">
+        <View className="gap-8 sm:grid sm:grid-cols-3">
           <View>
-            <H3 className="text-sm font-semibold leading-6 text-gray-900">
-              Explore
-            </H3>
+            <H3 className="text-sm font-semibold leading-6">Explore</H3>
             <View role="list" className="mt-6 space-y-4">
               {navigation.explore.map((item) => (
                 <View key={item.name}>
@@ -45,9 +43,7 @@ export default function Footer() {
             </View>
           </View>
           <View>
-            <H3 className="text-sm font-semibold leading-6 text-gray-900">
-              Support
-            </H3>
+            <H3 className="text-sm font-semibold leading-6">Support</H3>
             <View role="list" className="mt-6 space-y-4">
               {navigation.support.map((item) => (
                 <View key={item.name}>
@@ -62,9 +58,7 @@ export default function Footer() {
             </View>
           </View>
           <View>
-            <H3 className="text-sm font-semibold leading-6 text-gray-900">
-              Connect
-            </H3>
+            <H3 className="text-sm font-semibold leading-6">Connect</H3>
             <View role="list" className="mt-6 space-y-4">
               {navigation.connect.map((item) => (
                 <View key={item.name}>

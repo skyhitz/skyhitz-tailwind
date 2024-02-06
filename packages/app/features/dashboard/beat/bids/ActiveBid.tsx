@@ -8,7 +8,7 @@ import {
 } from 'app/api/graphql'
 import { LinkWithLabel } from 'app/ui/links/LinkWithLabel'
 import { useCallback, useState } from 'react'
-import { useToast } from 'react-native-toast-notifications'
+import { useToast } from 'app/provider/toast'
 import { useErrorReport } from 'app/hooks/useErrorReport'
 // import { useWalletConnectClient } from 'app/provider/WalletConnect'
 // import { WalletConnectModal } from 'app/ui/modal/WalletConnectModal'

@@ -7,7 +7,7 @@ import PieChartIcon from 'app/ui/icons/pie'
 import { useCallback, useState } from 'react'
 import { useErrorReport } from 'app/hooks/useErrorReport'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
-import { useToast } from 'react-native-toast-notifications'
+import { useToast } from 'app/provider/toast'
 // import { useWalletConnectClient } from "app/provider/WalletConnect";
 // import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";
 import { useSWRConfig } from 'swr'

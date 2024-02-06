@@ -3,7 +3,7 @@ import { Modal, Pressable, Text } from 'react-native'
 import { Button } from 'app/design/button'
 import { useCallback, useState } from 'react'
 import X from 'app/ui/icons/x'
-import { useToast } from 'react-native-toast-notifications'
+import { useToast } from 'app/provider/toast'
 import { useErrorReport } from 'app/hooks/useErrorReport'
 // import { useWalletConnectClient } from "app/provider/WalletConnect";
 // import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";

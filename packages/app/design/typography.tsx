@@ -64,7 +64,7 @@ export function H3({
   className,
   ...rest
 }: { className?: string } & ComponentProps<typeof Text>) {
-  const defaultStyles = 'font-extrabold font-unbounded'
+  const defaultStyles = 'font-extrabold font-unbounded text-gray-600'
   return (
     <Text
       className={`${defaultStyles} ${className}`}

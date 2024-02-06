@@ -16,7 +16,7 @@ const features = [
   {
     name: 'Wallet setup made easy',
     description:
-      'Set up your digital wallet using either email for a custodial option or WalletConnect for a non-custodial experience, ensuring seamless and secure transactions.',
+      'Set up your digital wallet using email for a non-custodial experience, ensuring seamless and secure transactions.',
     icon: Wallet,
   },
   {
@@ -41,19 +41,19 @@ const features = [
 
 export function Featured() {
   return (
-    <View className="overflow-hidden bg-white py-24 sm:py-32">
+    <View className="overflow-hidden bg-white py-24">
       <View className="mx-auto max-w-7xl md:px-6 lg:px-8">
-        <View className="grid grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:grid-cols-2 lg:items-center">
+        <View className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2 lg:items-center">
           <View className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <View className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
               <P className="text-blue-brand font-semibold leading-7">
                 Enjoy our features
               </P>
-              <H2 className="font-unbounded mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Embrace the fusion of music and innovation
+              <H2 className="font-unbounded mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+                Embrace the fusion of music and technology
               </H2>
 
-              <View className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+              <View className="mt-10 max-w-xl space-y-8 text-base leading-7 lg:max-w-none">
                 {features.map((feature) => (
                   <View
                     key={feature.name}
@@ -63,9 +63,7 @@ export function Featured() {
                       {feature.icon && feature.icon({})}
                     </View>
                     <View className="relative max-w-fit pl-9">
-                      <P className="font-semibold leading-8 text-gray-900">
-                        {feature.name}
-                      </P>
+                      <P className="font-semibold leading-8">{feature.name}</P>
                       <P className="inline leading-8">{feature.description}</P>
                     </View>
                   </View>

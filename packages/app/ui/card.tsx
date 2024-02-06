@@ -5,7 +5,7 @@ import { SolitoImage } from 'solito/image'
 
 export default function Card({
   imageUrl = '/img/landing-3.png',
-  publishedAtTimestamp,
+  publishedAtTimestamp = 0,
   tag = 'Business',
   content = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
   title = 'Skyhitz reaches 20M MRR',
@@ -28,7 +28,7 @@ export default function Card({
         </View>
         <View className="max-w-xl px-6 py-8">
           <View className="group relative">
-            <H3 className="line-clamp-2 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+            <H3 className="line-clamp-2 text-lg font-semibold leading-6 group-hover:text-gray-600">
               <View className="absolute inset-0" />
               {title}
             </H3>

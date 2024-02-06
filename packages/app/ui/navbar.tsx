@@ -9,8 +9,6 @@ import { ClientOnly } from './client-only'
 const Navbar = ({ className }: { className?: string }) => {
   const user = useRecoilValue(userAtom)
 
-  console.log(user)
-
   return (
     <View
       className={`w-full flex-row flex-wrap items-center justify-center p-3 sm:justify-between ${className}`}
@@ -18,7 +16,7 @@ const Navbar = ({ className }: { className?: string }) => {
       <View className="flex sm:flex-row">
         <TextLink href="/">
           <View className="flex flex-row items-center justify-start">
-            <View className="flex flex-row items-center">
+            <View className="flex min-h-[2.25rem] flex-row items-center">
               <SkyhitzLogo id="navbar" />
               <Text className="font-raleway pl-4 text-lg tracking-[12px] text-gray-600">
                 SKYHITZ

@@ -1,13 +1,13 @@
-import { GestureResponderEvent, Pressable } from 'react-native'
+import { Pressable, View } from 'react-native'
 import { ActivityIndicator, P } from 'app/design/typography'
 import { IconProps } from 'app/types'
-import { FormEvent, ReactElement } from 'react'
+import { ReactElement } from 'react'
 import { theme } from './tailwind/theme'
 
 type Props = {
   loading?: boolean
   text: string
-  onPress: (e?: GestureResponderEvent | FormEvent<HTMLFormElement>) => void
+  onPress: (e?: any) => void
   size?: 'default' | 'large' | 'small'
   variant?: 'primary' | 'secondary' | 'white' | 'text'
   icon?: (_props: IconProps) => ReactElement
@@ -64,7 +64,7 @@ const Button = ({
     color: disabled
       ? (theme as any)?.extend?.colors?.['grey']['DEFAULT']
       : (theme as any)?.extend?.colors?.['white']['DEFAULT'],
-    size: 22,
+    size: 24,
   }
 
   return (
@@ -83,7 +83,9 @@ const Button = ({
       }}
     >
       {loading ? (
-        <ActivityIndicator size="small" color={'#FFFFFF'} />
+        <View className="flex min-h-[1.5rem] items-center justify-center">
+          <ActivityIndicator size="small" color={'#FFFFFF'} />
+        </View>
       ) : (
         <>
           <P

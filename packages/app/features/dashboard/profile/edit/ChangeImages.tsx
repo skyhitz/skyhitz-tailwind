@@ -4,7 +4,7 @@ import usePickMedia from 'app/hooks/usePickMedia'
 import { ChangeImage, MediaFileInfo } from 'app/types'
 import { validateProfilePicture, validateBackgroundImage } from 'app/validation'
 import { useEffect } from 'react'
-import { useToast } from 'react-native-toast-notifications'
+import { useToast } from 'app/provider/toast'
 import { Button } from 'app/design/button'
 
 type Props = {

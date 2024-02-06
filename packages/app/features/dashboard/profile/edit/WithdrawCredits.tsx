@@ -19,7 +19,7 @@ import {
 } from 'app/api/graphql'
 import { WithdrawForm } from 'app/types'
 import { withdrawFormSchema } from 'app/validation'
-import { useToast } from 'react-native-toast-notifications'
+import { useToast } from 'app/provider/toast'
 import { convertToString } from 'app/utils'
 import { Button } from 'app/design/button'
 

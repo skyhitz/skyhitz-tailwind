@@ -5,7 +5,7 @@ import { usePlayback } from 'app/hooks/usePlayback'
 import { EnrichedEntry } from 'app/types'
 import { useCancelBidMutation } from 'app/api/graphql'
 import { useCallback, useState } from 'react'
-import { useToast } from 'react-native-toast-notifications'
+import { useToast } from 'app/provider/toast'
 // import { useWalletConnectClient } from "app/provider/WalletConnect";
 // import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";
 import { useErrorReport } from 'app/hooks/useErrorReport'

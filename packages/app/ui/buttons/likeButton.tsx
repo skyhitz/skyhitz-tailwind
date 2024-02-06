@@ -5,11 +5,10 @@ import useLikeCache from 'app/hooks/useLikeCache'
 import { ErrorType } from 'app/types'
 import { any } from 'ramda'
 import { isSome } from 'app/utils'
-import { useToast } from 'react-native-toast-notifications'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
-import { theme } from 'app/design/tailwind/theme'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
+import { useToast } from 'app/provider/toast'
 
 type Props = {
   size: number

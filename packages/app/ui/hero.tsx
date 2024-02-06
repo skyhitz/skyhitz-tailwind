@@ -2,14 +2,15 @@ import { A, H1, P } from 'app/design/typography'
 import { Video, ResizeMode } from 'app/design/video'
 import { View } from 'react-native'
 import Svg, {
-  LinearGradient,
   Path,
-  Stop,
   ClipPath,
   Defs,
   Rect,
   ForeignObject,
 } from 'react-native-svg'
+import { ClientOnly } from './client-only'
+import { useRecoilValue } from 'recoil'
+import { userAtom } from 'app/state/user'
 
 type HeroProps = {
   title: string
@@ -17,21 +18,21 @@ type HeroProps = {
 }
 
 export const Hero = ({ title, description }: HeroProps) => {
+  const user = useRecoilValue(userAtom)
   return (
-    <View className="mx-auto max-w-7xl px-6 pb-32 pt-8 md:flex-row lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+    <View className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
       <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-        <H1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+        <H1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight sm:text-5xl">
           {title}
         </H1>
         <P className="mt-6 leading-8 text-gray-600">{description}</P>
         <View className="mt-10 flex flex-row items-center gap-x-6">
-          <A href="/sign-up" variant="primary">
-            Get started
-          </A>
-          <A
-            href="#mission"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
+          <ClientOnly>
+            <A href={user ? '/dashboard/chart' : '/sign-up'} variant="primary">
+              Get started
+            </A>
+          </ClientOnly>
+          <A href="#mission" className="text-sm font-semibold leading-6">
             Learn more →
           </A>
         </View>
