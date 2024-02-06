@@ -1,0 +1,87 @@
+import { A, H1, P } from 'app/design/typography'
+import { Video, ResizeMode } from 'app/design/video'
+import { View } from 'react-native'
+import Svg, {
+  Path,
+  ClipPath,
+  Defs,
+  Rect,
+  ForeignObject,
+} from 'react-native-svg'
+import { ClientOnly } from './client-only'
+import { useRecoilValue } from 'recoil'
+import { userAtom } from 'app/state/user'
+
+type HeroProps = {
+  title: string
+  description: string
+}
+
+export const Hero = ({ title, description }: HeroProps) => {
+  const user = useRecoilValue(userAtom)
+  return (
+    <View className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+      <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
+        <H1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight sm:text-5xl">
+          {title}
+        </H1>
+        <P className="mt-6 leading-8 text-gray-600">{description}</P>
+        <View className="mt-10 flex flex-row items-center gap-x-6">
+          <ClientOnly>
+            <A href={user ? '/dashboard/chart' : '/sign-up'} variant="primary">
+              Get started
+            </A>
+          </ClientOnly>
+          <A href="#mission" className="text-sm font-semibold leading-6">
+            Learn more →
+          </A>
+        </View>
+      </View>
+      <View className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
+        <Svg
+          viewBox="0 0 366 729"
+          role="img"
+          className="mx-auto w-[22.875rem] max-w-full drop-shadow-xl"
+        >
+          <Defs>
+            <ClipPath id="2ade4387-9c63-4fc4-b754-10e687a0d332">
+              <Rect width={316} height={684} rx={36} />
+            </ClipPath>
+          </Defs>
+          <Path
+            fill="#4B5563"
+            d="M363.315 64.213C363.315 22.99 341.312 1 300.092 1H66.751C25.53 1 3.528 22.99 3.528 64.213v44.68l-.857.143A2 2 0 0 0 1 111.009v24.611a2 2 0 0 0 1.671 1.973l.95.158a2.26 2.26 0 0 1-.093.236v26.173c.212.1.398.296.541.643l-1.398.233A2 2 0 0 0 1 167.009v47.611a2 2 0 0 0 1.671 1.973l1.368.228c-.139.319-.314.533-.511.653v16.637c.221.104.414.313.56.689l-1.417.236A2 2 0 0 0 1 237.009v47.611a2 2 0 0 0 1.671 1.973l1.347.225c-.135.294-.302.493-.49.607v377.681c0 41.213 22 63.208 63.223 63.208h95.074c.947-.504 2.717-.843 4.745-.843l.141.001h.194l.086-.001 33.704.005c1.849.043 3.442.37 4.323.838h95.074c41.222 0 63.223-21.999 63.223-63.212v-394.63c-.259-.275-.48-.796-.63-1.47l-.011-.133 1.655-.276A2 2 0 0 0 366 266.62v-77.611a2 2 0 0 0-1.671-1.973l-1.712-.285c.148-.839.396-1.491.698-1.811V64.213Z"
+          />
+          <Path
+            fill="#343E4E"
+            d="M16 59c0-23.748 19.252-43 43-43h246c23.748 0 43 19.252 43 43v615c0 23.196-18.804 42-42 42H58c-23.196 0-42-18.804-42-42V59Z"
+          />
+          <ForeignObject
+            width={316}
+            height={684}
+            transform="translate(24 24)"
+            clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
+          >
+            <Video
+              className="h-full w-full"
+              // @ts-ignore
+              videoClassName="w-full h-full"
+              source={{ uri: 'http://localhost:3000/video/landing.mp4' }}
+              videoStyle={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                top: 0,
+              }}
+              resizeMode={ResizeMode.COVER}
+              shouldPlay
+              isLooping
+              isMuted
+            />
+          </ForeignObject>
+        </Svg>
+      </View>
+    </View>
+  )
+}

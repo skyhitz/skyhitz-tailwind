@@ -1,11 +1,15 @@
-import { A, H1, P } from 'app/design/typography'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
+import { Post } from 'app/types'
+import BlogSection from 'app/ui/blog-section'
+import CtaBanner from 'app/ui/cta-banner'
+import Faq from 'app/ui/faq'
+import { Featured } from 'app/ui/featured'
+import Footer from 'app/ui/footer'
+import { Hero } from 'app/ui/hero'
 import Navbar from 'app/ui/navbar'
 import { View } from 'react-native'
 
-import { MotiLink } from 'solito/moti'
-
-export function HomeScreen() {
+export function HomeScreen({ posts }: { posts: Post[] }) {
   const insets = useSafeArea()
 
   return (
@@ -13,64 +17,17 @@ export function HomeScreen() {
       className={`flex h-full w-full pt-[${insets.top}px] pb-[${insets.bottom}px]`}
     >
       <Navbar />
-      <View className="flex-1 items-center justify-center p-3">
-        <H1>Welcome to Solito.</H1>
-        <View className="max-w-xl">
-          <P className="text-center">
-            Here is a basic starter to show you how you can navigate from one
-            screen to another. This screen uses the same code on Next.js and
-            React Native.
-          </P>
-          <p className="text-center">
-            Solito is made by{' '}
-            <A
-              href="https://twitter.com/fernandotherojo"
-              hrefAttrs={{
-                target: '_blank',
-                rel: 'noreferrer',
-              }}
-            >
-              Fernando Rojo
-            </A>
-            .
-          </p>
-          <p className="text-center">
-            NativeWind is made by{' '}
-            <A
-              href="https://twitter.com/mark__lawlor"
-              hrefAttrs={{
-                target: '_blank',
-                rel: 'noreferrer',
-              }}
-            >
-              Mark Lawlor
-            </A>
-            .
-          </p>
-        </View>
-        <View className="h-[32px]" />
-        <View className="space-x-8">
-          <MotiLink
-            href="/user/fernando"
-            animate={({ hovered, pressed }) => {
-              'worklet'
-
-              return {
-                scale: pressed ? 0.95 : hovered ? 1.1 : 1,
-                rotateZ: pressed ? '0deg' : hovered ? '-3deg' : '0deg',
-              }
-            }}
-            transition={{
-              type: 'timing',
-              duration: 150,
-            }}
-          >
-            <P selectable={false} className="text-base font-bold">
-              Moti Link
-            </P>
-          </MotiLink>
-        </View>
-      </View>
+      <Hero
+        title={'Join the future of music ownership'}
+        description={
+          'The ultimate destination for music fans, collectors, and creators, offering a novel way to immerse in and experience music like never before. We are a blockchain-powered platform that enables music enthusiasts to discover and collect unique creations through a decentralized framework.'
+        }
+      />
+      <CtaBanner />
+      <Featured />
+      <Faq />
+      <BlogSection posts={posts} />
+      <Footer />
     </View>
   )
 }

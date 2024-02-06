@@ -1,0 +1,12 @@
+export interface ConfigInterface {
+  GRAPHQL_URL: string
+  HORIZON_URL: string
+  STELLAR_EXPERT_URL: string
+  APP_URL: string
+  ALGOLIA_APP_ID: string
+  ALGOLIA_SEARCH_KEY: string
+  STRIPE_PUBLISHABLE_KEY: string
+  SCHEMA: string
+  CHAIN_ID: string
+  PROJECT_ID: string
+}
