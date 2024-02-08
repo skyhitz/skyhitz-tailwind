@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil'
+import { atom } from 'recoil'
 import { User } from 'app/api/graphql'
 import { SecureStorage } from 'app/utils/secure-storage'
 

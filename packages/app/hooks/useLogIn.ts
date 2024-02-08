@@ -14,6 +14,7 @@ export function useLogIn(): (user: User) => void {
       setUserData(user)
       if (user.jwt) {
         await SecureStorage.save('token', user.jwt!)
+        await SecureStorage.save('user_id', user.id)
       }
       push('/dashboard/search')
     },

@@ -17,6 +17,7 @@ export default function useLogOut(): () => void {
     resetStore()
     // disconnect();
     await SecureStorage.clear('token')
+    await SecureStorage.clear('user_id')
   }
 
   return logOut
