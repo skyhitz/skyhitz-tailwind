@@ -37,7 +37,6 @@ const nextConfig = {
     'react-native-svg',
     'react-native-safe-area-context',
     'react-native-htmlview',
-    'react-native-toast-notifications',
     '@react-native-community',
     '@shopify/flash-list',
     'recyclerlistview',

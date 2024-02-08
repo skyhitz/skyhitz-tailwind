@@ -4637,7 +4637,6 @@ __metadata:
     moti: ^0.27.2
     nativewind: 4.0.22
     ramda: ^0.28.0
-    react-native-toast-notifications: ^3.4.0
     recoil: ^0.7.7
     solito: 4.2.0
     stellar-base: ^10.0.1
@@ -12591,16 +12590,6 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: f4fe1c9e802d7ea86b9efef74313a80fb75d486f40ca79aaa04d42ffd3f6e462a3f37ee54018fae9fd1efdc2d8b005d1e71b02bb266c0ab8baec70d9a5730892
-  languageName: node
-  linkType: hard
-
-"react-native-toast-notifications@npm:^3.4.0":
-  version: 3.4.0
-  resolution: "react-native-toast-notifications@npm:3.4.0"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 734a54111e3657859d3cca9505a197bc6eb486e473e655d8aa087157de8f5e8b819083963f28e5e9155110be9a17774296bbfd721749f670c5f4e093557bd88f
   languageName: node
   linkType: hard
 

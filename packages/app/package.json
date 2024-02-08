@@ -11,7 +11,6 @@
     "moti": "^0.27.2",
     "nativewind": "4.0.22",
     "ramda": "^0.28.0",
-    "react-native-toast-notifications": "^3.4.0",
     "recoil": "^0.7.7",
     "solito": "4.2.0",
     "stellar-base": "^10.0.1",
