@@ -37,6 +37,7 @@ const unbounded = Unbounded({
 function MyApp({ Component, pageProps }: AppProps) {
   const entry = pageProps.entry
   const beatmaker = pageProps.beatmaker
+  const post = pageProps.post
   return (
     <>
       <Head>
@@ -95,6 +96,21 @@ function MyApp({ Component, pageProps }: AppProps) {
             <meta
               property="og:url"
               content={`${Config.APP_URL}/dashboard/collector/${beatmaker.id}`}
+            />
+          </>
+        ) : post ? (
+          <>
+            <meta name="twitter:card" content="summary" />
+            <meta property="og:title" content={post.title} />
+            <meta property="og:description" content={post.content} />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content={post.imageUrl} />
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:width" content="480" />
+            <meta property="og:image:height" content="480" />
+            <meta
+              property="og:url"
+              content={`${Config.APP_URL}/blog/${post.id}`}
             />
           </>
         ) : (
