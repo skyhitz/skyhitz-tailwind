@@ -14,7 +14,7 @@ import { Platform } from 'react-native'
 
 type Props = {
   entry: Entry
-  size: 'default' | 'small' | 'large' | undefined
+  size?: 'default' | 'small' | 'large'
 }
 
 export function BuyNowBtn({ entry, size = 'default' }: Props) {
