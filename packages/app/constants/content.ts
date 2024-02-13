@@ -6,7 +6,7 @@ import Chart from 'app/ui/icons/chart'
 export const siteTitle = 'Skyhitz - Music ownership redefined'
 
 export const keywords =
-  'mfts, crypto, on-chain music, music nfts, mft market, crypto beats, lofi beats, fresh beats, music creators, exclusive music nfts, download music nfts, stream music nfts, stellar, xlm, blockchain music, collect, invest'
+  'MFTs, music ownership, future, on-chain music, music nfts, mft market, crypto, music creators, exclusive music nfts, download music nfts, stream music nfts, stellar, xlm, blockchain music, collect, invest'
 
 export const socialDesc =
   'Collect and trade valuable music NFTs. Join a community of music collectors and technologists!'
@@ -14,7 +14,7 @@ export const header = {
   title: 'Join the future of music ownership',
   desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to immerse in and experience music like never before. We are a blockchain-powered platform that enables music enthusiasts to discover, stream and collect unique creations through a decentralized framework.',
 }
-export const combinedTitle = `Skyhitz - ${header.title} - Decentralized Music NFTs`
+export const combinedTitle = `Skyhitz - ${header.title} - Decentralized MFTs (Music NFTs)`
 const cta = {
   title: 'Redefine music ownership and accessibility',
   subtitle: 'Our Mission',
