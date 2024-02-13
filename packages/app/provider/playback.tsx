@@ -41,10 +41,7 @@ const PlaybackProvider = ({ children }: { children: React.ReactNode }) => {
 
   const handleSetPlayback = (val: any) => {
     if (val && !playbackRef.current) {
-      console.log('setting playback', playbackRef)
       setPlayback(val)
-
-      console.log('playback set', playbackRef)
     }
   }
 

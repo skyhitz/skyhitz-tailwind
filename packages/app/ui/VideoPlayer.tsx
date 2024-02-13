@@ -38,8 +38,6 @@ export function VideoPlayer() {
   const { onPlaybackStatusUpdate, onError, setPlayback, playbackUri } =
     usePlayback()
 
-  console.log('rendering video')
-
   return (
     <View className="items-center justify-center">
       <Poster />

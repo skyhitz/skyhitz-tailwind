@@ -71,7 +71,6 @@ export function usePlayback() {
       getPlaybackState() === 'IDLE' &&
       user?.lastPlayedEntry
     ) {
-      console.log('playing entry from use effect')
       playEntry(user.lastPlayedEntry, [user.lastPlayedEntry], false)
     }
   }, [user])
@@ -108,7 +107,6 @@ export function usePlayback() {
     const videoUrl = videoSrc(entry.videoUrl, fallback)
     if (playbackRef?.current !== null) {
       if (!fallback) {
-        console.log('set loading')
         setPlaybackState('LOADING')
         setEntry(entry)
         setDuration(0)
@@ -140,8 +138,6 @@ export function usePlayback() {
         shouldPlay: shouldPlayEntry,
       }
 
-      console.log('load async, should play', shouldPlayEntry)
-
       await playbackRef?.current?.loadAsync(source, initialStatus, true)
 
       clearTimeout(id)
@@ -164,9 +160,7 @@ export function usePlayback() {
   ) => {
     setPlaylist(playlist)
     setShouldPlay(shouldPlayEntry)
-    console.log('play entry', newEntry.id, getCurrentEntry()?.id)
     if (newEntry.id === getCurrentEntry()?.id) {
-      console.log(playbackRef?.current)
       // if the new entry is the same as the current one, just set position to 0
       await playbackRef?.current?.setStatusAsync({
         positionMillis: 0,
@@ -219,7 +213,6 @@ export function usePlayback() {
       nextIndex = (currentIndex + 1) % playlist.length
     }
     setPlaybackState('PAUSED')
-    console.log('pausing')
     await playbackRef?.current?.pauseAsync()
     const nextEntry = playlist[nextIndex]
 
@@ -255,15 +248,12 @@ export function usePlayback() {
 
     if (status.isBuffering && getPlaybackState() !== 'LOADING') {
       setPlaybackState('LOADING')
-      console.log('status set playback state to LOADING')
     }
     if (status.isPlaying && getPlaybackState() !== 'PLAYING') {
       setPlaybackState('PLAYING')
-      console.log('status set playback state to PLAYING')
     }
 
     if (status.didJustFinish && getPlaybackState() === 'PLAYING' && !looping) {
-      console.log('before skip forward')
       skipForward()
     }
 
