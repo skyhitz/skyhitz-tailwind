@@ -108,3 +108,62 @@ export type Post = {
   slug: string
   publishedAtTimestamp: number
 }
+
+export type HeroProps = {
+  title: string
+  desc: string
+}
+
+export type CtaProps = {
+  title: string
+  subtitle: string
+  cta: string
+  desc: string
+}
+
+export type HomePageProps = {
+  posts: Post[]
+  header: HeroProps
+  cta: CtaProps
+  featured: FeaturedProps
+  faq: FaqProps
+}
+
+type Feature = {
+  name: string
+  desc: string
+  icon: ({
+    size,
+    color,
+  }: {
+    size?: number | undefined
+    color?: string | undefined
+  }) => JSX.Element
+}
+
+export type FeaturedProps = {
+  title: string
+  subtitle: string
+  features: Feature[]
+  imgUrl: string
+}
+
+type Faq = {
+  question: string
+  answer: string
+}
+
+export type FaqProps = {
+  title: string
+  faqs: Faq[]
+}
+
+type FooterSection = {
+  title: string
+  links: { name: string; href: string }[]
+}
+
+export type FooterProps = {
+  companyName: string
+  sections: FooterSection[]
+}

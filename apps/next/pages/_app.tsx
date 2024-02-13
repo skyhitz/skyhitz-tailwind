@@ -12,6 +12,7 @@ import { AppProps } from 'next/app'
 import { Inter, Raleway, Unbounded } from 'next/font/google'
 import { imageUrlMedium, videoSrc } from 'app/utils/entry'
 import { Config } from 'app/config'
+import { header, keywords, siteTitle, socialDesc } from 'app/constants/content'
 
 const inter = Inter({
   weight: ['400', '600', '700'],
@@ -41,15 +42,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta name="title" content="Skyhitz - Music ownership redefined" />
-        <meta
-          name="description"
-          content="We are a blockchain-powered platform that enables music enthusiasts to discover and collect unique creations through a decentralized framework."
-        />
-        <meta
-          name="keywords"
-          content="stellar, xlm, mfts, crypto, music nfts, beats market, beats website, lofi beats, fresh beats, music creators, exclusive beats for sale"
-        />
+        <meta name="title" content={siteTitle} />
+        <meta name="description" content={header.desc} />
+        <meta name="keywords" content={keywords} />
         {entry ? (
           <>
             <meta name="twitter:card" content="player" />
@@ -117,10 +112,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <>
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content="Skyhitz" />
-            <meta
-              property="og:description"
-              content="Upload, buy or sell music NFTs on the Stellar Network. Join a music community of beatmakers!"
-            />
+            <meta property="og:description" content={socialDesc} />
             <meta property="og:type" content="website" />
             <meta
               property="og:image"
@@ -140,7 +132,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000" />
-        <title>Skyhitz - Join the future of music ownership</title>
+        <title>Skyhitz - {header.title}</title>
         <link rel="canonical" href="https://skyhitz.io" />
         <link rel="icon" href="/icon.png" />
       </Head>

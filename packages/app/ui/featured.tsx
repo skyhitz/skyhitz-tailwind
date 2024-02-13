@@ -11,35 +11,32 @@ import Wallet from 'app/ui/icons/wallet'
 import Discover from 'app/ui/icons/discover'
 import Collect from 'app/ui/icons/collect'
 import Chart from 'app/ui/icons/chart'
+import { FeaturedProps } from 'app/types'
 
 const features = [
   {
     name: 'Wallet setup made easy',
-    description:
-      'Set up your digital wallet using email for a non-custodial experience, ensuring seamless and secure transactions.',
+    desc: 'Set up your digital wallet using email for a non-custodial experience, ensuring seamless and secure transactions.',
     icon: Wallet,
   },
   {
     name: 'Discover unique music collections',
-    description:
-      'Dive into a variety of exceptional music collections available on our platform.',
+    desc: 'Dive into a variety of exceptional music collections available on our platform.',
     icon: Discover,
   },
   {
     name: 'Collect your favorite music NFTs',
-    description:
-      'Purchase fractions of your favorite music pieces for an affordable price, or own the entire masterpiece if you desire.',
+    desc: 'Purchase fractions of your favorite music pieces for an affordable price, or own the entire masterpiece if you desire.',
     icon: Collect,
   },
   {
     name: 'Interactive Top Chart',
-    description:
-      'Discover and influence trending creations - where user interactions like buying, streaming, and liking propel tracks up the charts.',
+    desc: 'Discover and influence trending creations - where user interactions like buying, streaming, and liking propel tracks up the charts.',
     icon: Chart,
   },
 ]
 
-export function Featured() {
+export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
   return (
     <View className="overflow-hidden bg-white py-24">
       <View className="mx-auto max-w-7xl md:px-6 lg:px-8">
@@ -47,10 +44,10 @@ export function Featured() {
           <View className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
             <View className="mx-auto max-w-2xl lg:mx-0 lg:max-w-lg">
               <P className="text-blue-brand font-semibold leading-7">
-                Enjoy our features
+                {subtitle}
               </P>
               <H2 className="font-unbounded mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-                Embrace the fusion of music and technology
+                {title}
               </H2>
 
               <View className="mt-10 max-w-xl space-y-8 text-base leading-7 lg:max-w-none">
@@ -64,7 +61,7 @@ export function Featured() {
                     </View>
                     <View className="relative max-w-fit pl-9">
                       <P className="font-semibold leading-8">{feature.name}</P>
-                      <P className="inline leading-8">{feature.description}</P>
+                      <P className="inline leading-8">{feature.desc}</P>
                     </View>
                   </View>
                 ))}

@@ -13,13 +13,9 @@ import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { Config } from 'app/config'
 import { SolitoImage } from 'app/design/solito-image'
+import { HeroProps } from 'app/types'
 
-type HeroProps = {
-  title: string
-  description: string
-}
-
-export const Hero = ({ title, description }: HeroProps) => {
+export const Hero = ({ title, desc }: HeroProps) => {
   const user = useRecoilValue(userAtom)
   return (
     <View className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
@@ -27,7 +23,7 @@ export const Hero = ({ title, description }: HeroProps) => {
         <H1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight sm:text-5xl">
           {title}
         </H1>
-        <P className="mt-6 leading-8 text-gray-600">{description}</P>
+        <P className="mt-6 leading-8 text-gray-600">{desc}</P>
         <View className="mt-10 flex flex-row items-center gap-x-6">
           <ClientOnly>
             <A href={user ? '/dashboard/chart' : '/sign-up'} variant="primary">
