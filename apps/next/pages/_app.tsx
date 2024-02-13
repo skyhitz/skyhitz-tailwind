@@ -12,7 +12,14 @@ import { AppProps } from 'next/app'
 import { Inter, Raleway, Unbounded } from 'next/font/google'
 import { imageUrlMedium, videoSrc } from 'app/utils/entry'
 import { Config } from 'app/config'
-import { header, keywords, siteTitle, socialDesc } from 'app/constants/content'
+import {
+  combinedTitle,
+  header,
+  keywords,
+  siteTitle,
+  socialDesc,
+} from 'app/constants/content'
+import JsonLdScript from './jsonLd'
 
 const inter = Inter({
   weight: ['400', '600', '700'],
@@ -39,6 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const entry = pageProps.entry
   const beatmaker = pageProps.beatmaker
   const post = pageProps.post
+  const landing = pageProps.landing
   return (
     <>
       <Head>
@@ -122,6 +130,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           </>
         )}
 
+        {landing && <JsonLdScript />}
+
         <meta name="twitter:site" content="@skyhitz" />
 
         <meta property="fb:app_id" content="564403243666491" />
@@ -132,7 +142,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000" />
-        <title>Skyhitz - {header.title}</title>
+        <title>{combinedTitle}</title>
         <link rel="canonical" href="https://skyhitz.io" />
         <link rel="icon" href="/icon.png" />
       </Head>

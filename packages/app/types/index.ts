@@ -127,6 +127,7 @@ export type HomePageProps = {
   cta: CtaProps
   featured: FeaturedProps
   faq: FaqProps
+  landing?: boolean
 }
 
 type Feature = {
