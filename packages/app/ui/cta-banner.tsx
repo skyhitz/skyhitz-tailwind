@@ -20,7 +20,7 @@ export default function CtaBanner({
           <SolitoImage
             src="/img/landing-3.png"
             fill
-            alt=""
+            alt="Skyhitz Mission"
             contentFit="cover"
             style={{ borderTopRightRadius: 12, borderBottomRightRadius: 12 }}
           />

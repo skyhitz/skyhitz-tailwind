@@ -26,7 +26,7 @@ export function PostScreen({ post }: { post: Post }) {
         <View className="aspect-[3/2] w-full object-cover">
           <SolitoImage
             src={imageUrl}
-            alt=""
+            alt={title}
             fill
             contentFit="cover"
             style={{ borderRadius: 12 }}

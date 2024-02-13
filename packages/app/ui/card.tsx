@@ -19,7 +19,7 @@ export default function Card({
           <View className="aspect-[3/2] w-full object-cover">
             <SolitoImage
               src={imageUrl}
-              alt=""
+              alt={title}
               fill
               contentFit="cover"
               style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
