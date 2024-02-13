@@ -14,6 +14,16 @@ type Props = {
   animatedStyle: any
 }
 
+function BuyNowCurrentEntry() {
+  const entry = useRecoilValue(entryAtom)
+
+  return (
+    <View className="md:hidden">
+      {entry && <BuyNowBtn size={'small'} entry={entry!} />}
+    </View>
+  )
+}
+
 function EntryInfo() {
   const entry = useRecoilValue(entryAtom)
 
@@ -35,7 +45,6 @@ function EntryInfo() {
           {entry?.artist}
         </Text>
       </View>
-      <View className="md:hidden">{entry && <BuyNowBtn entry={entry!} />}</View>
     </>
   )
 }
@@ -47,13 +56,12 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
       className="absolute z-[1] w-full opacity-0 md:z-10 md:flex md:py-2 md:!opacity-100"
     >
       <SafeAreaView className="flex h-full items-center bg-white px-4">
-        <Pressable
-          className="flex w-full flex-row items-center py-4 md:hidden"
-          onPress={onTogglePress}
-          hitSlop={10}
-        >
-          <ChevronDown className="text-gray-600" size={24} />
-        </Pressable>
+        <View className="flex w-full flex-row items-center justify-between py-3 md:hidden">
+          <Pressable className="" onPress={onTogglePress} hitSlop={10}>
+            <ChevronDown className="text-gray-600" size={24} />
+          </Pressable>
+          <BuyNowCurrentEntry />
+        </View>
         <View className="w-full items-center justify-between gap-y-8 md:flex-row">
           <VideoPlayer />
 

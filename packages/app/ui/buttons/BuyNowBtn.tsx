@@ -14,9 +14,10 @@ import { Platform } from 'react-native'
 
 type Props = {
   entry: Entry
+  size: 'default' | 'small' | 'large' | undefined
 }
 
-export function BuyNowBtn({ entry }: Props) {
+export function BuyNowBtn({ entry, size = 'default' }: Props) {
   const price = useEntryOffer(entry.code, entry.issuer)
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const { cache } = useApolloClient()
@@ -37,6 +38,7 @@ export function BuyNowBtn({ entry }: Props) {
           setModalVisible(true)
         }}
         useTouchable
+        size={size}
       />
       <PaymentConfirmationModal
         visible={modalVisible}
