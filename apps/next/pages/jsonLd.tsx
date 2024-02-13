@@ -36,6 +36,7 @@ export default function JsonLdScript() {
   return (
     <script
       type="application/ld+json"
+      key="jsonld"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   )

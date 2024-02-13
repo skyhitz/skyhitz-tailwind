@@ -130,8 +130,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           </>
         )}
 
-        {landing && <JsonLdScript />}
-
         <meta name="twitter:site" content="@skyhitz" />
 
         <meta property="fb:app_id" content="564403243666491" />
@@ -145,6 +143,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>{combinedTitle}</title>
         <link rel="canonical" href="https://skyhitz.io" />
         <link rel="icon" href="/icon.png" />
+        <JsonLdScript />
       </Head>
 
       <main
