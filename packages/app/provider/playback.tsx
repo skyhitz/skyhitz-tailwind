@@ -22,20 +22,20 @@ export const PlaybackContext = createContext<PlaybackContext>({
   setTimeoutId: (timeoutId: ReturnType<typeof setTimeout>) => {},
 })
 
-const PlaybackProvider = ({ children }) => {
+const PlaybackProvider = ({ children }: { children: React.ReactNode }) => {
   const playbackRef = useRef<Playback | null>(null)
   const shouldPlayRef = useRef(false)
   const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | undefined>()
 
-  const setPlayback = (val) => {
+  const setPlayback = (val: Playback) => {
     playbackRef.current = val
   }
 
-  const setShouldPlay = (val) => {
+  const setShouldPlay = (val: boolean) => {
     shouldPlayRef.current = val
   }
 
-  const setTimeoutId = (newTimeoutId) => {
+  const setTimeoutId = (newTimeoutId: ReturnType<typeof setTimeout>) => {
     timeoutIdRef.current = newTimeoutId
   }
 
