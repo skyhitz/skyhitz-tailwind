@@ -23,7 +23,7 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
       className={`mx-auto flex w-full flex-1 pt-[${insets.top}px] pb-[${insets.bottom}px]`}
     >
       <ScrollView>
-        <View className="mx-auto mb-32 w-full max-w-7xl px-4 lg:px-8">
+        <View className="mx-auto mb-32 w-full max-w-7xl px-2 lg:px-8">
           <H1 className="mb-4 mt-10 text-4xl">Trending</H1>
           <View className="my-8 border-b border-gray-200" />
           <View className="gap-8">

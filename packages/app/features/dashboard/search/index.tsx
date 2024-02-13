@@ -15,7 +15,7 @@ export function SearchScreen() {
   return (
     <SafeAreaView
       edges={['top']}
-      className="mx-auto flex w-full max-w-7xl flex-1 px-4 pb-0 pt-4 lg:px-8"
+      className="mx-auto flex w-full max-w-7xl flex-1 px-2 pb-0 pt-4 lg:px-8"
     >
       <SearchInputField
         // @ts-ignore
