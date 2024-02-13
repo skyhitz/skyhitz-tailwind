@@ -19,7 +19,7 @@ export function DashboardNavigation({
   const user = useRecoilValue(userAtom)
 
   return (
-    <View className="flex h-screen overflow-hidden">
+    <View className="flex h-[calc(100dvh)] overflow-hidden">
       <Navbar className="hidden md:flex" />
 
       <View className="flex flex-1 flex-row">
