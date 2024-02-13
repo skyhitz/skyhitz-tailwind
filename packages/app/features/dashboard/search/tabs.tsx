@@ -13,9 +13,9 @@ export function TabBar({ onTabClick, selected }: TabBarProps) {
     <View className="flex w-full flex-row">
       <Pressable className="grow py-4" onPress={() => onTabClick?.('MFTs')}>
         <P
-          className={`${
-            selected === 'MFTs' ? 'text-gray-600' : 'text-neutral-500'
-          } mx-auto text-sm`}
+          className={`font-unbounded ${
+            selected === 'MFTs' ? 'font-bold text-gray-600' : 'text-neutral-500'
+          } mx-auto text-xs`}
         >
           MFTs
         </P>
@@ -25,9 +25,11 @@ export function TabBar({ onTabClick, selected }: TabBarProps) {
         onPress={() => onTabClick?.('Collectors')}
       >
         <P
-          className={`${
-            selected === 'Collectors' ? 'text-gray-600' : 'text-neutral-500'
-          } mx-auto text-sm`}
+          className={`font-unbounded ${
+            selected === 'Collectors'
+              ? 'font-bold text-gray-600'
+              : 'text-neutral-500'
+          } mx-auto text-xs`}
         >
           Collectors
         </P>
