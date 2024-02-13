@@ -94,7 +94,7 @@ export const footer = {
     {
       title: 'Support',
       links: [
-        { name: 'FAQ', href: '/faq' },
+        { name: 'FAQ', href: '#faq' },
         { name: 'Contact', href: 'mailto:support@skyhitz.io' },
         { name: 'Terms', href: '/terms' },
         { name: 'Privacy', href: '/privacy' },

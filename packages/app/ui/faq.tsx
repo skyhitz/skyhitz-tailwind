@@ -17,7 +17,10 @@ export default function Faq({ title, faqs }: FaqProps) {
   }
 
   return (
-    <View className="mx-auto w-full max-w-7xl px-6 pb-24 md:pb-32 lg:px-8">
+    <View
+      className="mx-auto w-full max-w-7xl px-6 pb-24 md:pb-32 lg:px-8"
+      id="faq"
+    >
       <View className="mx-auto w-full divide-y divide-gray-900/10">
         <H2 className="text-2xl font-bold leading-10 tracking-tight">
           {title}
