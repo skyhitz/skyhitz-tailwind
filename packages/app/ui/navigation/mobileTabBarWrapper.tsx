@@ -2,7 +2,7 @@ import DashboardTabBar from 'app/ui/navigation/dashboardTabBar'
 import { useCallback, useEffect, useMemo } from 'react'
 import { MiniPlayerBar } from 'app/features/player/miniPlayerBar'
 import { FullScreenPlayer } from 'app/features/player/fullScreenPlayer'
-import Animated, {
+import {
   useSharedValue,
   useAnimatedStyle,
   interpolate,
@@ -16,7 +16,6 @@ import {
   Gesture,
 } from 'react-native-gesture-handler'
 import { Platform, View, useWindowDimensions } from 'react-native'
-import { usePlayback } from 'app/hooks/usePlayback'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { MotiView } from 'moti'
 
@@ -24,22 +23,13 @@ const fullAnimationDuration = 400
 
 export function MobileTabBarWrapper({
   currentTabName,
-  className,
 }: {
   currentTabName: string
-  className?: string
 }) {
   const insets = useSafeArea()
-  const { playbackState } = usePlayback()
   const { height } = useWindowDimensions()
 
-  const tabBarHeight = useMemo(() => {
-    let height = 54 + insets.bottom + 40
-    // if (playbackState !== 'IDLE' && playbackState !== 'ERROR') {
-    //   height = height + 40
-    // }
-    return height
-  }, [insets, playbackState]) // 52 + 2 border + 40 miniplayer
+  const tabBarHeight = 54 + insets.bottom + 40 // 52 + 2 border + 40 miniplayer
 
   const maxHeight = useMemo(() => height + insets.top, [insets, height])
 

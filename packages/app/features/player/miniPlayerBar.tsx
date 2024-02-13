@@ -7,6 +7,8 @@ import PauseIcon from 'app/ui/icons/pause'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { ActivityIndicator, P } from 'app/design/typography'
 import { MotiView } from 'app/design/moti'
+import { entryAtom, playbackStateAtom } from 'app/state/player'
+import { useRecoilValue } from 'recoil'
 
 type Props = {
   onTogglePress?: () => void
@@ -14,7 +16,9 @@ type Props = {
 }
 
 export function MiniPlayerBar({ onTogglePress, animatedStyle }: Props) {
-  const { playPause, playbackState, entry } = usePlayback()
+  const { playPause } = usePlayback()
+  const playbackState = useRecoilValue(playbackStateAtom)
+  const entry = useRecoilValue(entryAtom)
 
   return (
     <MotiView

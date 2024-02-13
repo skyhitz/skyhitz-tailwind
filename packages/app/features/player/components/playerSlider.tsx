@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Text, View } from 'react-native'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { any, equals } from 'ramda'
 import { Slider } from 'app/ui/SkyhitzSlider'
+import { durationAtom, playbackStateAtom, positionAtom } from 'app/state/player'
+import { useRecoilValue } from 'recoil'
 
 export function PlayerSlider({ className }: { className?: string }) {
-  const { startSeeking, onSeekCompleted, duration, position, playbackState } =
-    usePlayback()
+  const { startSeeking, onSeekCompleted } = usePlayback()
+  const duration = useRecoilValue(durationAtom)
+  const position = useRecoilValue(positionAtom)
+  const playbackState = useRecoilValue(playbackStateAtom)
+
   const [seekPosition, setSeekPosition] = useState<number>(position)
   const songTime = duration / 1000
   const currentTime =

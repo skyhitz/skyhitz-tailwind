@@ -7,6 +7,8 @@ import PauseIcon from 'app/ui/icons/pause'
 import LoopIcon from 'app/ui/icons/repeat'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { ActivityIndicator } from 'app/design/typography'
+import { loopingAtom, playbackStateAtom, shuffleAtom } from 'app/state/player'
+import { useRecoilValue } from 'recoil'
 
 const style = {
   default: 'h-10 max-w-xs',
@@ -19,17 +21,13 @@ type Props = {
 }
 
 export function PlayerButtonsRow({ size = 'default', className }: Props) {
-  const {
-    playPause,
-    skipForward,
-    skipBackward,
-    toggleLoop,
-    shuffle,
-    playbackState,
-    looping,
-    toggleShuffle,
-  } = usePlayback()
+  const { playPause, skipForward, skipBackward, toggleLoop, toggleShuffle } =
+    usePlayback()
   const sizeModificator = size === 'large' ? 6 : 0
+
+  const playbackState = useRecoilValue(playbackStateAtom)
+  const shuffle = useRecoilValue(shuffleAtom)
+  const looping = useRecoilValue(loopingAtom)
 
   return (
     <View
@@ -44,17 +42,22 @@ export function PlayerButtonsRow({ size = 'default', className }: Props) {
       <Pressable onPress={skipBackward}>
         <PrevIcon className={'text-gray-600'} size={18 + sizeModificator} />
       </Pressable>
-      {playbackState === 'LOADING' || playbackState === 'FALLBACK' ? (
-        <ActivityIndicator grey />
-      ) : (
-        <Pressable onPress={playPause}>
-          {playbackState === 'PLAYING' ? (
-            <PauseIcon className="text-gray-600" size={22 + sizeModificator} />
-          ) : (
-            <PlayIcon className="text-gray-600" size={22 + sizeModificator} />
-          )}
-        </Pressable>
-      )}
+      <View className="w-6 items-center justify-center">
+        {playbackState === 'LOADING' || playbackState === 'FALLBACK' ? (
+          <ActivityIndicator grey />
+        ) : (
+          <Pressable onPress={playPause}>
+            {playbackState === 'PLAYING' ? (
+              <PauseIcon
+                className="text-gray-600"
+                size={22 + sizeModificator}
+              />
+            ) : (
+              <PlayIcon className="text-gray-600" size={22 + sizeModificator} />
+            )}
+          </Pressable>
+        )}
+      </View>
       <Pressable onPress={skipForward}>
         <NextIcon className="text-gray-600" size={18 + sizeModificator} />
       </Pressable>

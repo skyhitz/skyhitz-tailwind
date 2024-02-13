@@ -3,9 +3,9 @@ import { RecoilRoot } from 'recoil'
 
 import { SafeArea } from './safe-area'
 import { SolitoImageProvider } from 'solito/image'
-import { PlaybackProvider } from 'app/provider/playback'
 
 import { ToastProvider } from './toast'
+import PlaybackProvider from './playback'
 
 export function Provider({ children }: { children: React.ReactNode }) {
   return (

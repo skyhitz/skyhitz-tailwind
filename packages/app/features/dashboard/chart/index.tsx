@@ -16,6 +16,8 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
     loadMoreEnabled,
   } = useTopChart(1)
 
+  const playlist = [...entries, ...extraEntries]
+
   return (
     <View
       className={`mx-auto flex w-full flex-1 pt-[${insets.top}px] pb-[${insets.bottom}px]`}
@@ -31,7 +33,7 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
                   key={index}
                   entry={entry}
                   spot={index + 1}
-                  playlist={entries}
+                  playlist={playlist}
                 />
               )
             })}
@@ -41,8 +43,8 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
                 <BeatListEntry
                   key={index}
                   entry={entry}
-                  spot={index + 1}
-                  playlist={entries}
+                  spot={20 + index + 1}
+                  playlist={playlist}
                 />
               )
             })}

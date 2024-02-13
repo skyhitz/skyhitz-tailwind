@@ -16,6 +16,7 @@ import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { useMemo } from 'react'
 import { ActivityIndicator, H1, P } from 'app/design/typography'
+import { entryAtom, playbackStateAtom } from 'app/state/player'
 
 type Props = {
   entry: Entry
@@ -56,7 +57,9 @@ export function BeatSummaryColumn({ entry, holders }: Props) {
 }
 
 function PlayBeatButton({ currentEntry }: { currentEntry: Entry }) {
-  const { playEntry, playPause, entry, playbackState } = usePlayback()
+  const { playEntry, playPause } = usePlayback()
+  const playbackState = useRecoilValue(playbackStateAtom)
+  const entry = useRecoilValue(entryAtom)
 
   if (entry?.id === currentEntry.id) {
     if (playbackState === 'LOADING' || playbackState === 'FALLBACK') {
