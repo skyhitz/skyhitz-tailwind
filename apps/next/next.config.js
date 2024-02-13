@@ -2,6 +2,9 @@ const { withExpo } = require('@expo/next-adapter')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    strictNextHead: true,
+  },
   async redirects() {
     return [
       {

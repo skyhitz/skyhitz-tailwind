@@ -1,5 +1,6 @@
 import { footer, homeContent, keywords } from 'app/constants/content'
 import { Config } from 'app/config'
+import Script from 'next/script'
 
 export default function JsonLdScript() {
   const jsonLd = {
@@ -36,7 +37,7 @@ export default function JsonLdScript() {
   return (
     <script
       type="application/ld+json"
-      key="jsonld"
+      id="jsonld"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   )
