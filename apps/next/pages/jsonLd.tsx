@@ -1,6 +1,5 @@
 import { footer, homeContent, keywords } from 'app/constants/content'
 import { Config } from 'app/config'
-import Script from 'next/script'
 
 export default function JsonLdScript() {
   const jsonLd = {

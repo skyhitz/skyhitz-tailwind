@@ -143,7 +143,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>{combinedTitle}</title>
         <link rel="canonical" href="https://skyhitz.io" />
         <link rel="icon" href="/icon.png" />
-        <JsonLdScript />
+        {landing && <JsonLdScript />}
       </Head>
 
       <main
