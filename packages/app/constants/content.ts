@@ -14,7 +14,7 @@ export const header = {
   title: 'Join the future of music ownership',
   desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to immerse in and experience music like never before. We are a blockchain-powered platform that enables music enthusiasts to discover, stream and collect unique creations through a decentralized framework.',
 }
-export const combinedTitle = `Skyhitz - ${header.title} - Decentralized MFTs (Music NFTs)`
+export const combinedTitle = `Skyhitz - ${header.title} - MFTs (Music NFTs)`
 const cta = {
   title: 'Redefine music ownership and accessibility',
   subtitle: 'Our Mission',
