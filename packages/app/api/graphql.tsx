@@ -252,6 +252,7 @@ export type PublicUser = {
   username: Scalars['String']
   twitter?: Scalars['String']
   instagram?: Scalars['String']
+  publishedAtTimestamp?: Scalars['Int']
 }
 
 export type Query = {

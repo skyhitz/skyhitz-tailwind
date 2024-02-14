@@ -44,9 +44,12 @@ const unbounded = Unbounded({
 
 function MyApp({ Component, pageProps }: AppProps) {
   const entry = pageProps.entry
-  const beatmaker = pageProps.beatmaker
+  const collector = pageProps.collector
   const post = pageProps.post
   const landing = pageProps.landing
+  const chart = pageProps.chart
+  const blog = pageProps.blog
+
   return (
     <>
       <Head>
@@ -83,22 +86,22 @@ function MyApp({ Component, pageProps }: AppProps) {
               content={`${Config.APP_URL}/dashboard/beat/${entry.id}`}
             />
           </>
-        ) : beatmaker ? (
+        ) : collector ? (
           <>
             <meta name="twitter:card" content="summary" />
-            <meta property="og:title" content={beatmaker.username} />
-            <meta property="og:description" content={beatmaker.description} />
+            <meta property="og:title" content={collector.username} />
+            <meta property="og:description" content={collector.description} />
             <meta property="og:type" content="website" />
             <meta
               property="og:image"
-              content={imageUrlMedium(beatmaker.avatarUrl)}
+              content={imageUrlMedium(collector.avatarUrl)}
             />
             <meta property="og:image:type" content="image/png" />
             <meta property="og:image:width" content="480" />
             <meta property="og:image:height" content="480" />
             <meta
               property="og:url"
-              content={`${Config.APP_URL}/dashboard/collector/${beatmaker.id}`}
+              content={`${Config.APP_URL}/dashboard/collector/${collector.id}`}
             />
           </>
         ) : post ? (
@@ -143,7 +146,14 @@ function MyApp({ Component, pageProps }: AppProps) {
         <title>{combinedTitle}</title>
         <link rel="canonical" href="https://skyhitz.io" />
         <link rel="icon" href="/icon.png" />
-        {landing && <JsonLdScript />}
+        <JsonLdScript
+          landing={landing}
+          chart={chart}
+          blog={blog}
+          post={post}
+          entry={entry}
+          collector={collector}
+        />
       </Head>
 
       <main

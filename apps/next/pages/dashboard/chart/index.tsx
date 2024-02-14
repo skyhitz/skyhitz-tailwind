@@ -11,19 +11,19 @@ export const getServerSideProps: GetServerSideProps = async (props) => {
     return { props: {} }
   }
 
-  const entries = res.hits
+  const chart = res.hits
 
   return {
     props: {
-      entries,
+      chart,
     },
   }
 }
 
 type Props = {
-  entries: Entry[]
+  chart: Entry[]
 }
 
-export default function ChartPage({ entries }: Props) {
-  return <ChartScreen entries={entries} />
+export default function ChartPage({ chart }: Props) {
+  return <ChartScreen entries={chart} />
 }

@@ -13,11 +13,11 @@ export const getServerSideProps: GetServerSideProps = async (props) => {
     return { props: {} }
   }
 
-  const beatmaker = res.hits[0]
+  const collector = res.hits[0]
 
   return {
     props: {
-      beatmaker,
+      collector,
     },
   }
 }

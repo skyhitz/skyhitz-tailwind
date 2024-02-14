@@ -1,8 +1,7 @@
 import ProfileBeatsList from 'app/features/dashboard/profile/profileBeatsList'
-import { useBeatmakerParam } from 'app/hooks/param/useBeatmakerParam'
+import { useCollectorParam } from 'app/hooks/param/useCollectorParam'
 import { useUserCollectionQuery } from 'app/api/graphql'
 import { useErrorReport } from 'app/hooks/useErrorReport'
-import { useEffect } from 'react'
 import { Config } from 'app/config'
 import { useUserWithId } from 'app/hooks/algolia/useUserWithId'
 import {
@@ -13,7 +12,7 @@ import { View } from 'react-native'
 import { P, H1, H2, ActivityIndicator } from 'app/design/typography'
 
 export default function CollectorScreen() {
-  const id = useBeatmakerParam()
+  const id = useCollectorParam()
   const reportError = useErrorReport()
   const user = useUserWithId(id)
   const collection = useUserCollectionQuery({

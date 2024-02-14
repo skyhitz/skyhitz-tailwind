@@ -11,19 +11,19 @@ export const getServerSideProps: GetServerSideProps = async (props) => {
     return { props: {} }
   }
 
-  const posts = res.hits
+  const blog = res.hits
 
   return {
     props: {
-      posts,
+      blog,
     },
   }
 }
 
 type Props = {
-  posts: Post[]
+  blog: Post[]
 }
 
-export default function BlogPage({ posts }: Props) {
-  return <BlogScreen posts={posts} />
+export default function BlogPage({ blog }: Props) {
+  return <BlogScreen posts={blog} />
 }

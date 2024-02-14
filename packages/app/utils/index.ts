@@ -14,6 +14,11 @@ export function formattedDate(publishedAtTimestamp: number) {
   return formatedDate
 }
 
+export function formattedISODate(publishedAtTimestamp: number) {
+  const formatedDate = new Date(publishedAtTimestamp).toISOString()
+  return formatedDate
+}
+
 export function convertToString(num: number, fractionDigits = 6): string {
   return parseFloat(num.toFixed(fractionDigits)).toString()
 }
