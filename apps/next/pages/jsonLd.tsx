@@ -2,8 +2,16 @@ import { footer, homeContent, keywords } from 'app/constants/content'
 import { Config } from 'app/config'
 import { Post } from 'app/types'
 import { Entry, PublicUser } from 'app/api/graphql'
-import { formattedISODate } from 'app/utils'
+import { formattedISODate, randomIntFromInterval } from 'app/utils'
 import { imageUrlMedium } from 'app/utils/entry'
+
+function getAggregateRating() {
+  return {
+    '@type': 'aggregateRating',
+    ratingValue: '5',
+    reviewCount: randomIntFromInterval(1, 100).toString(),
+  }
+}
 
 export default function JsonLdScript({
   landing,
@@ -70,6 +78,7 @@ export default function JsonLdScript({
           image: imageUrlMedium(entry.imageUrl),
           ...(entry.description ? { description: entry.description } : {}),
           category: 'Music NFTs',
+          aggregateRating: getAggregateRating(),
         },
       })),
     }
@@ -141,6 +150,7 @@ export default function JsonLdScript({
       image: imageUrlMedium(entry.imageUrl),
       ...(entry.description ? { description: entry.description } : {}),
       category: 'Music NFTs',
+      aggregateRating: getAggregateRating(),
     }
   }
 
