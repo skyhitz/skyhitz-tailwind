@@ -13,7 +13,7 @@ export default function Custom404() {
       className={`h-[calc(100dvh)] w-full pt-[${insets.top}px] pb-[${insets.bottom}px]`}
     >
       <Navbar />
-      <View className="flex w-full grow">
+      <View className="flex w-full grow pb-16">
         <H1 className="mx-auto w-full max-w-7xl py-8 text-center">
           Couldn&apos;t find what you are looking for?
         </H1>
