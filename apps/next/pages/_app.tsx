@@ -101,7 +101,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="title" content={siteTitle} />
-        <meta name="description" content={header.desc} />
+        <meta name="description" content={header.desc.split('. ', 1)[0]} />
         <meta name="keywords" content={keywords} />
         {entry ? (
           <>
