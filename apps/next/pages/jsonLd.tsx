@@ -33,14 +33,15 @@ export default function JsonLdScript({
   if (landing) {
     jsonLd = {
       '@context': 'https://schema.org',
-      '@type': 'OnlineBusiness',
+      '@type': 'Organization',
       name: 'Skyhitz',
+      alternateName: 'Skyhitz',
       legalName: footer.companyName,
+      description: homeContent.header.desc,
       logo: {
         '@type': 'ImageObject',
         url: 'https://skyhitz.io/icon.png',
       },
-      description: homeContent.header.desc,
       url: Config.APP_URL,
       '@id': `${Config.APP_URL}#mission`,
       areaServed: 'Worldwide',
@@ -61,6 +62,7 @@ export default function JsonLdScript({
       email: 'support@skyhitz.io',
       keywords: keywords,
       knowsAbout: 'Music NFTs',
+      foundingDate: '2022-05-26T08:30:00.000Z',
     }
   }
 
