@@ -43,6 +43,16 @@ function generateSiteMap({
        })
        .join('')}
 
+    ${entries
+      .map(({ id }) => {
+        return `
+              <url>
+                  <loc>${`${SITE_URL}/dashboard/beat/${id}`}</loc>
+              </url>
+            `
+      })
+      .join('')}
+
     ${users
       .map(({ id }) => {
         return `
@@ -50,16 +60,6 @@ function generateSiteMap({
             <loc>${`${SITE_URL}/dashboard/collector/${id}`}</loc>
         </url>
       `
-      })
-      .join('')}
-
-    ${entries
-      .map(({ id }) => {
-        return `
-            <url>
-                <loc>${`${SITE_URL}/dashboard/beat/${id}`}</loc>
-            </url>
-          `
       })
       .join('')}
    </urlset>
