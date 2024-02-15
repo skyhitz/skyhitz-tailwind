@@ -20,6 +20,8 @@ import {
   socialDesc,
 } from 'app/constants/content'
 import JsonLdScript from './jsonLd'
+import { Entry, PublicUser } from 'app/api/graphql'
+import { Post } from 'app/types'
 
 const inter = Inter({
   weight: ['400', '600', '700'],
@@ -42,6 +44,50 @@ const unbounded = Unbounded({
   display: 'swap',
 })
 
+function CanonicalLink({
+  entry,
+  collector,
+  post,
+  chart,
+  blog,
+  search,
+}: {
+  entry: Entry
+  collector: PublicUser
+  post: Post
+  chart: any
+  blog: any
+  search: any
+}) {
+  let href = Config.APP_URL
+
+  if (entry) {
+    href = `${href}/dashboard/beat/${entry.id}`
+  }
+
+  if (post) {
+    href = `${href}/blog/${post.slug}`
+  }
+
+  if (collector) {
+    href = `${href}/dashboard/collector/${collector.id}`
+  }
+
+  if (chart) {
+    href = `${href}/dashboard/chart`
+  }
+
+  if (blog) {
+    href = `${href}/blog`
+  }
+
+  if (search) {
+    href = `${href}/dashboard/search`
+  }
+
+  return <link rel="canonical" href={href} />
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const entry = pageProps.entry
   const collector = pageProps.collector
@@ -49,6 +95,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const landing = pageProps.landing
   const chart = pageProps.chart
   const blog = pageProps.blog
+  const search = pageProps.search
 
   return (
     <>
@@ -116,7 +163,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <meta property="og:image:height" content="480" />
             <meta
               property="og:url"
-              content={`${Config.APP_URL}/blog/${post.id}`}
+              content={`${Config.APP_URL}/blog/${post.slug}`}
             />
           </>
         ) : (
@@ -129,7 +176,7 @@ function MyApp({ Component, pageProps }: AppProps) {
               property="og:image"
               content={`${Config.APP_URL}/skyhitz.png`}
             />
-            <meta property="og:url" key="og:url" content="https://skyhitz.io" />
+            <meta property="og:url" key="og:url" content={Config.APP_URL} />
           </>
         )}
 
@@ -144,7 +191,15 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000" />
         <title>{combinedTitle}</title>
-        <link rel="canonical" href="https://skyhitz.io" />
+        <CanonicalLink
+          chart={chart}
+          blog={blog}
+          post={post}
+          entry={entry}
+          collector={collector}
+          search={search}
+        />
+
         <link rel="icon" href="/icon.png" />
         <JsonLdScript
           landing={landing}
