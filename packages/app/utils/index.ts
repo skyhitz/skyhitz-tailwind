@@ -23,6 +23,6 @@ export function convertToString(num: number, fractionDigits = 6): string {
   return parseFloat(num.toFixed(fractionDigits)).toString()
 }
 
-export function randomIntFromInterval(min, max) {
+export function randomIntFromInterval(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
