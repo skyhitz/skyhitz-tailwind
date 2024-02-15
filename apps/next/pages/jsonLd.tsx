@@ -136,6 +136,7 @@ export default function JsonLdScript({
       author: {
         '@type': 'Person',
         name: 'Alejo Mendoza',
+        url: 'https://twitter.com/alejoskyhitz',
       },
       email: 'support@skyhitz.io',
     }
