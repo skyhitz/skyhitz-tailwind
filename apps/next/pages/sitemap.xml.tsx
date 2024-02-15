@@ -9,6 +9,8 @@ const SITE_URL = 'https://skyhitz.io'
 
 const ROUTES = ['/dashboard/chart', '/dashboard/search', '/blog']
 
+const maxHitsPerPage = 1000
+
 function generateSiteMap({
   posts,
   users,
@@ -32,10 +34,10 @@ function generateSiteMap({
     }).join('')}
     
      ${posts
-       .map(({ id }) => {
+       .map(({ slug }) => {
          return `
        <url>
-           <loc>${`${SITE_URL}/blog/${id}`}</loc>
+           <loc>${`${SITE_URL}/blog/${slug}`}</loc>
        </url>
      `
        })
@@ -71,9 +73,11 @@ function SiteMap() {
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const [{ hits: entries }, { hits: posts }, { hits: users }] =
     await Promise.all([
-      await ratingEntriesIndex.search<Entry>(''),
-      await blogIndex.search<Post>(''),
-      await usersIndex.search<PublicUser>(''),
+      await ratingEntriesIndex.search<Entry>('', {
+        hitsPerPage: maxHitsPerPage,
+      }),
+      await blogIndex.search<Post>('', { hitsPerPage: maxHitsPerPage }),
+      await usersIndex.search<PublicUser>('', { hitsPerPage: maxHitsPerPage }),
     ])
 
   // We generate the XML sitemap with the posts data
