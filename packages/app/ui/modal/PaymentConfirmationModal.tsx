@@ -14,7 +14,6 @@ import { useState } from 'react'
 import { useToast } from 'app/provider/toast'
 import { useErrorReport } from 'app/hooks/useErrorReport'
 import { Slider } from 'app/ui/SkyhitzSlider'
-import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SolitoImage } from 'solito/image'
 import { P } from 'app/design/typography'
 // import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";
@@ -130,9 +129,7 @@ export function PaymentConfirmationModal({
               Equity for sale: {(equityForSale * 100).toFixed()}%
             </P>
             <P className="my-2 text-sm">Network fee: 0.01 XLM</P>
-            <GestureHandlerRootView
-              style={{ flexDirection: 'row', width: '100%' }}
-            >
+            <View style={{ flexDirection: 'row', width: '100%' }}>
               <Slider
                 progress={initialEquityForSale}
                 key={entry.id}
@@ -140,7 +137,7 @@ export function PaymentConfirmationModal({
                   setEquityForSale(parseFloat(value.toFixed(2)))
                 }}
               />
-            </GestureHandlerRootView>
+            </View>
             <P className="my-2 text-sm">
               Stellar collects a network fee per transaction. It depends on the
               number of operations in the transaction and the current network

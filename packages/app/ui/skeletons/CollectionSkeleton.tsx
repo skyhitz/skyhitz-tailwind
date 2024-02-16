@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { SkeletonContainer } from 'app/ui/skeletons/SkeletonContainer'
 import { useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
 import { View } from 'react-native'
-import { FlashList as FlatList } from '@shopify/flash-list'
+import { FlatList } from 'react-native'
 
 type CollectionSkeletonProps = {
   duplicates: number

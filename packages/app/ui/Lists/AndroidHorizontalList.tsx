@@ -5,7 +5,6 @@ import Animated, {
   withSpring,
   withDecay,
 } from 'react-native-reanimated'
-import { GestureDetector, Gesture } from 'react-native-gesture-handler'
 import { Dimensions } from 'react-native'
 import { isEmpty } from 'ramda'
 
@@ -26,31 +25,6 @@ export function AndroidHorizontalList<T>({
   const x = useSharedValue(0)
   const dragStart = useSharedValue(x.value)
 
-  const panGestureHandler = useMemo(
-    () =>
-      Gesture.Pan()
-        .onStart(() => {
-          dragStart.value = x.value
-        })
-        .onUpdate((event) => {
-          x.value = dragStart.value + event.translationX
-        })
-        .onEnd((event) => {
-          if (x.value > 0) {
-            x.value = withSpring(0)
-          } else if (x.value < -maxTranslation) {
-            x.value = withSpring(-maxTranslation)
-          } else {
-            x.value = withDecay({
-              velocity: event.velocityX,
-              clamp: [-maxTranslation, 0],
-            })
-          }
-        })
-        .hitSlop(10),
-    [maxTranslation, dragStart],
-  )
-
   const listStyle = useAnimatedStyle(() => {
     return {
       transform: [
@@ -66,19 +40,15 @@ export function AndroidHorizontalList<T>({
   }
 
   return (
-    <GestureDetector gesture={panGestureHandler}>
-      <Animated.View
-        className={'absolute flex-row'}
-        style={[listStyle]}
-        onLayout={(e) => {
-          // 16 is the padding from the right
-          setMaxTranslation(
-            Math.max(e.nativeEvent.layout.width + 16 - width, 0),
-          )
-        }}
-      >
-        {data.map(renderItem)}
-      </Animated.View>
-    </GestureDetector>
+    <Animated.View
+      className={'absolute flex-row'}
+      style={[listStyle]}
+      onLayout={(e) => {
+        // 16 is the padding from the right
+        setMaxTranslation(Math.max(e.nativeEvent.layout.width + 16 - width, 0))
+      }}
+    >
+      {data.map(renderItem)}
+    </Animated.View>
   )
 }

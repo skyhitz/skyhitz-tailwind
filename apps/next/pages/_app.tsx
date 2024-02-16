@@ -19,7 +19,7 @@ import {
   siteTitle,
   socialDesc,
 } from 'app/constants/content'
-import JsonLdScript from './jsonLd'
+import JsonLdScript from 'app/seo/jsonLd'
 import { Entry, PublicUser } from 'app/api/graphql'
 import { Post } from 'app/types'
 

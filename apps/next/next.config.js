@@ -1,4 +1,7 @@
 const { withExpo } = require('@expo/next-adapter')
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -34,15 +37,12 @@ const nextConfig = {
     'moti',
     'app',
     'react-native-reanimated',
-    'react-native-gesture-handler',
     'nativewind',
     'react-native-css-interop',
     'react-native-svg',
     'react-native-safe-area-context',
     'react-native-htmlview',
     '@react-native-community',
-    '@shopify/flash-list',
-    'recyclerlistview',
   ],
   images: {
     remotePatterns: [
@@ -72,4 +72,4 @@ require('dotenv').config({
   path: '../../.env',
 })
 
-module.exports = withExpo(nextConfig)
+module.exports = withBundleAnalyzer(withExpo(nextConfig))

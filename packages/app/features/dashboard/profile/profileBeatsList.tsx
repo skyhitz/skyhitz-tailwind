@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { FlashList as FlatList } from '@shopify/flash-list'
+import { FlatList } from 'react-native'
 import { BeatListEntry } from 'app/ui/beat-list-entry'
 import { Entry } from 'app/api/graphql'
 import { CollectionSkeleton } from 'app/ui/skeletons/CollectionSkeleton'

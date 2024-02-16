@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { FlashList as FlatList, ListRenderItem } from '@shopify/flash-list'
+import { FlatList, ListRenderItem } from 'react-native'
 
 import SearchingIndicator from 'app/features/dashboard/search/search-result-lists/searchingIndicator'
 import EmptyListIndicator from 'app/features/dashboard/search/search-result-lists/emptyListIndicator'
@@ -41,7 +41,6 @@ export function SearchResultList<T>({
         <EmptyListIndicator visible={!loading} text={emptyListText} />
       }
       showsVerticalScrollIndicator={false}
-      estimatedItemSize={20}
     />
   )
 }

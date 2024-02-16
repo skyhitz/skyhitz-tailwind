@@ -1,4 +1,4 @@
-import { FlashList as FlatList } from '@shopify/flash-list'
+import { FlatList } from 'react-native'
 import { BeatListEntry } from 'app/ui/beat-list-entry'
 import { useRecentlyAdded } from 'app/hooks/algolia/useRecentlyAdded'
 import { BeatSkeleton } from 'app/ui/skeletons/BeatSkeleton'
@@ -20,7 +20,6 @@ export default function RecentlyAddedList() {
       showsVerticalScrollIndicator={false}
       onEndReached={onNextPage}
       onEndReachedThreshold={0.1}
-      estimatedItemSize={20}
     />
   )
 }

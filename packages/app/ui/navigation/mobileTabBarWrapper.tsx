@@ -7,15 +7,9 @@ import {
   useAnimatedStyle,
   interpolate,
   Extrapolation,
-  withDecay,
   withTiming,
 } from 'react-native-reanimated'
-import {
-  GestureHandlerRootView,
-  GestureDetector,
-  Gesture,
-} from 'react-native-gesture-handler'
-import { Platform, View, useWindowDimensions } from 'react-native'
+import { View, useWindowDimensions } from 'react-native'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { MotiView } from 'moti'
 
@@ -34,43 +28,10 @@ export function MobileTabBarWrapper({
   const maxHeight = useMemo(() => height + insets.top, [insets, height])
 
   const y = useSharedValue(tabBarHeight)
-  const dragStart = useSharedValue(tabBarHeight)
 
   useEffect(() => {
     y.value = tabBarHeight
   }, [tabBarHeight])
-
-  const gestureHandler = useMemo(
-    () =>
-      Gesture.Pan()
-        .enabled(Platform.OS !== 'web')
-        .onStart((_) => {
-          dragStart.value = y.value
-        })
-        .onUpdate((event) => {
-          y.value = Math.min(
-            maxHeight,
-            Math.max(tabBarHeight, dragStart.value - event.translationY),
-          )
-        })
-        .onEnd((event) => {
-          const minVelocity =
-            (maxHeight - tabBarHeight) / (fullAnimationDuration / 1000)
-          const threshold = (maxHeight - tabBarHeight) / 2
-          let velocity = y.value > threshold ? minVelocity : -minVelocity
-          if (event.velocityY > 0) {
-            velocity = Math.min(-minVelocity, -event.velocityY)
-          } else if (event.velocityY < 0) {
-            velocity = Math.max(minVelocity, -event.velocityY)
-          }
-          y.value = withDecay({
-            velocity,
-            deceleration: 1,
-            clamp: [tabBarHeight, maxHeight],
-          })
-        }),
-    [tabBarHeight, maxHeight],
-  )
 
   const draggableStyle = useAnimatedStyle(() => {
     return {
@@ -137,34 +98,30 @@ export function MobileTabBarWrapper({
   }, [y, tabBarHeight])
 
   return (
-    <GestureHandlerRootView>
-      <GestureDetector gesture={gestureHandler}>
-        <MotiView
-          style={[
-            { justifyContent: 'space-between', display: 'flex' },
-            draggableStyle,
-          ]}
-          className="md:!h-20 md:border-t md:border-gray-200"
-        >
-          <View>
-            <MiniPlayerBar
-              onTogglePress={onExpand}
-              animatedStyle={playerBarStyle}
-            />
-            <FullScreenPlayer
-              onTogglePress={onHide}
-              animatedStyle={fullScreenPlayerStyle}
-            />
-          </View>
+    <MotiView
+      style={[
+        { justifyContent: 'space-between', display: 'flex' },
+        draggableStyle,
+      ]}
+      className="md:!h-20 md:border-t md:border-gray-200"
+    >
+      <View>
+        <MiniPlayerBar
+          onTogglePress={onExpand}
+          animatedStyle={playerBarStyle}
+        />
+        <FullScreenPlayer
+          onTogglePress={onHide}
+          animatedStyle={fullScreenPlayerStyle}
+        />
+      </View>
 
-          <MotiView style={[{ zIndex: 10 }, tabBarStyle]}>
-            <DashboardTabBar
-              currentTabName={currentTabName}
-              className="md:hidden"
-            />
-          </MotiView>
-        </MotiView>
-      </GestureDetector>
-    </GestureHandlerRootView>
+      <MotiView style={[{ zIndex: 10 }, tabBarStyle]}>
+        <DashboardTabBar
+          currentTabName={currentTabName}
+          className="md:hidden"
+        />
+      </MotiView>
+    </MotiView>
   )
 }

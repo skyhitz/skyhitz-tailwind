@@ -4,8 +4,11 @@ import { Config } from 'app/config'
 import { ReactElement } from 'react'
 import { StellarExpertLink } from 'app/ui/links/StellarExpertLink'
 import { Details as DetailsIcon } from 'app/ui/icons/details'
-import { getAssetId } from 'app/utils/stellar'
 import { P } from 'app/design/typography'
+
+const getAssetId = (code: string, issuer: string) => {
+  return `${code}-${issuer}`
+}
 
 type Props = {
   issuer: string

@@ -2,7 +2,7 @@ import { Entry, PublicUser, useEntryLikesQuery } from 'app/api/graphql'
 import { ActivityIndicator, View } from 'react-native'
 import LikeButton from 'app/ui/buttons/likeButton'
 import { UserAvatar } from 'app/ui/userAvatar'
-import { FlashList } from '@shopify/flash-list'
+import { FlatList } from 'react-native'
 import { isSome } from 'app/utils'
 import { AndroidHorizontalList } from 'app/ui/Lists/AndroidHorizontalList'
 import { P } from 'app/design/typography'
@@ -55,7 +55,7 @@ export function LikesList({
                 listEmptyComponent={<ListEmptyComponent loading={loading} />}
               />
             ) : (
-              <FlashList
+              <FlatList
                 data={data?.entryLikes?.users?.filter(isSome)}
                 renderItem={renderItem}
                 horizontal
