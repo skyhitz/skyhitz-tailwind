@@ -44,7 +44,7 @@ const unbounded = Unbounded({
   display: 'swap',
 })
 
-function CanonicalLink({
+function canonicalHref({
   entry,
   collector,
   post,
@@ -85,7 +85,7 @@ function CanonicalLink({
     href = `${href}/dashboard/search`
   }
 
-  return <link rel="canonical" href={href} />
+  return href
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -191,15 +191,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000" />
         <title>{combinedTitle}</title>
-        <CanonicalLink
-          chart={chart}
-          blog={blog}
-          post={post}
-          entry={entry}
-          collector={collector}
-          search={search}
+        <link
+          rel="canonical"
+          href={canonicalHref({ chart, blog, post, entry, collector, search })}
         />
-
         <link rel="icon" href="/icon.png" />
         <JsonLdScript
           landing={landing}
