@@ -3,22 +3,22 @@ import Discover from 'app/ui/icons/discover'
 import Collect from 'app/ui/icons/collect'
 import Chart from 'app/ui/icons/chart'
 
-export const siteTitle = 'Skyhitz - Music ownership redefined'
+export const siteTitle = 'Skyhitz - Music NFT marketplace'
 
 export const keywords =
-  'music nfts, blockchain technology, music nft, non custodial, nft s, buying nff, MFTs, music ownership, music future, on-chain music, music nfts, mft market, crypto, music creators, exclusive music nfts, download music nfts, stream music nfts, stellar, xlm, blockchain music, collect'
+  'music nfts, music nft, nft music, nft for music, nft music meaning, nft and music, music nft marketplace, sell music nft, blockchain technology, non custodial, music blockchain, MFTs, music ownership, on-chain music, music creators, exclusive music nfts, download music nfts, stream music nfts, blockchain music, collect, music nft platform'
 
 export const socialDesc =
-  'Collect and trade valuable music NFTs. Join a community of music collectors and technologists!'
+  'Collect, stream and trade valuable music NFTs with the best music nft platform!'
 export const header = {
-  title: 'Join the future of music ownership',
-  desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to immerse in and experience music like never before. We are a blockchain-powered platform that enables music enthusiasts to discover, stream and collect unique creations through a decentralized framework.',
+  title: 'Join the future of music nfts',
+  desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to stream and experience music nfts like never before. We are a music blockchain platform that enables fans to discover, stream and collect unique creations through a decentralized framework.',
 }
-export const combinedTitle = `Skyhitz - ${header.title} - MFTs (Music NFTs)`
+export const combinedTitle = `Skyhitz - ${header.title}`
 const cta = {
   title: 'Redefine music ownership and accessibility',
   subtitle: 'Our Mission',
-  desc: 'We envision a future where artists have full control over their creations, fans have direct and transparent access to unique music, and the industry is reshaped through the innovative use of Ai and blockchain technology.',
+  desc: 'We envision a future where artists have full control over their creations, fans have direct and transparent access to the best music nft platform, and the nft music industry is reshaped through the innovative use of Ai and blockchain technology.',
   cta: 'Explore Music',
 }
 const featured = {
@@ -27,12 +27,12 @@ const featured = {
   imgUrl: '/img/landing-2.jpg',
   features: [
     {
-      name: 'Wallet setup made easy',
-      desc: 'Set up your digital wallet using email for a non-custodial experience, ensuring seamless and secure transactions.',
+      name: 'Music wallet setup made easy',
+      desc: 'Set up your digital wallet using email for a non custodial experience, ensuring seamless and secure transactions.',
       icon: Wallet,
     },
     {
-      name: 'Discover unique music collections',
+      name: 'Discover the best music nft collections',
       desc: 'Dive into a variety of exceptional music collections available on our platform.',
       icon: Discover,
     },
