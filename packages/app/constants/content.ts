@@ -11,14 +11,14 @@ export const keywords =
 export const socialDesc =
   'Collect, stream and trade valuable music NFTs with the best music nft platform!'
 export const header = {
-  title: 'Join the future of music nfts',
+  title: 'Join the future of music NFTs',
   desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to stream and experience music nfts like never before. We are a music blockchain platform that enables fans to discover, stream and collect unique creations through a decentralized framework.',
 }
 export const combinedTitle = `Skyhitz - ${header.title}`
 const cta = {
   title: 'Redefine music ownership and accessibility',
   subtitle: 'Our Mission',
-  desc: 'We envision a future where artists have full control over their creations, fans have direct and transparent access to the best music nft platform, and the nft music industry is reshaped through the innovative use of Ai and blockchain technology.',
+  desc: 'We envision a future where artists have full control over their creations, fans have direct and transparent access to the best music NFT platform, and the nft music industry is reshaped through the innovative use of Ai and blockchain technology.',
   cta: 'Explore Music',
 }
 const featured = {
@@ -32,7 +32,7 @@ const featured = {
       icon: Wallet,
     },
     {
-      name: 'Discover the best music nft collections',
+      name: 'Discover the best music NFT collections',
       desc: 'Dive into a variety of exceptional music collections available on our platform.',
       icon: Discover,
     },
