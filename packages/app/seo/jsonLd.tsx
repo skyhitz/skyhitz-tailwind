@@ -112,7 +112,6 @@ export default function JsonLdScript({
             '@type': 'Person',
             name: 'Alejo Mendoza',
           },
-          email: 'support@skyhitz.io',
         },
       })),
     }
