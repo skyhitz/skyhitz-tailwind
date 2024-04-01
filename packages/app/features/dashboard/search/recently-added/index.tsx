@@ -2,7 +2,7 @@ import { FlatList } from 'react-native'
 import { BeatListEntry } from 'app/ui/beat-list-entry'
 import { useRecentlyAdded } from 'app/hooks/algolia/useRecentlyAdded'
 import { BeatSkeleton } from 'app/ui/skeletons/BeatSkeleton'
-import { P } from 'app/design/typography'
+import { H1 } from 'app/design/typography'
 
 export default function RecentlyAddedList() {
   const { data, onNextPage, loading } = useRecentlyAdded()
@@ -25,5 +25,9 @@ export default function RecentlyAddedList() {
 }
 
 function ListHeader() {
-  return <P className="font-unbounded mt-0.5 pb-4">Recently Added</P>
+  return (
+    <H1 className="font-unbounded mb-0 mt-0.5 pb-4 text-base">
+      Recently Added
+    </H1>
+  )
 }

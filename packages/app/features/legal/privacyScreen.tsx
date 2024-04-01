@@ -1,4 +1,4 @@
-import { H3, P } from 'app/design/typography'
+import { H1, P } from 'app/design/typography'
 import Navbar from 'app/ui/navbar'
 import { SafeAreaView, ScrollView, Platform } from 'react-native'
 
@@ -7,7 +7,7 @@ export default function PrivacyScreen() {
     <SafeAreaView className="flex max-h-full flex-1">
       {Platform.OS === 'web' && <Navbar />}
       <ScrollView className="mx-auto max-w-7xl flex-1 p-8 px-6 lg:px-8">
-        <H3 className="my-4">PRIVACY POLICY</H3>
+        <H1 className="my-4 text-base">PRIVACY POLICY</H1>
         <P className="my-4 font-semibold">
           SECTION 1 - WHAT DO WE DO WITH YOUR INFORMATION?
         </P>
