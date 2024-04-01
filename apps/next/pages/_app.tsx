@@ -100,11 +100,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <meta name="title" content={siteTitle} />
-        <meta name="description" content={header.desc.split('. ', 1)[0]} />
         <meta name="keywords" content={keywords} />
         {entry ? (
           <>
+            <title>{entry.title}</title>
+            <meta name="title" content={entry.title} />
+            <meta name="description" content={entry.description} />
             <meta name="twitter:card" content="player" />
             <meta property="og:title" content={`${entry.title}`} />
             <meta property="twitter:title" content={`${entry.title}`} />
@@ -135,6 +136,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           </>
         ) : collector ? (
           <>
+            <title>{collector.username}</title>
+            <meta name="title" content={collector.username} />
+            <meta name="description" content={collector.description} />
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content={collector.username} />
             <meta property="og:description" content={collector.description} />
@@ -153,6 +157,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           </>
         ) : post ? (
           <>
+            <title>{post.title}</title>
+            <meta name="title" content={post.title} />
+            <meta
+              name="description"
+              content={
+                post.content.replace(/<\/?[^>]+(>|$)/g, '').split('. ', 1)[0]
+              }
+            />
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content={post.title} />
             <meta property="og:description" content={post.content} />
@@ -168,6 +180,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           </>
         ) : (
           <>
+            <title>{combinedTitle}</title>
+            <meta name="title" content={siteTitle} />
+            <meta name="description" content={header.desc.split('. ', 1)[0]} />
             <meta name="twitter:card" content="summary" />
             <meta property="og:title" content="Skyhitz" />
             <meta property="og:description" content={socialDesc} />
@@ -181,7 +196,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         )}
 
         <meta name="twitter:site" content="@skyhitz" />
-
         <meta property="fb:app_id" content="564403243666491" />
         <meta property="og:site_name" content="Skyhitz" />
         <meta
@@ -190,7 +204,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="#000" />
-        <title>{combinedTitle}</title>
+
         <link
           rel="canonical"
           href={canonicalHref({ chart, blog, post, entry, collector, search })}
