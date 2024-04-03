@@ -24,18 +24,12 @@ export function imageSrc(imageUrl: string) {
 
 export function imageUrlSmall(imageUrl: string) {
   if (isIpfs(imageUrl))
-    return `${pinataGateway}/${imageUrl?.replace(
-      ipfsProtocol,
-      '',
-    )}?img-width=80&img-height=80`
+    return `${pinataGateway}/${imageUrl?.replace(ipfsProtocol, '')}`
   return imageUrl?.split('/upload/').join('/upload/w_80/')
 }
 
 export function imageUrlMedium(imageUrl: string) {
   if (isIpfs(imageUrl))
-    return `${pinataGateway}/${imageUrl?.replace(
-      ipfsProtocol,
-      '',
-    )}?img-width=500&img-height=500`
+    return `${pinataGateway}/${imageUrl?.replace(ipfsProtocol, '')}`
   return imageUrl?.split('/upload/').join('/upload/w_500/')
 }
