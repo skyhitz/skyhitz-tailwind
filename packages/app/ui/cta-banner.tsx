@@ -23,6 +23,7 @@ export default function CtaBanner({
             alt="Skyhitz Mission"
             contentFit="cover"
             style={{ borderTopRightRadius: 12, borderBottomRightRadius: 12 }}
+            sizes="(min-width: 768px) 100vw"
           />
         </View>
       </View>

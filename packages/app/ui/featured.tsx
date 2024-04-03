@@ -1,5 +1,3 @@
-import { SolitoImage } from 'solito/image'
-
 // import {
 //   CloudArrowUpIcon,
 //   LockClosedIcon,
@@ -12,6 +10,7 @@ import Discover from 'app/ui/icons/discover'
 import Collect from 'app/ui/icons/collect'
 import Chart from 'app/ui/icons/chart'
 import { FeaturedProps } from 'app/types'
+import { SolitoImage } from 'app/design/solito-image'
 
 const features = [
   {
@@ -68,22 +67,17 @@ export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
               </View>
             </View>
           </View>
-          <View className="sm:px-6 lg:px-0">
-            <View className="relative isolate overflow-hidden sm:mx-auto sm:max-w-2xl sm:rounded-3xl lg:mx-0 lg:max-w-none">
-              <View className="mx-auto max-w-2xl sm:mx-0 sm:max-w-none">
-                <SolitoImage
-                  src="/img/landing-2.jpg"
-                  alt="Product screenshot"
-                  width={2432}
-                  height={1442}
-                  style={{
-                    width: 912,
-                    borderTopLeftRadius: 12,
-                    maxWidth: undefined,
-                  }}
-                />
-              </View>
-            </View>
+          <View className="mx-auto aspect-square w-full max-w-lg lg:px-0">
+            <SolitoImage
+              src={'/img/landing-2.jpg'}
+              alt="Product screenshot"
+              fill
+              sizes="(min-width: 768px) 100vw"
+              contentFit="fill"
+              priority
+              // @ts-ignore
+              className="aspect-square rounded-2xl"
+            />
           </View>
         </View>
       </View>
