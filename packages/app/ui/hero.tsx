@@ -44,7 +44,6 @@ export const Hero = ({ title, desc }: HeroProps) => {
           height={729}
           // @ts-ignore
           className="mx-auto flex h-full w-[22.875rem] max-w-full rounded-b-[3.7rem] md:hidden"
-          priority
         />
         <Svg
           viewBox="0 0 366 729"
