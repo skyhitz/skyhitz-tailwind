@@ -74,7 +74,6 @@ export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
               fill
               sizes="(min-width: 768px) 100vw"
               contentFit="cover"
-              priority
               // @ts-ignore
               className="aspect-square rounded-2xl"
             />
