@@ -1,39 +1,7 @@
-// import {
-//   CloudArrowUpIcon,
-//   LockClosedIcon,
-//   ServerIcon,
-// } from '@heroicons/react/20/solid'
 import { View } from 'react-native'
 import { H2, P } from 'app/design/typography'
-import Wallet from 'app/ui/icons/wallet'
-import Discover from 'app/ui/icons/discover'
-import Collect from 'app/ui/icons/collect'
-import Chart from 'app/ui/icons/chart'
 import { FeaturedProps } from 'app/types'
 import { SolitoImage } from 'app/design/solito-image'
-
-const features = [
-  {
-    name: 'Wallet setup made easy',
-    desc: 'Set up your digital wallet using email for a non-custodial experience, ensuring seamless and secure transactions.',
-    icon: Wallet,
-  },
-  {
-    name: 'Discover unique music collections',
-    desc: 'Dive into a variety of exceptional music collections available on our platform.',
-    icon: Discover,
-  },
-  {
-    name: 'Collect your favorite music NFTs',
-    desc: 'Purchase fractions of your favorite music pieces for an affordable price, or own the entire masterpiece if you desire.',
-    icon: Collect,
-  },
-  {
-    name: 'Interactive Top Chart',
-    desc: 'Discover and influence trending creations - where user interactions like buying, streaming, and liking propel tracks up the charts.',
-    icon: Chart,
-  },
-]
 
 export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
   return (

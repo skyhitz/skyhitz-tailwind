@@ -1,5 +1,5 @@
 import { P } from 'app/design/typography'
-import { View } from 'react-native'
+import { Platform, View } from 'react-native'
 import { Entry } from 'app/api/graphql'
 import { Pressable } from 'react-native'
 import Price from 'app/ui/price'
@@ -10,6 +10,7 @@ import { useRouter } from 'solito/router'
 import { imageUrlSmall } from 'app/utils/entry'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { SolitoImage } from 'solito/image'
+import DownloadBtn from '../buttons/DownloadBtn'
 
 export type PressableState = Readonly<{
   hovered?: boolean
@@ -60,6 +61,9 @@ export function BeatListEntry({
             </View>
             <View className="flex flex-row items-center">
               <Price entry={entry} className="mr-3" hovered={hovered} />
+              {Platform.OS === 'web' && (
+                <DownloadBtn size={20} className="mr-3" entry={entry} />
+              )}
               <LikeButton size={20} entry={entry} />
               <Pressable
                 onPress={() => {

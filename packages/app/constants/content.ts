@@ -2,6 +2,7 @@ import Wallet from 'app/ui/icons/wallet'
 import Discover from 'app/ui/icons/discover'
 import Collect from 'app/ui/icons/collect'
 import Chart from 'app/ui/icons/chart'
+import Download from 'app/ui/icons/download'
 
 export const siteTitle = 'Skyhitz - Music NFT marketplace'
 
@@ -12,7 +13,7 @@ export const socialDesc =
   'Collect, stream and trade valuable music NFTs with the best music nft platform!'
 export const header = {
   title: 'Join the future of music NFTs',
-  desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to stream and experience music nfts like never before. We are a music blockchain platform that enables fans to discover, stream and collect unique creations through a decentralized framework.',
+  desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to stream and experience music nfts like never before. We are a music blockchain platform that enables fans to discover, stream, download and collect unique creations through a decentralized framework.',
 }
 export const combinedTitle = `Skyhitz - ${header.title}`
 const cta = {
@@ -40,6 +41,11 @@ const featured = {
       name: 'Collect your favorite music NFTs',
       desc: 'Purchase fractions of your favorite music pieces for an affordable price, or own the entire masterpiece if you desire.',
       icon: Collect,
+    },
+    {
+      name: 'Free music download',
+      desc: 'Take your music videos with you wherever you go! Enjoy your music offline, in perfect quality, without any restrictions. Start your personalized and portable mp4 collection today.',
+      icon: Download,
     },
     {
       name: 'Interactive Top Chart',
