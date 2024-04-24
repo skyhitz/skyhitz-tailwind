@@ -1,5 +1,4 @@
 import { A, H1, P } from 'app/design/typography'
-import { Video, ResizeMode } from 'app/design/video'
 import { View } from 'react-native'
 import Svg, {
   Path,
@@ -36,15 +35,6 @@ export const Hero = ({ title, desc }: HeroProps) => {
         </View>
       </View>
       <View className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-        <SolitoImage
-          src="/img/app.png"
-          alt="Skyhitz app"
-          contentFit="cover"
-          width={366}
-          height={729}
-          // @ts-ignore
-          className="mx-auto flex h-full w-[22.875rem] max-w-full rounded-b-[3.7rem] md:hidden"
-        />
         <Svg
           viewBox="0 0 366 729"
           role="img"
@@ -69,22 +59,15 @@ export const Hero = ({ title, desc }: HeroProps) => {
             transform="translate(24 24)"
             clipPath="url(#2ade4387-9c63-4fc4-b754-10e687a0d332)"
           >
-            <Video
-              className="h-full w-full"
+            <SolitoImage
+              src="/img/app.webp"
+              alt="Skyhitz app"
+              contentFit="cover"
+              width={366}
+              height={729}
               // @ts-ignore
-              videoClassName="w-full h-full"
-              source={{ uri: `${Config.APP_URL}/video/landing.mp4` }}
-              videoStyle={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                top: 0,
-              }}
-              resizeMode={ResizeMode.COVER}
-              shouldPlay
-              isLooping
-              isMuted
+              className="mx-auto flex h-full w-[22.875rem] max-w-full rounded-b-[3.7rem]"
+              priority
             />
           </ForeignObject>
         </Svg>
