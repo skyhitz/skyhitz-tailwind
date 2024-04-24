@@ -10,7 +10,6 @@ import Svg, {
 import { ClientOnly } from './client-only'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
-import { Config } from 'app/config'
 import { SolitoImage } from 'app/design/solito-image'
 import { HeroProps } from 'app/types'
 
@@ -67,7 +66,6 @@ export const Hero = ({ title, desc }: HeroProps) => {
               height={729}
               // @ts-ignore
               className="mx-auto flex h-full w-[22.875rem] max-w-full rounded-b-[3.7rem]"
-              priority
             />
           </ForeignObject>
         </Svg>
