@@ -6,6 +6,7 @@ import Dollar from 'app/ui/icons/dollar'
 import useUSDPrice from 'app/hooks/useUSDPrice'
 import { CreateBid } from './bids/CreateBid'
 import { Platform } from 'react-native'
+import { P } from 'app/design/typography'
 
 type Props = {
   entry: Entry
@@ -22,17 +23,13 @@ export function PriceContainer({ entry }: Props) {
 
   return (
     <View className="border-grey-light mt-4 flex rounded-lg border-[0.5px] p-4">
-      <Text className="text-grey-light mb-3 text-sm">
-        Current price ( {(100 * offer.amount).toFixed(0)}% of the asset )
-      </Text>
+      <P className="mb-3 text-sm">Equity: {(100 * offer.amount).toFixed(0)}%</P>
       <View className="mb-3 flex flex-row items-end">
-        <Dollar size={30} className="text-white" />
-        <Text className="ml-3 text-3xl text-white">
+        <Dollar size={24} />
+        <P className="ml-3 font-bold">
           {(offer.price * offer.amount).toFixed()} XLM
-        </Text>
-        <Text className="text-grey-light ml-3 text-base">
-          ${usd.toFixed(2)}
-        </Text>
+        </P>
+        <P className="ml-3 text-base font-bold">(${usd.toFixed(2)})</P>
       </View>
       <BuyNowBtn entry={entry} />
     </View>
