@@ -50,7 +50,7 @@ function DownloadButton({ size, className, entry }: Props) {
   return (
     <Pressable className={className} onPress={download}>
       {downloading ? (
-        <ActivityIndicator grey size={20} />
+        <ActivityIndicator grey size={size} />
       ) : (
         <Download className={'text-gray-600'} size={size} />
       )}

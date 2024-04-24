@@ -62,7 +62,7 @@ export function BeatListEntry({
             <View className="flex flex-row items-center">
               <Price entry={entry} className="mr-3" hovered={hovered} />
               {Platform.OS === 'web' && (
-                <DownloadBtn size={20} className="mr-3" entry={entry} />
+                <DownloadBtn size={14} className="mr-3" entry={entry} />
               )}
               <LikeButton size={20} entry={entry} />
               <Pressable

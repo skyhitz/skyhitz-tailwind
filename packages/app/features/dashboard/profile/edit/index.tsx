@@ -168,18 +168,12 @@ export default function EditProfileScreen() {
           <View className="mb-5 flex items-center justify-center md:flex-row">
             <Button
               text="Done"
-              size="large"
               onPress={handleSubmit}
               className="mb-5 md:mb-0 md:mr-5"
               disabled={!isValid}
               loading={loading || !!progress}
             />
-            <Button
-              text="Cancel"
-              size="large"
-              variant="secondary"
-              onPress={back}
-            />
+            <Button text="Cancel" variant="secondary" onPress={back} />
           </View>
         </ScrollView>
       )}

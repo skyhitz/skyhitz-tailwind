@@ -21,20 +21,25 @@ export default function Price({ className, entry, hovered }: PriceProps) {
     return null
   }
 
-  if (hovered && user) {
-    return (
+  const kFormatter = (num: number) => {
+    return Math.abs(num) > 999
+      ? (Math.sign(num) * (Math.abs(num) / 1000)).toFixed(1) + 'k'
+      : Math.sign(num) * Math.abs(num)
+  }
+
+  return (
+    <>
       <View className={`${className}`}>
         <BuyNowBtn entry={entry} />
       </View>
-    )
-  } else
-    return (
+
       <View className={`flex flex-row items-center ${className}`}>
         <Dollar size={16} className="text-gray" />
         <P className="ml-1 text-sm">
-          {(offer.price * offer.amount).toFixed()} for{' '}
-          {(offer.amount * 100).toFixed()}%
+          {kFormatter(offer.price * offer.amount)}
+          {/* for */} {/* {(offer.amount * 100).toFixed()}% */}
         </P>
       </View>
-    )
+    </>
+  )
 }

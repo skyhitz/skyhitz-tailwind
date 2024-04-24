@@ -38,7 +38,7 @@ export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
           <View className="mx-auto aspect-square w-full max-w-lg lg:px-0">
             <SolitoImage
               src={'/img/landing-2.jpg'}
-              alt="Product screenshot"
+              alt="Music Features"
               fill
               sizes="(min-width: 768px) 100vw"
               contentFit="cover"

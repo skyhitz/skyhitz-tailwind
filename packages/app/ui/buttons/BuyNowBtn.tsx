@@ -31,14 +31,14 @@ export function BuyNowBtn({ entry, size = 'default' }: Props) {
   return (
     <ComponentAuthGuard linkToAuth>
       <Button
-        text="Buy Now"
+        text="Invest"
         className="flex-row-reverse"
         onPress={() => {
           if (!user) return
           setModalVisible(true)
         }}
         useTouchable
-        size={size}
+        size={'small'}
       />
       <PaymentConfirmationModal
         visible={modalVisible}
