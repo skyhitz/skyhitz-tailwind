@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { Entry } from 'app/api/graphql'
 import { useEntryOffer } from 'app/hooks/useEntryOffer'
 import { BuyNowBtn } from 'app/ui/buttons/BuyNowBtn'

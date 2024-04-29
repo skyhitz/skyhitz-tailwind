@@ -2,7 +2,7 @@ import { View } from 'react-native'
 import { P } from 'app/design/typography'
 import Dollar from 'app/ui/icons/dollar'
 import { useEntryOffer } from 'app/hooks/useEntryOffer'
-import { BuyNowBtn } from 'app/ui/buttons/BuyNowBtn'
+// import { BuyNowBtn } from 'app/ui/buttons/BuyNowBtn'
 import { Entry } from 'app/api/graphql'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
@@ -29,9 +29,9 @@ export default function Price({ className, entry, hovered }: PriceProps) {
 
   return (
     <>
-      <View className={`${className}`}>
+      {/* <View className={`${className} hidden sm:block`}>
         <BuyNowBtn entry={entry} />
-      </View>
+      </View> */}
 
       <View className={`flex flex-row items-center ${className}`}>
         <Dollar size={16} className="text-gray" />
