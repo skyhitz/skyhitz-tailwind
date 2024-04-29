@@ -24,8 +24,8 @@ export function ChartScreen({ entries }: { entries: Entry[] }) {
     >
       <ScrollView>
         <View className="mx-auto mb-32 w-full max-w-7xl px-2 lg:px-8">
-          <H1 className="mb-4 mt-10 text-4xl">Trending</H1>
-          <View className="my-8 border-b border-gray-200" />
+          <H1 className="text-base sm:mb-4 sm:mt-10 sm:text-4xl">Trending</H1>
+          <View className="mb-4 border-b border-gray-200 sm:my-8" />
           <View className="gap-8">
             {entries.map((entry, index) => {
               return (
