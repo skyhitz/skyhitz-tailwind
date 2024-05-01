@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import { SolitoImage } from 'solito/image'
 
 export default function Card({
-  imageUrl = '/img/landing-3.png',
+  imageUrl = '/img/landing-3.webp',
   publishedAtTimestamp = 0,
   tag = 'Business',
   content = 'We are proud to anounce that we reached an historical revenue, great news for the music industry',
@@ -23,6 +23,7 @@ export default function Card({
               fill
               contentFit="cover"
               style={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }}
+              sizes="(max-width: 640px) 100vw, 33vw"
             />
           </View>
         </View>

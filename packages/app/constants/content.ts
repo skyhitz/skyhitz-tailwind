@@ -25,7 +25,7 @@ const cta = {
 const featured = {
   title: 'Embrace the fusion of music and technology',
   subtitle: 'Enjoy our features',
-  imgUrl: '/img/landing-2.jpg',
+  imgUrl: '/img/landing-2.webp',
   features: [
     {
       name: 'Music wallet setup made easy',

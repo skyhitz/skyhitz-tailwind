@@ -18,12 +18,12 @@ export default function CtaBanner({
       <View className="bg-brand-blue relative h-80 overflow-hidden md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
         <View className="h-full w-full rounded-full p-0">
           <SolitoImage
-            src="/img/landing-3.png"
+            src="/img/landing-3.webp"
             fill
             alt="Skyhitz Mission"
             contentFit="cover"
             style={{ borderTopRightRadius: 12, borderBottomRightRadius: 12 }}
-            sizes="(min-width: 768px) 100vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </View>
       </View>
