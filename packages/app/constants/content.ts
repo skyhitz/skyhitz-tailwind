@@ -4,7 +4,8 @@ import Collect from 'app/ui/icons/collect'
 import Chart from 'app/ui/icons/chart'
 import Download from 'app/ui/icons/download'
 
-export const siteTitle = 'Skyhitz - Music NFT marketplace'
+export const orgName = 'Skyhitz'
+export const siteTitle = `${orgName} - Music NFT marketplace`
 
 export const keywords =
   'music nfts, music nft, nft music, nft for music, nft music meaning, nft and music, music nft marketplace, sell music nft, blockchain technology, non custodial, music blockchain, MFTs, music ownership, on-chain music, music creators, exclusive music nfts, download music nfts, stream music nfts, blockchain music, collect, music nft platform'
@@ -15,7 +16,7 @@ export const header = {
   title: 'Join the future of music NFTs',
   desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to stream and experience music nfts like never before. We are a music blockchain platform that enables fans to discover, stream, download and collect unique creations through a decentralized framework.',
 }
-export const combinedTitle = `Skyhitz - ${header.title}`
+export const combinedTitle = `${orgName} - ${header.title}`
 const cta = {
   title: 'Redefine music ownership and accessibility',
   subtitle: 'Our Mission',
@@ -44,7 +45,7 @@ const featured = {
     },
     {
       name: 'Free music download',
-      desc: 'Take your music videos with you wherever you go! Enjoy your music offline, in perfect quality, without any restrictions. Start your personalized and portable mp4 collection today.',
+      desc: 'Take your music videos with you wherever you go! Enjoy your music offline, without any restrictions. Start your personalized mp4 collection today.',
       icon: Download,
     },
     {
@@ -88,7 +89,7 @@ const faq = {
 }
 
 export const footer = {
-  companyName: 'Skyhitz, Inc',
+  companyName: `${orgName}, Inc`,
   sections: [
     {
       title: 'Explore',

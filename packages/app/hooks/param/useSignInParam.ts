@@ -1,18 +1,18 @@
-import { createParam } from "solito";
-import { useMemo } from "react";
+import { useSearchParams } from 'solito/navigation'
+import { useMemo } from 'react'
 
 export type SignInParam = {
-  token: string;
-  uid: string;
-};
-
-const { useParam } = createParam<SignInParam>();
+  token: string
+  uid: string
+}
 
 export const useSignInParam = (): SignInParam | undefined => {
-  const [token] = useParam("token");
-  const [uid] = useParam("uid");
+  const searchParams = useSearchParams<SignInParam>()
+
+  const token = searchParams?.get('token')
+  const uid = searchParams?.get('uid')
 
   return useMemo(() => {
-    if (token && uid) return { token, uid };
-  }, [token, uid]);
-};
+    if (token && uid) return { token, uid }
+  }, [token, uid])
+}

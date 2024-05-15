@@ -1,3 +1,4 @@
+'use client'
 import { SkyhitzApolloProvider } from './apollo'
 import { RecoilRoot } from 'recoil'
 

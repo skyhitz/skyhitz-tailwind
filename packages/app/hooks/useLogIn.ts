@@ -1,7 +1,7 @@
 import { useSetRecoilState } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { SecureStorage } from 'app/utils/secure-storage'
-import { useRouter } from 'solito/router'
+import { useRouter } from 'solito/navigation'
 import { User } from 'app/api/graphql'
 import { useCallback } from 'react'
 

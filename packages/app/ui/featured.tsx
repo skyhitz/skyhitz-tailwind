@@ -5,7 +5,7 @@ import { SolitoImage } from 'app/design/solito-image'
 
 export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
   return (
-    <View className="overflow-hidden bg-white py-24">
+    <View className="overflow-hidden bg-white py-32">
       <View className="mx-auto max-w-7xl md:px-6 lg:px-8">
         <View className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2 lg:items-center">
           <View className="px-6 lg:px-0 lg:pr-4 lg:pt-4">
@@ -35,7 +35,7 @@ export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
               </View>
             </View>
           </View>
-          <View className="mx-auto aspect-square w-full max-w-lg lg:px-0">
+          <View className="mx-auto aspect-square w-full max-w-lg lg:aspect-[9/14] lg:px-0">
             <SolitoImage
               src={'/img/landing-2.webp'}
               alt="Music Features"
@@ -43,7 +43,7 @@ export function Featured({ title, subtitle, features, imgUrl }: FeaturedProps) {
               sizes="(max-width: 768px) 100vw, 50vw"
               contentFit="cover"
               // @ts-ignore
-              className="aspect-square rounded-2xl"
+              className="aspect-square rounded-2xl lg:aspect-[9/14]"
             />
           </View>
         </View>

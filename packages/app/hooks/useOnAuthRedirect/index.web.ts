@@ -1,28 +1,27 @@
-import { useRouter } from "next/router";
-
-import { useCallback } from "react";
-import { useRouter as useSolitoRouter } from "solito/router";
+import { useCallback } from 'react'
+import { useRouter, usePathname } from 'solito/navigation'
 
 type Result = {
-  onAuthRedirect: (auth: boolean) => void;
-};
+  onAuthRedirect: (auth: boolean) => void
+}
 
 export function useOnAuthRedirect(): Result {
-  const { push } = useSolitoRouter();
-  const { asPath: path } = useRouter();
+  const { push } = useRouter()
+  const path = usePathname()
+  const defaultPath = '/dashboard/search'
 
   const onAuthRedirect = useCallback(
     (auth: boolean) => {
       if (auth) {
-        if (path === "/") {
-          push("/dashboard/search");
+        if (path === '/') {
+          push(defaultPath)
         } else {
-          push(path);
+          push(path ? path : defaultPath)
         }
       }
     },
-    [push, path]
-  );
+    [push, path],
+  )
 
-  return { onAuthRedirect };
+  return { onAuthRedirect }
 }

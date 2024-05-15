@@ -1,5 +1,5 @@
 import { Text, View, Pressable } from 'react-native'
-import { useRouter } from 'solito/router'
+import { useRouter } from 'solito/navigation'
 import { imageSrc, imageUrlSmall } from 'app/utils/entry'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { EnrichedEntry } from 'app/types'

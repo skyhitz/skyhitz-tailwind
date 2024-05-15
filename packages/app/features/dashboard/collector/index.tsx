@@ -1,3 +1,4 @@
+'use client'
 import ProfileBeatsList from 'app/features/dashboard/profile/profileBeatsList'
 import { useCollectorParam } from 'app/hooks/param/useCollectorParam'
 import { useUserCollectionQuery } from 'app/api/graphql'
@@ -9,7 +10,7 @@ import {
   SocialLinks,
 } from 'app/features/dashboard/profile/ProfileHeader'
 import { View } from 'react-native'
-import { P, H1, H2, ActivityIndicator } from 'app/design/typography'
+import { P, H1, ActivityIndicator } from 'app/design/typography'
 
 export default function CollectorScreen() {
   const id = useCollectorParam()

@@ -1,3 +1,4 @@
+'use client'
 import { H1, P } from 'app/design/typography'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { Post } from 'app/types'

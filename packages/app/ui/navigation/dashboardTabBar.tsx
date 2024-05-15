@@ -64,7 +64,7 @@ export default function DashboardTabBar({
           <Link viewProps={{ style: LinkStyle }} href="/dashboard/profile">
             <User
               size={28}
-              className={isActive('profile') ? 'text-blue' : 'text-white'}
+              className={isActive('profile') ? 'text-blue' : 'text-gray-600'}
             />
           </Link>
         )}

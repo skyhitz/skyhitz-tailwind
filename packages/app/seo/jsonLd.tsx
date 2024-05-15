@@ -1,3 +1,5 @@
+/** @jsxImportSource react */
+
 import { footer, homeContent, keywords } from 'app/constants/content'
 import { Config } from 'app/config'
 import { Post } from 'app/types'
@@ -80,7 +82,7 @@ export default function JsonLdScript({
           image: imageUrlMedium(entry.imageUrl),
           ...(entry.description ? { description: entry.description } : {}),
           category: 'Music NFTs',
-          aggregateRating: getAggregateRating(),
+          // aggregateRating: getAggregateRating(),
         },
       })),
     }
@@ -151,7 +153,7 @@ export default function JsonLdScript({
       image: imageUrlMedium(entry.imageUrl),
       ...(entry.description ? { description: entry.description } : {}),
       category: 'Music NFTs',
-      aggregateRating: getAggregateRating(),
+      // aggregateRating: getAggregateRating(),
     }
   }
 

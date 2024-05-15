@@ -1,3 +1,4 @@
+'use client'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { HomePageProps } from 'app/types'
 import BlogSection from 'app/ui/blog-section'

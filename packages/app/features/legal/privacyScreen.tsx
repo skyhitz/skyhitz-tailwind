@@ -1,3 +1,4 @@
+'use client'
 import { H1, P } from 'app/design/typography'
 import Navbar from 'app/ui/navbar'
 import { SafeAreaView, ScrollView, Platform } from 'react-native'

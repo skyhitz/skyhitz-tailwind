@@ -12,7 +12,7 @@ import { useRecoilValue } from 'recoil'
 
 const style = {
   default: 'h-10 max-w-xs',
-  large: 'h-fit md:h-20',
+  large: 'h-8 md:h-20',
 }
 
 type Props = {

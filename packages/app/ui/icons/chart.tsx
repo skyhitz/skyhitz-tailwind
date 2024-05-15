@@ -1,3 +1,4 @@
+'use client'
 import Svg, { Path, G } from 'react-native-svg'
 
 function Icon({ size = 24, color = 'currentColor' }) {

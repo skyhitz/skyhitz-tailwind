@@ -1,3 +1,4 @@
+'use client'
 import { ScrollView, View } from 'react-native'
 import { BeatListEntry } from 'app/ui/beat-list-entry'
 import { ActivityIndicator, H1, Button } from 'app/design/typography'

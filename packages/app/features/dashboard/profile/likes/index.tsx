@@ -1,3 +1,4 @@
+'use client'
 import { View } from 'react-native'
 import { useUserLikesQuery } from 'app/api/graphql'
 import { isSome } from 'app/utils'

@@ -2,7 +2,7 @@ import { User } from 'app/api/graphql'
 import { P } from 'app/design/typography'
 import { UserAvatar } from 'app/ui/userAvatar'
 import { Pressable, View } from 'react-native'
-import { useRouter } from 'solito/router'
+import { useRouter } from 'solito/navigation'
 
 export function MakerListEntry({ user }: { user: User }) {
   const { push } = useRouter()

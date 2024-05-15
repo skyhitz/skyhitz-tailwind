@@ -1,5 +1,5 @@
+'use client'
 import { IconProps } from 'app/types'
-import React from 'react'
 import Svg, { Path } from 'react-native-svg'
 
 function Icon({ size = 24, color = 'currentColor' }: IconProps) {

@@ -1,3 +1,4 @@
+'use client'
 import { View } from 'react-native'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'

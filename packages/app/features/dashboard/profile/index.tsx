@@ -1,4 +1,5 @@
-import { Text, View } from 'react-native'
+'use client'
+import { View } from 'react-native'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import {
@@ -13,7 +14,7 @@ import StarBorder from 'app/ui/icons/star-border'
 import { ProfileRow } from 'app/features/dashboard/profile/profileRow'
 import { Link } from 'solito/link'
 import Dollar from 'app/ui/icons/dollar'
-import { useRouter } from 'solito/router'
+import { useRouter } from 'solito/navigation'
 import { useState } from 'react'
 import { LowBalanceModal } from './LowBalanceModal'
 import {

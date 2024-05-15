@@ -1,3 +1,4 @@
+'use client'
 import { useBeatParam } from 'app/hooks/param/useBeatParam'
 import { Entry, useEntryDetailsQuery } from 'app/api/graphql'
 import { ScrollView, View } from 'react-native'

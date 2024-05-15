@@ -68,7 +68,7 @@ export function WithdrawCredits() {
       <Modal visible={modalVisible} transparent>
         <KeyboardAvoidingView behavior="padding" className="flex-1">
           <SafeAreaView className="flex flex-1 items-center justify-center px-2">
-            <View className="flex w-full max-w-lg items-center rounded-xl border border-gray-300 p-8">
+            <View className="flex w-full max-w-lg items-center rounded-xl border border-gray-300 bg-white p-8">
               <Pressable
                 className="absolute right-4 top-4"
                 onPress={() => setModalVisible(false)}
@@ -76,8 +76,8 @@ export function WithdrawCredits() {
                 <X className="text-gray-600" />
               </Pressable>
               <View className="flex w-72 items-center">
-                <P className="text-lg font-bold">Withdraw credits</P>
-                <P className="mt-16 w-full">
+                <P className="text-lg font-bold">Withdraw Credits</P>
+                <P className="mt-12 w-full">
                   Current Balance: {convertToString(credits?.userCredits ?? 0)}
                   XLM
                 </P>
@@ -102,7 +102,7 @@ export function WithdrawCredits() {
                         value={values.address}
                         placeholder="Stellar Address (Without Memo)"
                         icon={Wallet}
-                        containerClassNames="py-1 mt-12 w-full"
+                        containerClassNames="py-1 mt-6 w-full"
                         onChangeText={handleChange('address')}
                       />
                       <Line />
@@ -112,7 +112,7 @@ export function WithdrawCredits() {
                         }
                         placeholder="XLM to withdraw"
                         icon={Dollar}
-                        containerClassNames="py-1 mt-8 w-full"
+                        containerClassNames="py-1 mt-2 w-full"
                         onChangeText={(text) => {
                           if (text === '') {
                             setFieldValue('amount', 0)
@@ -125,18 +125,18 @@ export function WithdrawCredits() {
                       />
 
                       <Line />
-                      <P className="my-4 text-xs leading-none">
+                      <P className="my-4 text-xs">
                         Withdraw to Stellar Public Network address only. Do not
                         send if a memo is required, funds will be lost if you
                         send to a wallet that requires a Memo
                       </P>
                       <Line />
-                      <P className="my-4 text-xs leading-none">
+                      <P className="my-4 text-xs">
                         We collect a transaction fee that equals 6% of the
                         withdrawal amount.
                       </P>
                       <Line />
-                      <P className="my-4 text-sm leading-none">
+                      <P className="my-4 text-sm">
                         Withdrawal fee: {convertToString(values.amount * 0.06)}{' '}
                         XLM
                       </P>

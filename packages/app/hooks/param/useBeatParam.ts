@@ -1,12 +1,10 @@
-import { createParam } from "solito";
+import { useParams } from 'solito/navigation'
 
 export type BeatParam = {
-  id: string;
-};
-
-const { useParam } = createParam<BeatParam>();
+  id: string
+}
 
 export const useBeatParam = (): string | undefined => {
-  const [id] = useParam("id");
-  return id;
-};
+  const { id } = useParams<BeatParam>()
+  return id
+}

@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { TabBar, Tabs } from 'app/features/dashboard/search/tabs'
 import { SearchInputField } from 'app/features/dashboard/search/searchInputField'

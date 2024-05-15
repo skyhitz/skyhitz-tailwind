@@ -1,11 +1,11 @@
-import { createParam } from 'solito'
+import { useParams } from 'solito/navigation'
 
 export type CollectorParam = {
   id: string
 }
 
-const { useParam } = createParam<CollectorParam>()
 export const useCollectorParam = (): string | undefined => {
-  const [id] = useParam('id')
+  const { id } = useParams<CollectorParam>()
+
   return id
 }

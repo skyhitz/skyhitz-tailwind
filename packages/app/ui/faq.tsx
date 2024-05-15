@@ -37,7 +37,6 @@ export default function Faq({ title, faqs }: FaqProps) {
                     <AnimatePresence exitBeforeEnter>
                       {openFaq === index && (
                         <MotiView
-                          from={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ type: 'timing', duration: 250 }}
                           exit={{
@@ -50,7 +49,6 @@ export default function Faq({ title, faqs }: FaqProps) {
                       )}
                       {openFaq !== index && (
                         <MotiView
-                          from={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ type: 'timing', duration: 250 }}
                           exit={{
@@ -69,7 +67,6 @@ export default function Faq({ title, faqs }: FaqProps) {
                   <AnimatePresence>
                     {openFaq === index && (
                       <MotiView
-                        from={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ type: 'timing', duration: 600 }}
                         exit={{

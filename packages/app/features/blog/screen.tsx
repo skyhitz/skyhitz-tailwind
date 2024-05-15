@@ -1,3 +1,5 @@
+'use client'
+
 import { A, Button, H1, H2, P, ActivityIndicator } from 'app/design/typography'
 import { useBlogPosts } from 'app/hooks/algolia/useBlogPosts'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'

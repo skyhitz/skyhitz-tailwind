@@ -1,3 +1,4 @@
+'use client'
 import { Platform, KeyboardAvoidingView } from 'react-native'
 import { useState } from 'react'
 import { useSignInParam } from 'app/hooks/param/useSignInParam'

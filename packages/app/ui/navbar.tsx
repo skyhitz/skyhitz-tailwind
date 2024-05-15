@@ -3,7 +3,7 @@ import { SkyhitzLogo } from './logo'
 import { userAtom } from 'app/state/user'
 import { useRecoilValue } from 'recoil'
 import { Text, View } from 'react-native'
-import { MotiLink as TextLink } from 'solito/moti'
+import { MotiLink as TextLink } from 'solito/moti/app'
 import { ClientOnly } from './client-only'
 
 const Navbar = ({ className }: { className?: string }) => {
