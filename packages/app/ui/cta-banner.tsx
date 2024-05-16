@@ -1,6 +1,7 @@
-import { H2, P, A, Button } from 'app/design/typography'
+import { H2, P } from 'app/design/typography'
 import { View } from 'react-native'
 import { SolitoImage } from 'solito/image'
+import { TextLink } from 'solito/link'
 
 export default function CtaBanner({
   title,
@@ -40,9 +41,13 @@ export default function CtaBanner({
           </H2>
           <P className="mt-6 leading-8">{desc}</P>
           <View className="mt-8">
-            <A variant="primary" href="/dashboard/chart">
-              {cta}
-            </A>
+            <View className="bg-blue w-fit rounded-lg px-3 py-2">
+              <TextLink href={'/dashboard/chart'}>
+                <P className="tracking-0.5 p-2 text-sm font-bold text-white">
+                  {cta}
+                </P>
+              </TextLink>
+            </View>
           </View>
         </View>
       </View>

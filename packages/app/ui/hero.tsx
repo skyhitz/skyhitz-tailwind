@@ -12,6 +12,7 @@ import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { SolitoImage } from 'app/design/solito-image'
 import { HeroProps } from 'app/types'
+import { TextLink } from 'solito/link'
 
 export const Hero = ({ title, desc }: HeroProps) => {
   const user = useRecoilValue(userAtom)
@@ -24,9 +25,13 @@ export const Hero = ({ title, desc }: HeroProps) => {
         <P className="mt-6 leading-8 text-gray-600">{desc}</P>
         <View className="mt-10 flex flex-row items-center gap-x-6">
           <ClientOnly>
-            <A href={user ? '/dashboard/chart' : '/sign-up'} variant="primary">
-              Get started
-            </A>
+            <View className="bg-blue rounded-lg px-3 py-2">
+              <TextLink href={user ? '/dashboard/chart' : '/sign-up'}>
+                <P className="tracking-0.5 p-2 text-sm font-bold text-white">
+                  Get started
+                </P>
+              </TextLink>
+            </View>
           </ClientOnly>
           <A href="#mission" className="text-sm font-semibold leading-6">
             Learn more →
