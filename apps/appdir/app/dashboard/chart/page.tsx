@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const getChart = async () => {
+const getChart = async () => {
   const res = await ratingEntriesIndex.search<Entry>('')
 
   if (isEmpty(res.hits)) {

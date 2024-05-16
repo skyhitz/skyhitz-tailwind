@@ -67,7 +67,7 @@ export async function generateMetadata(
   }
 }
 
-export const getEntry = async (id: string) => {
+const getEntry = async (id: string) => {
   const res = await entriesIndex.search('', {
     filters: `id:${id}`,
   })

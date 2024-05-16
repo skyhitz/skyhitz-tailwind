@@ -16,7 +16,7 @@ type Props = {
   params: { id: string }
 }
 
-export const getUser = async (id: string) => {
+const getUser = async (id: string) => {
   const res = await usersIndex.search<PublicUser>('', {
     filters: `id:${id}`,
   })

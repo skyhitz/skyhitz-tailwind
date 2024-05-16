@@ -19,12 +19,13 @@ import {
 } from 'app/constants/content'
 import { Config } from 'app/config'
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   title: combinedTitle,
   description: header.desc.split('. ', 1)[0],
   applicationName: orgName,
   keywords: keywords,
-  themeColor: '#000',
   openGraph: {
     title: orgName,
     description: socialDesc,

@@ -35,7 +35,7 @@ export function BeatSummaryColumn({ entry, holders }: Props) {
         <H1 className="font-unbounded mb-2 text-3xl font-bold md:text-5xl">
           {entry.title}
         </H1>
-        <Text className="md:text-2xl">{entry.artist}</Text>
+        <P className="md:text-2xl">{entry.artist}</P>
         <View className="mt-4 flex-row items-center gap-4">
           <PlayBeatButton currentEntry={entry} />
           <LikeButton size={24} entry={entry} />

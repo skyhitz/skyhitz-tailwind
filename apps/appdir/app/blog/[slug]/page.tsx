@@ -65,7 +65,7 @@ export async function generateMetadata(
   }
 }
 
-export const getPost = async (slug: string) => {
+const getPost = async (slug: string) => {
   const res = await blogIndex.search('', {
     filters: `objectID:${slug}`,
   })
