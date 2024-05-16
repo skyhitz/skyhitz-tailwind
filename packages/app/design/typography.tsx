@@ -83,7 +83,7 @@ export interface AProps extends ComponentProps<typeof Text> {
   variant?: string
 }
 
-export const A = ({ className = '', children, href, ...props }) => {
+export const A = ({ className = '', children, href, ...props }: any) => {
   return (
     <TextLink
       className={
