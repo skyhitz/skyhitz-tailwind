@@ -98,16 +98,16 @@ export function PaymentConfirmationModal({
         >
           <Pressable
             onPress={() => {}}
-            className="bg-blue-field flex w-full max-w-lg items-center p-4"
+            className="flex w-full max-w-lg items-center rounded-md bg-white px-12 py-4"
           >
             <Pressable
               className="absolute right-2 top-2 "
               onPress={() => hideModal(false)}
             >
-              <X className="text-white" />
+              <X />
             </Pressable>
             <P className="text-lg font-bold">Confirm payment</P>
-            <View className="my-4 flex-row items-center">
+            <View className="mx-2 my-4 flex-row items-center">
               <SolitoImage
                 width={40}
                 height={40}
@@ -129,7 +129,7 @@ export function PaymentConfirmationModal({
               Equity for sale: {(equityForSale * 100).toFixed()}%
             </P>
             <P className="my-2 text-sm">Network fee: 0.01 XLM</P>
-            <View style={{ flexDirection: 'row', width: '100%' }}>
+            <View className="my-4 flex w-full flex-row">
               <Slider
                 progress={initialEquityForSale}
                 key={entry.id}
@@ -147,7 +147,7 @@ export function PaymentConfirmationModal({
             <Line />
 
             {message && (
-              <P className="min-h-5 my-4 w-full text-center text-sm">
+              <P className="my-4 min-h-5 w-full text-center text-sm">
                 {message}
               </P>
             )}
