@@ -26,6 +26,7 @@ export default function Footer() {
                       <View key={item.name}>
                         <A
                           href={item.href}
+                          role="link"
                           className="text-sm leading-6 text-gray-600 hover:text-gray-900"
                         >
                           {item.name}
