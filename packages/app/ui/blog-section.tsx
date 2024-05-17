@@ -1,7 +1,8 @@
-import { A, H2 } from 'app/design/typography'
+import { H2 } from 'app/design/typography'
 import { View } from 'react-native'
 import Card from 'app/ui/card'
 import { Post } from 'app/types'
+import { TextLink } from 'solito/link'
 
 export default function BlogSection({ posts }: { posts: Post[] }) {
   return (
@@ -9,9 +10,9 @@ export default function BlogSection({ posts }: { posts: Post[] }) {
       <View className="mx-auto w-full">
         <View className="flex flex-row justify-between">
           <H2 className="text-2xl font-bold leading-10 tracking-tight">Blog</H2>
-          <A href="/blog" className="text-sm font-semibold">
+          <TextLink href="/blog" className="text-sm font-semibold">
             See all →
-          </A>
+          </TextLink>
         </View>
         <View className="mt-10 flex min-h-fit w-full flex-col gap-4 sm:flex-row lg:gap-8">
           {posts && posts.map((post) => <Card key={post.slug} {...post} />)}
