@@ -25,7 +25,7 @@ export default function CollectionScreen() {
       </P>
       <ProfileBeatsList
         beats={entries}
-        emptyStateText="You don't have beats in your collection yet"
+        emptyStateText="Nothing in your collection yet"
         loading={loading}
       />
     </View>

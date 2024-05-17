@@ -16,7 +16,7 @@ export default function LikesScreen() {
       </P>
       <ProfileBeatsList
         beats={entries}
-        emptyStateText="You don't have beats in your favorites list yet"
+        emptyStateText="Nothing in your favorites list yet"
         loading={loading}
       />
     </View>
