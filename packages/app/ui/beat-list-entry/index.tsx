@@ -9,7 +9,7 @@ import { ReactElement } from 'react'
 import { useRouter } from 'solito/navigation'
 import { imageUrlSmall } from 'app/utils/entry'
 import { usePlayback } from 'app/hooks/usePlayback'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 import DownloadBtn from '../buttons/DownloadBtn'
 
 export type PressableState = Readonly<{

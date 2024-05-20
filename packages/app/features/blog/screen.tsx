@@ -7,7 +7,7 @@ import { Post } from 'app/types'
 import Footer from 'app/ui/footer'
 import Navbar from 'app/ui/navbar'
 import { View } from 'react-native'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 import { formattedDate } from 'app/utils'
 
 const PostWrapper = ({ imageUrl, title, publishedAtTimestamp, slug }: Post) => {

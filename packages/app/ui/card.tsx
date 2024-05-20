@@ -1,7 +1,7 @@
 import { A, H3, P } from 'app/design/typography'
 import { formattedDate } from 'app/utils'
 import { View } from 'react-native'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 
 export default function Card({
   imageUrl = '/img/landing-3.webp',

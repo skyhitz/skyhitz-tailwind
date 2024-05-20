@@ -16,7 +16,7 @@ import { userAtom } from 'app/state/user'
 import { sellOffersUrl } from 'app/hooks/useUserOffers'
 import Dollar from 'app/ui/icons/dollar'
 import { Button } from 'app/design/button'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 
 type Props = {
   visible: boolean
@@ -189,7 +189,7 @@ export const CreateOfferModal = ({
               />
             </View>
             {message && (
-              <Text className="min-h-5 my-4 w-full text-center text-sm">
+              <Text className="my-4 min-h-5 w-full text-center text-sm">
                 {message}
               </Text>
             )}

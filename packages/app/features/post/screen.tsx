@@ -7,7 +7,7 @@ import Navbar from 'app/ui/navbar'
 import { formattedDate } from 'app/utils'
 import { View } from 'react-native'
 import HTMLView from 'react-native-htmlview'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 
 export function PostScreen({ post }: { post: Post }) {
   const insets = useSafeArea()

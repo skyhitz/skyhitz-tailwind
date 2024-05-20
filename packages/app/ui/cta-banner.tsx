@@ -1,6 +1,6 @@
 import { H2, P } from 'app/design/typography'
 import { View } from 'react-native'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 import { TextLink } from 'solito/link'
 
 export default function CtaBanner({

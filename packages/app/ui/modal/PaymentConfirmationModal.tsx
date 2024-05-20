@@ -14,7 +14,7 @@ import { useState } from 'react'
 import { useToast } from 'app/provider/toast'
 import { useErrorReport } from 'app/hooks/useErrorReport'
 import { Slider } from 'app/ui/SkyhitzSlider'
-import { SolitoImage } from 'solito/image'
+import { SolitoImage } from 'app/design/solito-image'
 import { P } from 'app/design/typography'
 // import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";
 
