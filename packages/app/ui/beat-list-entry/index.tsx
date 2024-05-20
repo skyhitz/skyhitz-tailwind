@@ -11,6 +11,7 @@ import { imageUrlSmall } from 'app/utils/entry'
 import { usePlayback } from 'app/hooks/usePlayback'
 import { SolitoImage } from 'app/design/solito-image'
 import DownloadBtn from '../buttons/DownloadBtn'
+import { Link } from 'solito/link'
 
 export type PressableState = Readonly<{
   hovered?: boolean
@@ -65,14 +66,12 @@ export function BeatListEntry({
                 <DownloadBtn size={14} className="mr-3" entry={entry} />
               )}
               <LikeButton size={20} entry={entry} />
-              <Pressable
-                onPress={() => {
-                  push(`/dashboard/beat/${entry.id}`)
-                }}
+              <Link
+                href={`/dashboard/beat/${entry.id}`}
                 className="text-gray-600"
               >
                 <VerticalDots size={30} />
-              </Pressable>
+              </Link>
             </View>
           </View>
         )
