@@ -2176,9 +2176,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/next-on-pages@npm:^1.11.2":
-  version: 1.11.2
-  resolution: "@cloudflare/next-on-pages@npm:1.11.2"
+"@cloudflare/next-on-pages@npm:^1.11.3":
+  version: 1.11.3
+  resolution: "@cloudflare/next-on-pages@npm:1.11.3"
   dependencies:
     acorn: ^8.8.0
     ast-types: ^0.14.2
@@ -2201,7 +2201,7 @@ __metadata:
       optional: true
   bin:
     next-on-pages: bin/index.js
-  checksum: dbbc96730ccad363d40f03af7fe28c74fb7159ae4e7d6043f22a9ac7ac9042091d291fa63b0fe1b27a6bee1c957d650938a3e429c0fa908e49d4a2311ac83ee3
+  checksum: d7e8c1422e167f46ce8fb355fe0bb1a96f23615f967b9bb83c801d17d703d7bc667f61070d1b9c4c05b4a039e7ed38867003bbac0f55c23e943c5cfcce2e22c3
   languageName: node
   linkType: hard
 
@@ -4884,7 +4884,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "appdir@workspace:apps/appdir"
   dependencies:
-    "@cloudflare/next-on-pages": ^1.11.2
+    "@cloudflare/next-on-pages": ^1.11.3
     "@next/bundle-analyzer": ^14.2.3
     "@types/node": 20.2.5
     app: "*"
