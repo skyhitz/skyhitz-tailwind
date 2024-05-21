@@ -19,6 +19,7 @@ type Props = {
 const getUser = cache(async (id: string) => {
   const res = await usersIndex.search<PublicUser>('', {
     filters: `id:${id}`,
+    cacheable: true,
   })
 
   if (isEmpty(res.hits)) {
@@ -28,10 +29,7 @@ const getUser = cache(async (id: string) => {
   return res.hits[0] as unknown as PublicUser
 })
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const id = params.id
 

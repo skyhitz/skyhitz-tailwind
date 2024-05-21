@@ -7,7 +7,7 @@ import { blogIndex } from 'app/api/algolia'
 import JsonLdScript from 'app/seo/jsonLd'
 
 const getBlog = async () => {
-  const res = await blogIndex.search<Post>('')
+  const res = await blogIndex.search<Post>('', { cacheable: true })
 
   if (isEmpty(res.hits)) {
     return []

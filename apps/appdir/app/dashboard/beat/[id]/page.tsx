@@ -16,10 +16,7 @@ type Props = {
   params: { id: string }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const id = params.id
 
@@ -71,6 +68,7 @@ export async function generateMetadata(
 const getEntry = cache(async (id: string) => {
   const res = await entriesIndex.search('', {
     filters: `id:${id}`,
+    cacheable: true,
   })
 
   if (isEmpty(res.hits)) {

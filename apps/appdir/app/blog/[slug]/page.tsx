@@ -15,10 +15,7 @@ type Props = {
   params: { slug: string }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const id = params.slug
 
@@ -69,6 +66,7 @@ export async function generateMetadata(
 const getPost = cache(async (slug: string) => {
   const res = await blogIndex.search('', {
     filters: `objectID:${slug}`,
+    cacheable: true,
   })
 
   if (isEmpty(res.hits)) {
