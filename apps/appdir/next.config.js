@@ -8,8 +8,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  */
 module.exports = withBundleAnalyzer({
-  reactStrictMode: true,
-
+  reactStrictMode: false,
   async redirects() {
     return [
       {
