@@ -1,5 +1,6 @@
 /** @jsxImportSource react */
 
+import { cache } from 'react'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { PostScreen } from 'app/features/post/screen'
 import { Post } from 'app/types'
@@ -65,7 +66,7 @@ export async function generateMetadata(
   }
 }
 
-const getPost = async (slug: string) => {
+const getPost = cache(async (slug: string) => {
   const res = await blogIndex.search('', {
     filters: `objectID:${slug}`,
   })
@@ -75,7 +76,7 @@ const getPost = async (slug: string) => {
   }
 
   return res.hits[0] as unknown as Post
-}
+})
 
 export default async function BlogPage({
   params,

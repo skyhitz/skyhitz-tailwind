@@ -1,12 +1,12 @@
 /** @jsxImportSource react */
 
+import { cache } from 'react'
 import type { Metadata, ResolvingMetadata } from 'next'
-
 import CollectorScreen from 'app/features/dashboard/collector'
 import { combinedTitle } from 'app/constants/content'
 import { usersIndex } from 'app/api/algolia'
 import { isEmpty } from 'ramda'
-import { PublicUser, User } from 'app/api/graphql'
+import { PublicUser } from 'app/api/graphql'
 import { imageUrlMedium } from 'app/utils/entry'
 import { Config } from 'app/config'
 import JsonLdScript from 'app/seo/jsonLd'
@@ -16,7 +16,7 @@ type Props = {
   params: { id: string }
 }
 
-const getUser = async (id: string) => {
+const getUser = cache(async (id: string) => {
   const res = await usersIndex.search<PublicUser>('', {
     filters: `id:${id}`,
   })
@@ -26,7 +26,7 @@ const getUser = async (id: string) => {
   }
 
   return res.hits[0] as unknown as PublicUser
-}
+})
 
 export async function generateMetadata(
   { params }: Props,

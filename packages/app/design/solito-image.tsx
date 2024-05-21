@@ -20,5 +20,9 @@ function cloudflareLoader({ src, width, quality }: ImageLoaderProps) {
 }
 
 export const SolitoImage = (props: SolitoImageProps) => (
-  <Image {...props} loader={cloudflareLoader} />
+  <Image
+    {...props}
+    loader={cloudflareLoader}
+    unoptimized={__DEV__ ? true : props.unoptimized}
+  />
 )
