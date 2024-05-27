@@ -24,6 +24,4 @@ if (prodModeOn) {
   config = ProductionConfig
 }
 
-console.log('Env:', process.env.NEXT_PUBLIC_EXPO_SKYHITZ_ENV)
-
 export const Config = config

@@ -16,6 +16,19 @@ type Props = {
   params: { id: string }
 }
 
+const getEntry = cache(async (id: string) => {
+  const res = await entriesIndex.search('', {
+    filters: `id:${id}`,
+    cacheable: true,
+  })
+
+  if (isEmpty(res.hits)) {
+    return null
+  }
+
+  return res.hits[0] as unknown as Entry
+})
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const id = params.id
@@ -64,19 +77,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   }
 }
-
-const getEntry = cache(async (id: string) => {
-  const res = await entriesIndex.search('', {
-    filters: `id:${id}`,
-    cacheable: true,
-  })
-
-  if (isEmpty(res.hits)) {
-    return null
-  }
-
-  return res.hits[0] as unknown as Entry
-})
 
 export default async function BeatPage({ params }: { params: { id: string } }) {
   const entry = await getEntry(params.id)

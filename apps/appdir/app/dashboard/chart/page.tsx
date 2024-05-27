@@ -7,6 +7,7 @@ import { ChartScreen } from 'app/features/dashboard/chart'
 import JsonLdScript from 'app/seo/jsonLd'
 import { Metadata } from 'next'
 import { isEmpty } from 'ramda'
+import { cache } from 'react'
 
 export const metadata: Metadata = {
   title: 'Skyhitz - Top Chart',
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   },
 }
 
-const getChart = async () => {
+const getChart = cache(async () => {
   const res = await ratingEntriesIndex.search<Entry>('', { cacheable: true })
 
   if (isEmpty(res.hits)) {
@@ -24,7 +25,7 @@ const getChart = async () => {
   }
 
   return res.hits as Entry[]
-}
+})
 
 export default async function ChartPage() {
   const chart = await getChart()
