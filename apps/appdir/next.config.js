@@ -82,13 +82,11 @@ module.exports = withBundleAnalyzer({
 
     // Expose __DEV__ from Metro.
 
-    if (process.env.NODE_ENV !== 'production') {
-      config.plugins.push(
-        new DefinePlugin({
-          __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
-        }),
-      )
-    }
+    config.plugins.push(
+      new DefinePlugin({
+        __DEV__: JSON.stringify(process.env.NODE_ENV !== 'production'),
+      }),
+    )
 
     return config
   },
