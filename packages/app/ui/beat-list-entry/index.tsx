@@ -28,7 +28,7 @@ export function BeatListEntry({
   const { playEntry } = usePlayback()
 
   const linkProps = useLink({
-    href: `/dashboard/beat/${entry.id}`,
+    href: `/beat/${entry.id}`,
   })
 
   return (

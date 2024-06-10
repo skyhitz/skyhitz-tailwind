@@ -1,8 +1,5 @@
 /** @jsxImportSource react */
 
-import 'raf/polyfill'
-import 'setimmediate'
-
 import { StylesProvider } from './styles-provider'
 import { Provider } from 'app/provider'
 import { inter, raleway, unbounded } from './fonts'

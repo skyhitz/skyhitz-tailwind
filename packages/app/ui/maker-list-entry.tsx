@@ -8,7 +8,7 @@ export function MakerListEntry({ user }: { user: User }) {
   const { push } = useRouter()
 
   return (
-    <Pressable onPress={() => push(`/dashboard/collector/${user.id}/`)}>
+    <Pressable onPress={() => push(`/collector/${user.id}/`)}>
       <View className="flex w-full flex-row items-center py-2">
         <UserAvatar
           avatarUrl={user.avatarUrl}

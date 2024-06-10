@@ -7,7 +7,6 @@ import Faq from 'app/ui/faq'
 import { Featured } from 'app/ui/featured'
 import Footer from 'app/ui/footer'
 import { Hero } from 'app/ui/hero'
-import Navbar from 'app/ui/navbar'
 import { View } from 'react-native'
 
 export function HomeScreen(props: HomePageProps) {
@@ -18,7 +17,6 @@ export function HomeScreen(props: HomePageProps) {
     <View
       className={`flex h-full w-full pt-[${insets.top}px] pb-[${insets.bottom}px]`}
     >
-      <Navbar />
       <Hero {...header} />
       <CtaBanner {...cta} />
       <Featured {...featured} />

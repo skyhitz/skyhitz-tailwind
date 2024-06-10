@@ -1,4 +1,3 @@
-import DashboardTabBar from 'app/ui/navigation/dashboardTabBar'
 import { useCallback, useEffect, useMemo } from 'react'
 import { MiniPlayerBar } from 'app/features/player/miniPlayerBar'
 import { FullScreenPlayer } from 'app/features/player/fullScreenPlayer'
@@ -12,6 +11,7 @@ import {
 import { View, useWindowDimensions } from 'react-native'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { MotiView } from 'moti'
+import DashboardTabBar from 'app/ui/navigation/dashboardTabBar'
 
 const fullAnimationDuration = 400
 
@@ -103,7 +103,7 @@ export function MobileTabBarWrapper({
         { justifyContent: 'space-between', display: 'flex' },
         draggableStyle,
       ]}
-      className="md:!h-20 md:border-t md:border-gray-200"
+      className="bg-white md:!h-20 md:border-t md:border-gray-200"
     >
       <View>
         <MiniPlayerBar

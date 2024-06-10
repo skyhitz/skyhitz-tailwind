@@ -53,7 +53,7 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
   return (
     <MotiView
       style={[animatedStyle]}
-      className="absolute z-[1] w-full opacity-0 md:z-10 md:flex md:py-2 md:!opacity-100"
+      className="absolute z-[1] w-full bg-white  opacity-0 md:z-10 md:flex md:py-2 md:!opacity-100"
     >
       <SafeAreaView className="flex h-full items-center bg-white px-4">
         <View className="flex w-full flex-row items-center justify-between py-3 md:hidden">

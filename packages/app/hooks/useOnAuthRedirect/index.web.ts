@@ -8,7 +8,7 @@ type Result = {
 export function useOnAuthRedirect(): Result {
   const { push } = useRouter()
   const path = usePathname()
-  const defaultPath = '/dashboard/search'
+  const defaultPath = '/search'
 
   const onAuthRedirect = useCallback(
     (auth: boolean) => {

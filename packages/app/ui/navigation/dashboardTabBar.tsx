@@ -36,19 +36,20 @@ export default function DashboardTabBar({
 
   const insets = useSafeArea()
   const user = useRecoilValue(userAtom)
+
   const rootViewStyle = column ? 'flex-col' : 'flex-row border-t-2 border-white'
 
   return (
     <View
       className={`flex ${rootViewStyle} pb-[${insets.bottom}px] ${className}`}
     >
-      <Link viewProps={{ style: LinkStyle }} href="/dashboard/search">
+      <Link viewProps={{ style: LinkStyle }} href="/search">
         <Search
           size={28}
           className={isActive('search') ? 'text-blue' : 'text-gray-600'}
         />
       </Link>
-      <Link viewProps={{ style: LinkStyle }} href="/dashboard/chart">
+      <Link viewProps={{ style: LinkStyle }} href="/chart">
         <View
           className={
             isActive('chart')
@@ -61,7 +62,7 @@ export default function DashboardTabBar({
       </Link>
       <ClientOnly>
         {user && (
-          <Link viewProps={{ style: LinkStyle }} href="/dashboard/profile">
+          <Link viewProps={{ style: LinkStyle }} href="/profile">
             <User
               size={28}
               className={isActive('profile') ? 'text-blue' : 'text-gray-600'}

@@ -13,7 +13,7 @@ export function useOnAuthRedirect(): Result {
   const onAuthRedirect = useCallback(
     async (auth: boolean) => {
       const link = await Linking.getInitialURL()
-      let initialPath = auth ? '/dashboard/search' : '/'
+      let initialPath = auth ? '/search' : '/'
       if (link && link.startsWith(Config.APP_URL)) {
         const path = link.replace(Config.APP_URL, '')
         initialPath = path

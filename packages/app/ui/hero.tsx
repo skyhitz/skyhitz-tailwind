@@ -26,7 +26,7 @@ export const Hero = ({ title, desc }: HeroProps) => {
         <View className="mt-10 flex flex-row items-center gap-x-6">
           <ClientOnly>
             <View className="bg-blue rounded-lg px-3 py-2">
-              <TextLink href={user ? '/dashboard/chart' : '/sign-up'}>
+              <TextLink href={user ? '/chart' : '/sign-up'}>
                 <P className="tracking-0.5 p-2 text-sm font-bold text-white">
                   Get started
                 </P>

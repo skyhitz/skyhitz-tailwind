@@ -7,14 +7,14 @@
     "build": "next build --debug",
     "start": "next start",
     "analyze": "ANALYZE=true yarn build",
-    "build:cf": "npx @cloudflare/next-on-pages@1"
+    "build:cf": "npx @cloudflare/next-on-pages@1",
+    "preview": "npx wrangler pages dev --log-level=debug"
   },
   "dependencies": {
+    "@expo/next-adapter": "^6.0.0",
     "app": "*",
     "dotenv": "^16.0.2",
     "next": "^14.2.3",
-    "raf": "^3.4.1",
-    "setimmediate": "^1.0.5",
     "sharp": "^0.33.4"
   },
   "devDependencies": {

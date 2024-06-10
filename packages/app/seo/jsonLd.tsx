@@ -77,7 +77,7 @@ export default function JsonLdScript({
         position: index + 1,
         item: {
           '@type': 'Product',
-          url: `http://skyhitz.io/dashboard/beat/${entry.id}`,
+          url: `http://skyhitz.io/beat/${entry.id}`,
           name: entry.artist ? `${entry.artist} ${entry.title}` : entry.title,
           image: imageUrlMedium(entry.imageUrl),
           ...(entry.description ? { description: entry.description } : {}),
@@ -148,7 +148,7 @@ export default function JsonLdScript({
     jsonLd = {
       '@context': 'https://schema.org',
       '@type': 'Product',
-      url: `http://skyhitz.io/dashboard/beat/${entry.id}`,
+      url: `http://skyhitz.io/beat/${entry.id}`,
       name: entry.artist ? `${entry.artist} ${entry.title}` : entry.title,
       image: imageUrlMedium(entry.imageUrl),
       ...(entry.description ? { description: entry.description } : {}),

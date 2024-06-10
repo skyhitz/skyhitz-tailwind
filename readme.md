@@ -38,6 +38,10 @@ You can add other folders inside of `packages/` if you know what you're doing an
 - Expo local dev: `yarn native`
   - Runs `expo start`
 
+## 🏁 Build SSR and preview with cloudflare pages
+
+- `yarn build:preview`
+
 ## 🆕 Add new dependencies
 
 ### Pure JS dependencies

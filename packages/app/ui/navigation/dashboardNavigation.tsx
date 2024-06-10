@@ -1,12 +1,12 @@
+import { useMemo } from 'react'
 import { View } from 'react-native'
 import Navbar from 'app/ui/navbar'
-import DashboardTabBar from 'app/ui/navigation/dashboardTabBar'
-import React, { useMemo } from 'react'
 import { MobileTabBarWrapper } from './mobileTabBarWrapper'
 import { useRecoilValue } from 'recoil'
 import { userAtom } from 'app/state/user'
 import { ClientOnly } from '../client-only'
 import { usePathname } from 'solito/navigation'
+import DashboardTabBar from './dashboardTabBar'
 
 export function DashboardNavigation({
   children,
@@ -35,7 +35,9 @@ export function DashboardNavigation({
         {children}
       </View>
 
-      <MobileTabBarWrapper currentTabName={currentTabName} />
+      <ClientOnly>
+        {user && <MobileTabBarWrapper currentTabName={currentTabName} />}
+      </ClientOnly>
     </View>
   )
 }

@@ -42,7 +42,7 @@ export default function CtaBanner({
           <P className="mt-6 leading-8">{desc}</P>
           <View className="mt-8">
             <View className="bg-blue w-fit rounded-lg px-3 py-2">
-              <TextLink href={'/dashboard/chart'}>
+              <TextLink href={'/chart'}>
                 <P className="tracking-0.5 p-2 text-sm font-bold text-white">
                   {cta}
                 </P>

@@ -16,7 +16,8 @@
   },
   "scripts": {
     "native": "cd apps/expo && yarn start",
-    "web": "cd apps/appdir && yarn next"
+    "web": "cd apps/appdir && yarn next",
+    "build:preview": "cd apps/appdir && yarn build:cf && yarn preview"
   },
   "resolutions": {
     "metro": "~0.76.7",
