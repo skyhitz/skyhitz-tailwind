@@ -8,11 +8,9 @@ import { imageUrlMedium } from 'app/utils/entry'
 import { BeatSummaryColumn } from './BeatSummaryColumn'
 import { useGetEntry } from 'app/hooks/algolia/useGetEntry'
 import * as assert from 'assert'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
 import BeatPageSkeleton from 'app/ui/skeletons/BeatPageSkeleton'
 import { Owners } from './BeatOwners'
-import { useSharedValue, withRepeat, withTiming } from 'react-native-reanimated'
-import { SkeletonContainer } from 'app/ui/skeletons/SkeletonContainer'
 import { SolitoImage } from 'app/design/solito-image'
 
 type Props = {
@@ -28,12 +26,6 @@ export default function BeatScreen(props: Props) {
     variables: { id: id! },
     skip: !id,
   })
-
-  const x = useSharedValue(-0.2)
-
-  useEffect(() => {
-    x.value = withRepeat(withTiming(1.2, { duration: 1000 }), -1)
-  }, [x])
 
   const entry = props.entry ?? getEntryResult.entry
   const details = data?.entry
@@ -65,12 +57,7 @@ export default function BeatScreen(props: Props) {
             </View>
             <BeatSummaryColumn entry={entry} holders={details?.holders} />
           </View>
-          {!details && (
-            <SkeletonContainer
-              sharedValue={x}
-              className="h-50 mt-5 w-full rounded-lg"
-            />
-          )}
+
           {details?.history && <Activity activities={details.history} />}
         </View>
         <View className="md:hidden">
@@ -87,12 +74,7 @@ export default function BeatScreen(props: Props) {
           </View>
           <BeatSummaryColumn entry={entry} holders={details?.holders} />
           <Details code={entry.code} issuer={entry.issuer} />
-          {!details && (
-            <SkeletonContainer
-              sharedValue={x}
-              className="mt-5 h-20 w-full rounded-lg"
-            />
-          )}
+
           {details?.holders && <Owners holders={details.holders} />}
 
           {details?.history && <Activity activities={details.history} />}
