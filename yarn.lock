@@ -4119,7 +4119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native/normalize-color@npm:^2.0.0, @react-native/normalize-color@npm:^2.1.0":
+"@react-native/normalize-color@npm:^2.0.0":
   version: 2.1.0
   resolution: "@react-native/normalize-color@npm:2.1.0"
   checksum: 8ccbd40b3c7629f1dc97b3e9aadd95fd3507fcf2e37535a6299a70436ab891c34cbdc4240b07380553d6e85dd909e23d5773b5be1da2906b026312e0b0768838
@@ -4144,6 +4144,13 @@ __metadata:
   version: 0.72.0
   resolution: "@react-native/normalize-colors@npm:0.72.0"
   checksum: c8ec577663394a3390eb34c3cd531350521172bcfad7de309ab111e5f9e3d27c966d4a4387f00972302107be3d8cad584c5794ccfa30939aecc56162e4ddbe25
+  languageName: node
+  linkType: hard
+
+"@react-native/normalize-colors@npm:^0.74.1":
+  version: 0.74.84
+  resolution: "@react-native/normalize-colors@npm:0.74.84"
+  checksum: e9a7b3020e6a298ba1c7310d267ef90c39327cb2ed7899bf3778224e52b280802899420dbf36fb8c1a37914f410be0187a9796c1790c1dca86404a40a948235a
   languageName: node
   linkType: hard
 
@@ -4884,7 +4891,7 @@ __metadata:
     expo-linking: ^6.0.0
     formik: ^2.2.9
     moti: ^0.28.1
-    nativewind: ^4.0.33
+    nativewind: ^4.0.36
     ramda: ^0.28.0
     recoil: ^0.7.7
     solito: 4.2.0
@@ -7101,7 +7108,7 @@ __metadata:
     react-native-safe-area-context: 4.6.3
     react-native-screens: ~3.22.0
     react-native-svg: 13.9.0
-    react-native-web: ~0.19.6
+    react-native-web: ~0.19.12
     tailwindcss: ^3.0.24
     typescript: ^5.2.2
   languageName: unknown
@@ -10419,14 +10426,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nativewind@npm:^4.0.33":
-  version: 4.0.33
-  resolution: "nativewind@npm:4.0.33"
+"nativewind@npm:^4.0.36":
+  version: 4.0.36
+  resolution: "nativewind@npm:4.0.36"
   dependencies:
-    react-native-css-interop: 0.0.33
+    react-native-css-interop: 0.0.36
   peerDependencies:
     tailwindcss: ">3.3.0"
-  checksum: 040c92abb7cedb22bfbf93e51d60b8dfa6420add2f1836c4f9c89a4788ffbb162f8c13d3e7f5773e129d7c2b743c195e25ad81fada1404e6ad93074f176b8928
+  checksum: 8b17b06a5453244efea59151b8e32721b73c0341c3721b2714fdb60756bd1df68f87cc72ffdc07b9741de6088bc4a01ed68cb80a59e0ca47c28e325dfed2d600
   languageName: node
   linkType: hard
 
@@ -11792,9 +11799,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-css-interop@npm:0.0.33":
-  version: 0.0.33
-  resolution: "react-native-css-interop@npm:0.0.33"
+"react-native-css-interop@npm:0.0.36":
+  version: 0.0.36
+  resolution: "react-native-css-interop@npm:0.0.36"
   dependencies:
     "@babel/helper-module-imports": ^7.22.15
     "@babel/traverse": ^7.23.0
@@ -11811,7 +11818,7 @@ __metadata:
       optional: true
     react-native-svg:
       optional: true
-  checksum: 405212fa8ff5cdcdefb59e31f5860d1e1a1a24a6f351c3a6db9cf6b43786048cdc0c54d21aa2ece19440d63ad2c2309f010e55ab8a6fa0b36800f6dc75eb49f0
+  checksum: 7b29bfff2c523da2dc33ad7daaf3d6a69b9814140bf512736fe90005cc98ab130cb816b1d459a3349476f04b012c3d41e0e146ea1f7367a9d33a515adbb1b490
   languageName: node
   linkType: hard
 
@@ -11882,12 +11889,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:~0.19.6":
-  version: 0.19.8
-  resolution: "react-native-web@npm:0.19.8"
+"react-native-web@npm:~0.19.12":
+  version: 0.19.12
+  resolution: "react-native-web@npm:0.19.12"
   dependencies:
     "@babel/runtime": ^7.18.6
-    "@react-native/normalize-color": ^2.1.0
+    "@react-native/normalize-colors": ^0.74.1
     fbjs: ^3.0.4
     inline-style-prefixer: ^6.0.1
     memoize-one: ^6.0.0
@@ -11897,7 +11904,7 @@ __metadata:
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: b10bb37730d9d991b3b12c7cc408a6db62b7a7cd14e4f9f44d1128de2ffb2d8fc2cf2122d5c608d320239d342bfe07f1eb75dccdec2ae2ee93078eb879c5ef03
+  checksum: 676b1ba510c92e01dc69cb3102080f83976d2d209647323fb0a3a14113a455a6a506cf78d3e392c3fa33015135b61e2d6a3eed837a6876665064a6eb87516781
   languageName: node
   linkType: hard
 

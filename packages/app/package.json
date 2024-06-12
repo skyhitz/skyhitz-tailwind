@@ -10,7 +10,7 @@
     "expo-linking": "^6.0.0",
     "formik": "^2.2.9",
     "moti": "^0.28.1",
-    "nativewind": "^4.0.33",
+    "nativewind": "^4.0.36",
     "ramda": "^0.28.0",
     "recoil": "^0.7.7",
     "solito": "4.2.0",
