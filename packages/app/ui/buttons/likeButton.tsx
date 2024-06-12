@@ -20,7 +20,7 @@ function LikeButton({ size, className, entry }: Props) {
 
   const [likeEntry] = useLikeEntryMutation()
   const toast = useToast()
-  const { data: userLikesData } = useUserLikesQuery()
+  const { data: userLikesData } = useUserLikesQuery({ skip: !user })
   const { addLikeToCache, removeLikeFromCache } = useLikeCache()
   const active = any(
     (item) => isSome(item) && item.id === entry.id,

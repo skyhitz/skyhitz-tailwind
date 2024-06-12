@@ -16,6 +16,7 @@ export function AssetBids({ entry, holders }: Props) {
   const { user } = useUserAtomState()
   const { data, refetch } = useAssetBidsQuery({
     variables: { assetCode: entry.code, assetIssuer: entry.issuer },
+    skip: !user,
   })
 
   const isOwner = useMemo(() => {
