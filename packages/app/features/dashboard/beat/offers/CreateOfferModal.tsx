@@ -11,8 +11,7 @@ import { useErrorReport } from 'app/hooks/useErrorReport'
 // import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";
 import { useSWRConfig } from 'swr'
 import { getEntryOfferUrl } from 'app/hooks/useEntryOffer'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { sellOffersUrl } from 'app/hooks/useUserOffers'
 import Dollar from 'app/ui/icons/dollar'
 import { Button } from 'app/design/button'
@@ -45,7 +44,7 @@ export const CreateOfferModal = ({
   // const [walletConnectModalVisible, setWalletConnectModalVisible] =
   //   useState<boolean>(false)
 
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { mutate } = useSWRConfig()
 
   const revalidateOffers = useCallback(() => {

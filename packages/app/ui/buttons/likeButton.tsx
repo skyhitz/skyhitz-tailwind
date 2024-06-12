@@ -6,8 +6,7 @@ import { ErrorType } from 'app/types'
 import { any } from 'ramda'
 import { isSome } from 'app/utils'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useToast } from 'app/provider/toast'
 
 type Props = {
@@ -17,7 +16,7 @@ type Props = {
 }
 
 function LikeButton({ size, className, entry }: Props) {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
 
   const [likeEntry] = useLikeEntryMutation()
   const toast = useToast()

@@ -1,24 +1,24 @@
 import { useSetRecoilState } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { SecureStorage } from 'app/utils/secure-storage'
 import { useRouter } from 'solito/navigation'
 import { User } from 'app/api/graphql'
 import { useCallback } from 'react'
 
 export function useLogIn(): (user: User) => void {
-  const setUserData = useSetRecoilState(userAtom)
+  const { setUser } = useUserAtomState()
   const { push } = useRouter()
 
   const logIn = useCallback(
     async (user: User) => {
-      setUserData(user)
+      if (setUser) setUser(user)
       if (user.jwt) {
         await SecureStorage.save('token', user.jwt!)
         await SecureStorage.save('user_id', user.id)
       }
       push('/dashboard/search')
     },
-    [setUserData, push],
+    [setUser, push],
   )
 
   return logIn

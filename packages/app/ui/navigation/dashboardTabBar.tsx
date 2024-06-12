@@ -3,11 +3,9 @@ import { useCallback } from 'react'
 import { Link } from 'solito/link'
 import Search from 'app/ui/icons/search'
 import User from 'app/ui/icons/user'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useSafeArea } from 'app/provider/safe-area/use-safe-area'
 import { SkyhitzLogo } from '../logo'
-import { ClientOnly } from '../client-only'
 
 const LinkStyle: StyleProp<ViewStyle> = {
   flex: 1,
@@ -35,7 +33,7 @@ export default function DashboardTabBar({
   )
 
   const insets = useSafeArea()
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const rootViewStyle = column ? 'flex-col' : 'flex-row border-t-2 border-white'
 
   return (
@@ -59,16 +57,14 @@ export default function DashboardTabBar({
           <SkyhitzLogo size={20} id={`dashboard${column}`} />
         </View>
       </Link>
-      <ClientOnly>
-        {user && (
-          <Link viewProps={{ style: LinkStyle }} href="/dashboard/profile">
-            <User
-              size={28}
-              className={isActive('profile') ? 'text-blue' : 'text-gray-600'}
-            />
-          </Link>
-        )}
-      </ClientOnly>
+      {user && (
+        <Link viewProps={{ style: LinkStyle }} href="/dashboard/profile">
+          <User
+            size={28}
+            className={isActive('profile') ? 'text-blue' : 'text-gray-600'}
+          />
+        </Link>
+      )}
     </View>
   )
 }

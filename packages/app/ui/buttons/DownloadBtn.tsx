@@ -4,7 +4,7 @@ import { Entry } from 'app/api/graphql'
 import { ErrorType } from 'app/types'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useToast } from 'app/provider/toast'
 import { ipfsProtocol, pinataGateway } from 'app/constants/constants'
 import { useState } from 'react'
@@ -17,7 +17,7 @@ type Props = {
 }
 
 function DownloadButton({ size, className, entry }: Props) {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const [downloading, setDownloading] = useState(false)
 
   const toast = useToast()

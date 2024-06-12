@@ -1,12 +1,16 @@
+'use client'
 /** @jsxImportSource react */
 
-import { AuthGuard } from 'app/utils/authGuard'
+import { ComponentAuthGuard } from 'app/utils/authGuard'
 import CollectionScreen from 'app/features/dashboard/profile/collection'
+import { useUserAtomState } from 'app/state/user'
 
 export default function CollectionPage() {
+  const { user } = useUserAtomState()
+
   return (
-    <AuthGuard>
-      <CollectionScreen />
-    </AuthGuard>
+    <ComponentAuthGuard>
+      {user && <CollectionScreen user={user} />}
+    </ComponentAuthGuard>
   )
 }

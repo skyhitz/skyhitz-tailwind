@@ -4,7 +4,7 @@ import DashboardTabBar from 'app/ui/navigation/dashboardTabBar'
 import React, { useMemo } from 'react'
 import { MobileTabBarWrapper } from './mobileTabBarWrapper'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { ClientOnly } from '../client-only'
 import { usePathname } from 'solito/navigation'
 
@@ -16,22 +16,20 @@ export function DashboardNavigation({
   const pathname = usePathname()
   const route = pathname || ''
   const currentTabName = useMemo(() => route.split('/').at(-1) || '', [route])
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
 
   return (
     <View className="flex h-[calc(100dvh)] flex-1 overflow-hidden">
       <Navbar className="hidden md:flex" />
 
       <View className="flex flex-1 flex-row">
-        <ClientOnly>
-          {!!user && (
-            <DashboardTabBar
-              className="hidden md:flex"
-              currentTabName={currentTabName}
-              column
-            />
-          )}
-        </ClientOnly>
+        {!!user && (
+          <DashboardTabBar
+            className="hidden md:flex"
+            currentTabName={currentTabName}
+            column
+          />
+        )}
         {children}
       </View>
 

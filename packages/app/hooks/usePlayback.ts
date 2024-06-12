@@ -10,13 +10,8 @@ import { isSome } from 'app/utils'
 import { append, findIndex, init, last } from 'ramda'
 import { videoSrc } from 'app/utils/entry'
 import { useErrorReport } from 'app/hooks/useErrorReport'
-import {
-  useRecoilCallback,
-  useRecoilState,
-  useRecoilValue,
-  useSetRecoilState,
-} from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useRecoilCallback, useRecoilState, useSetRecoilState } from 'recoil'
+import { useUserAtomState } from 'app/state/user'
 import {
   playbackUriAtom,
   entryAtom,
@@ -31,7 +26,7 @@ import {
 import { usePlabackInstance } from 'app/provider/playback'
 
 export function usePlayback() {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const [setLastPlayedEntry] = useSetLastPlayedEntryMutation()
   const reportError = useErrorReport()
   const [playbackUri, setPlaybackUri] = useRecoilState(playbackUriAtom)

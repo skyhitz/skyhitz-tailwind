@@ -3,7 +3,7 @@ import { View } from 'react-native'
 import { ArrowsUpDownIcon } from 'app/ui/icons/arrows-up-down'
 import { Entry, EntryHolder, useAssetBidsQuery } from 'app/api/graphql'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useMemo } from 'react'
 import { ActiveBid } from './ActiveBid'
 
@@ -13,7 +13,7 @@ type Props = {
 }
 
 export function AssetBids({ entry, holders }: Props) {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { data, refetch } = useAssetBidsQuery({
     variables: { assetCode: entry.code, assetIssuer: entry.issuer },
   })

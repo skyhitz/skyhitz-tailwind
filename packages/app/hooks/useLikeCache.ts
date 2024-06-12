@@ -10,12 +10,12 @@ import {
 } from 'app/api/graphql'
 import { isSome } from 'app/utils'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useCallback } from 'react'
 import { prepend } from 'ramda'
 
 export default function useLikeCache() {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { cache } = useApolloClient()
   const publicUser = userToPublicUser(user)
 

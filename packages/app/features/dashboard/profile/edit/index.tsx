@@ -6,12 +6,11 @@ import InfoCircle from 'app/ui/icons/info-circle'
 import PersonOutline from 'app/ui/icons/person-outline'
 import MailOutline from 'app/ui/icons/mail-outline'
 import { useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
-import { useUpdateUserMutation } from 'app/api/graphql'
+import { User, useUpdateUserMutation } from 'app/api/graphql'
 import { Formik, FormikProps } from 'formik'
 import { LogOutBtn } from 'app/features/dashboard/profile/edit/logOutBtn'
 import { WithdrawCredits } from 'app/features/dashboard/profile/edit/WithdrawCredits'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { FormInputWithIcon } from 'app/ui/inputs/FormInputWithIcon'
 import { useRouter } from 'solito/navigation'
 import { ChangeImage, EditProfileForm } from 'app/types'
@@ -26,9 +25,10 @@ import { ProfileHeader } from '../ProfileHeader'
 import { ChangeImages } from './ChangeImages'
 import { Button } from 'app/design/button'
 
-export default function EditProfileScreen() {
-  const [user, setUser] = useRecoilState(userAtom)
+export default function EditProfileScreen({ user }: { user: User }) {
   assert.ok(user, 'Unauthorized access on EditProfileScreen')
+
+  const { setUser } = useUserAtomState()
   const [avatar, setAvatar] = useState<ChangeImage>({
     url: user.avatarUrl,
   })
@@ -66,7 +66,7 @@ export default function EditProfileScreen() {
 
   useEffect(() => {
     if (data?.updateUser) {
-      setUser(data.updateUser)
+      if (setUser) setUser(data.updateUser)
       toast.show('Changes successfully saved', { type: 'success' })
       back()
     }

@@ -1,6 +1,11 @@
 import { atom } from 'recoil'
 import { User } from 'app/api/graphql'
 import { SecureStorage } from 'app/utils/secure-storage'
+import {
+  PersistedAtomState,
+  usePersistedRecoilState,
+} from './usePersistedRecoilState'
+import { useMemo } from 'react'
 
 const localForageEffect =
   (key: string) =>
@@ -27,17 +32,17 @@ const localForageEffect =
     })
   }
 
-const getDefaultUser = async () => {
-  const defaultUser = await SecureStorage.get('current_user')
-  if (defaultUser) {
-    return JSON.parse(defaultUser) as User
-  }
-  return null
-}
+// const getDefaultUser = async () => {
+//   const defaultUser = await SecureStorage.get('current_user')
+//   if (defaultUser) {
+//     return JSON.parse(defaultUser) as User
+//   }
+//   return null
+// }
 
 export const userAtom = atom<User | null>({
   key: 'user',
-  default: getDefaultUser(),
+  default: null,
   effects: [localForageEffect('current_user')],
 })
 
@@ -45,3 +50,18 @@ export const appInitializedAtom = atom<boolean>({
   key: 'initialized',
   default: false,
 })
+
+export const useUserAtomState = () => {
+  const { state, setState, resetState, loadingLocalStorage } =
+    usePersistedRecoilState(userAtom) as PersistedAtomState<User>
+
+  return useMemo(
+    () => ({
+      user: state,
+      setUser: setState,
+      clearUser: resetState,
+      userLoading: loadingLocalStorage,
+    }),
+    [state, setState, resetState, loadingLocalStorage],
+  )
+}

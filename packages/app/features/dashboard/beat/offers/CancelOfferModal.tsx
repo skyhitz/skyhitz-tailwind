@@ -10,7 +10,7 @@ import { useErrorReport } from 'app/hooks/useErrorReport'
 import { sellOffersUrl } from 'app/hooks/useUserOffers'
 import { useSWRConfig } from 'swr'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { getEntryOfferUrl } from 'app/hooks/useEntryOffer'
 
 type Props = {
@@ -36,7 +36,7 @@ export const CancelConfirmationModal = ({
   // const [walletConnectModalVisible, setWalletConnectModalVisible] =
   //   useState<boolean>(false);
 
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { mutate } = useSWRConfig()
 
   const revalidateOffers = () => {
@@ -130,7 +130,7 @@ export const CancelConfirmationModal = ({
               Confirm to cancel the offer.
             </Text>
             {message && (
-              <Text className="min-h-5 my-4 w-full text-center text-sm">
+              <Text className="my-4 min-h-5 w-full text-center text-sm">
                 {message}
               </Text>
             )}

@@ -8,7 +8,7 @@ import { PaymentConfirmationModal } from 'app/ui/modal/PaymentConfirmationModal'
 import { useApolloClient } from '@apollo/client'
 import { prepend } from 'ramda'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useSWRConfig } from 'swr'
 import { Platform } from 'react-native'
 
@@ -21,7 +21,7 @@ export function BuyNowBtn({ entry, size = 'default' }: Props) {
   const price = useEntryOffer(entry.code, entry.issuer)
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const { cache } = useApolloClient()
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { mutate } = useSWRConfig()
 
   if (!price || Platform.OS === 'ios') {

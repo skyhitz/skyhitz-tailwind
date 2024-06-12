@@ -7,15 +7,13 @@ import Svg, {
   Rect,
   ForeignObject,
 } from 'react-native-svg'
-import { ClientOnly } from './client-only'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { SolitoImage } from 'app/design/solito-image'
 import { HeroProps } from 'app/types'
 import { TextLink } from 'solito/link'
 
 export const Hero = ({ title, desc }: HeroProps) => {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   return (
     <View className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
       <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
@@ -24,15 +22,13 @@ export const Hero = ({ title, desc }: HeroProps) => {
         </H1>
         <P className="mt-6 leading-8 text-gray-600">{desc}</P>
         <View className="mt-10 flex flex-row items-center gap-x-6">
-          <ClientOnly>
-            <View className="bg-blue rounded-lg px-3 py-2">
-              <TextLink href={user ? '/dashboard/chart' : '/sign-up'}>
-                <P className="tracking-0.5 p-2 text-sm font-bold text-white">
-                  Get started
-                </P>
-              </TextLink>
-            </View>
-          </ClientOnly>
+          <View className="bg-blue rounded-lg px-3 py-2">
+            <TextLink href={user ? '/dashboard/chart' : '/sign-up'}>
+              <P className="tracking-0.5 p-2 text-sm font-bold text-white">
+                Get started
+              </P>
+            </TextLink>
+          </View>
           <A href="#mission" className="text-sm font-semibold leading-6">
             Learn more →
           </A>

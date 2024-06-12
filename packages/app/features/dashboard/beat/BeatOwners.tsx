@@ -4,8 +4,7 @@ import { compose, isEmpty, map, prop, sum } from 'ramda'
 import { EntryHolder } from 'app/api/graphql'
 import { StellarExpertLink } from 'app/ui/links/StellarExpertLink'
 import { PeopleIcon } from 'app/ui/icons/people'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { P } from 'app/design/typography'
 
 function Holder({
@@ -32,7 +31,7 @@ type Props = {
 
 export function Owners({ holders }: Props) {
   const totalBalance = sum(map(compose(parseInt, prop('balance')), holders))
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
 
   const Content = () => {
     if (isEmpty(holders)) {

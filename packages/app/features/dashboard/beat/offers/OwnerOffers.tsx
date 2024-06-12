@@ -5,8 +5,7 @@ import { ActiveOffer } from './ActiveOffer'
 import { Entry, EntryHolder } from 'app/api/graphql'
 import { CreateOfferBtn } from 'app/features/dashboard/beat/offers/CreateOfferBtn'
 import { useUserOffers } from 'app/hooks/useUserOffers'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useMemo } from 'react'
 import { filter } from 'ramda'
 
@@ -16,7 +15,7 @@ type OwnerOffersProps = {
 }
 
 export function OwnerOffers({ entry, holders }: OwnerOffersProps) {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { offers } = useUserOffers(user?.publicKey, entry.issuer, entry.code)
 
   const isOwner = useMemo(() => {

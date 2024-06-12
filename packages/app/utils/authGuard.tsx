@@ -1,11 +1,9 @@
 'use client'
 import { ReactNode, useEffect } from 'react'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useRouter } from 'solito/navigation'
 import { SplashScreen } from 'app/features/splash/splashScreen'
 import { A } from 'app/design/typography'
-import { ClientOnly } from 'app/ui/client-only'
 
 type Props = {
   children: ReactNode
@@ -20,7 +18,7 @@ export function AuthWrap({
   fallback = SplashScreen,
   linkToAuth = false,
 }: Props) {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const { push } = useRouter()
 
   useEffect(() => {
@@ -54,11 +52,9 @@ export function ComponentAuthGuard({
   linkToAuth?: boolean
 }) {
   return (
-    <ClientOnly>
-      <AuthWrap fallback={() => null} redirect={false} {...rest}>
-        {children}
-      </AuthWrap>
-    </ClientOnly>
+    <AuthWrap fallback={() => null} redirect={false} {...rest}>
+      {children}
+    </AuthWrap>
   )
 }
 
@@ -68,9 +64,5 @@ export function AuthGuard({
 }: {
   children: React.ReactNode
 }) {
-  return (
-    <ClientOnly>
-      <AuthWrap {...props}>{children}</AuthWrap>
-    </ClientOnly>
-  )
+  return <AuthWrap {...props}>{children}</AuthWrap>
 }

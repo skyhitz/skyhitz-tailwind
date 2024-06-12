@@ -13,7 +13,7 @@ import { useToast } from 'app/provider/toast'
 import { useSWRConfig } from 'swr'
 import { getUserBidsUrl } from 'app/hooks/useUserBids'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { P } from 'app/design/typography'
 
 type Props = {
@@ -32,7 +32,7 @@ export function CreateBid({ entry }: Props) {
   //     useState<boolean>(false);
   //   const [uri, setUri] = useState<string>("");
   const { mutate } = useSWRConfig()
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
 
   const onSubmit = useCallback(async () => {
     try {

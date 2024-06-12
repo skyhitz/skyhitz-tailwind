@@ -5,7 +5,7 @@ import { useEntryOffer } from 'app/hooks/useEntryOffer'
 // import { BuyNowBtn } from 'app/ui/buttons/BuyNowBtn'
 import { Entry } from 'app/api/graphql'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 
 type PriceProps = {
   entry: Entry
@@ -15,7 +15,7 @@ type PriceProps = {
 
 export default function Price({ className, entry, hovered }: PriceProps) {
   const offer = useEntryOffer(entry.code, entry.issuer)
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
 
   if (!offer.price) {
     return null

@@ -13,7 +13,7 @@ import { Config } from 'app/config'
 import { OwnerOffers } from './offers/OwnerOffers'
 import { AssetBids } from './bids/AssetBids'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { useMemo } from 'react'
 import { ActivityIndicator, H1, P } from 'app/design/typography'
 import { entryAtom, playbackStateAtom } from 'app/state/player'
@@ -24,7 +24,7 @@ type Props = {
 }
 
 export function BeatSummaryColumn({ entry, holders }: Props) {
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
   const isOnlyOwner = useMemo(
     () => holders?.length === 1 && holders[0]?.account === user?.publicKey,
     [user, holders],

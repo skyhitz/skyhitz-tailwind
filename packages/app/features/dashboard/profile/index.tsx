@@ -1,7 +1,7 @@
 'use client'
 import { View } from 'react-native'
 import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import {
   ProfileHeader,
   SocialLinks,
@@ -18,21 +18,19 @@ import { useRouter } from 'solito/navigation'
 import { useState } from 'react'
 import { LowBalanceModal } from './LowBalanceModal'
 import {
+  User,
   useUserCollectionQuery,
   useUserCreditsQuery,
   useUserLikesQuery,
 } from 'app/api/graphql'
-import * as assert from 'assert'
 import { useUserBids } from 'app/hooks/useUserBids'
 import { Config } from 'app/config'
 import { P } from 'app/design/typography'
 // import { useSendwyreCheckout } from "app/hooks/useSendwyreCheckout";
 // import { Button } from 'app/design/button'
 
-export function ProfileScreen() {
+export function ProfileScreen({ user }: { user: User }) {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
-  const user = useRecoilValue(userAtom)
-  assert.ok(user?.id)
   const { data: credits } = useUserCreditsQuery()
   const { push } = useRouter()
   const { data: userLikesData } = useUserLikesQuery()

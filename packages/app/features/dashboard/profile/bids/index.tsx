@@ -1,17 +1,13 @@
 'use client'
 import { View } from 'react-native'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
-import * as assert from 'assert'
 import { useUserBids } from 'app/hooks/useUserBids'
 import { FlatList } from 'react-native'
 import { BidListEntry } from './BidListEntry'
 import { CollectionSkeleton } from 'app/ui/skeletons/CollectionSkeleton'
 import { P } from 'app/design/typography'
+import { User } from 'app/api/graphql'
 
-export function BidsScreen() {
-  const user = useRecoilValue(userAtom)
-  assert.ok(user)
+export function BidsScreen({ user }: { user: User }) {
   const { bids, loading, refetch } = useUserBids(user.publicKey)
 
   return (

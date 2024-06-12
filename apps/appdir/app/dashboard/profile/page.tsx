@@ -1,12 +1,16 @@
+'use client'
 /** @jsxImportSource react */
 
 import { ProfileScreen } from 'app/features/dashboard/profile'
-import { AuthGuard } from 'app/utils/authGuard'
+import { useUserAtomState } from 'app/state/user'
+import { ComponentAuthGuard } from 'app/utils/authGuard'
 
 export default function ProfilePage() {
+  const { user } = useUserAtomState()
+
   return (
-    <AuthGuard>
-      <ProfileScreen />
-    </AuthGuard>
+    <ComponentAuthGuard>
+      {user && <ProfileScreen user={user} />}
+    </ComponentAuthGuard>
   )
 }

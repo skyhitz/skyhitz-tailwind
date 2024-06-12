@@ -1,8 +1,7 @@
 import { Entry, EntryHolder } from 'app/api/graphql'
 import { Button } from 'app/design/button'
 import { useState, useMemo } from 'react'
-import { useRecoilValue } from 'recoil'
-import { userAtom } from 'app/state/user'
+import { useUserAtomState } from 'app/state/user'
 import { compose, map, prop, sum, filter } from 'ramda'
 import { CreateOfferModal } from './CreateOfferModal'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
@@ -16,7 +15,7 @@ type Props = {
 export function CreateOfferBtn({ offerId, entry, holders }: Props) {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
 
-  const user = useRecoilValue(userAtom)
+  const { user } = useUserAtomState()
 
   const totalBalance = useMemo(() => {
     return holders ? sum(map(compose(parseInt, prop('balance')), holders)) : 1
