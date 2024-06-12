@@ -6,7 +6,7 @@
     "@algolia/requester-fetch": "^4.23.3",
     "@apollo/client": "^3.6.9",
     "@types/ramda": "^0.28.15",
-    "algoliasearch": "^4.22.0",
+    "algoliasearch": "^4.23.3",
     "expo-linking": "^6.0.0",
     "formik": "^2.2.9",
     "moti": "^0.28.1",

@@ -62,6 +62,13 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${raleway.variable}  ${unbounded.variable} font-sans text-gray-600`}
     >
+      <head>
+        <link
+          crossOrigin="anonymous"
+          href={`https://${Config.ALGOLIA_APP_ID}-dsn.algolia.net`}
+          rel="preconnect"
+        />
+      </head>
       <body>
         <StylesProvider>
           <Provider>
