@@ -3,9 +3,7 @@ import Navbar from 'app/ui/navbar'
 import DashboardTabBar from 'app/ui/navigation/dashboardTabBar'
 import React, { useMemo } from 'react'
 import { MobileTabBarWrapper } from './mobileTabBarWrapper'
-import { useRecoilValue } from 'recoil'
 import { useUserAtomState } from 'app/state/user'
-import { ClientOnly } from '../client-only'
 import { usePathname } from 'solito/navigation'
 
 export function DashboardNavigation({
@@ -23,13 +21,13 @@ export function DashboardNavigation({
       <Navbar className="hidden md:flex" />
 
       <View className="flex flex-1 flex-row">
-        {!!user && (
+        {!!user ? (
           <DashboardTabBar
             className="hidden md:flex"
             currentTabName={currentTabName}
             column
           />
-        )}
+        ) : null}
         {children}
       </View>
 
