@@ -1,6 +1,6 @@
 'use client'
 import { useBeatParam } from 'app/hooks/param/useBeatParam'
-import { Entry, useEntryDetailsQuery } from 'app/api/graphql'
+import { Entry, EntryDetailsQuery, useEntryDetailsQuery } from 'app/api/graphql'
 import { ScrollView, View } from 'react-native'
 import { Activity } from './BeatActivities'
 import { Details } from './BeatDetails'
@@ -18,6 +18,62 @@ type Props = {
   children?: ReactNode
 }
 
+const Content = ({
+  entry,
+  data,
+}: {
+  entry: Entry
+  data?: EntryDetailsQuery
+}) => {
+  const details = data?.entry
+  return (
+    <View className="w-full">
+      <View className="hidden md:flex">
+        <View className="w-full flex-row">
+          <View className="mr-4 flex flex-1 items-center">
+            <View className="relative aspect-square w-full rounded-md">
+              <SolitoImage
+                src={imageUrlMedium(entry.imageUrl)}
+                fill
+                alt={entry.title}
+                style={{ borderRadius: 12 }}
+                sizes="(max-width: 768px) 100vw"
+                priority
+                contentFit="cover"
+              />
+            </View>
+
+            <Details code={entry.code} issuer={entry.issuer} />
+            {details?.holders ? <Owners holders={details.holders} /> : null}
+          </View>
+          <BeatSummaryColumn entry={entry} holders={details?.holders} />
+        </View>
+
+        {details?.history ? <Activity activities={details.history} /> : null}
+      </View>
+      <View className="md:hidden">
+        <View className="max-w-125 max-h-125 mb-3 aspect-square w-full">
+          <SolitoImage
+            src={imageUrlMedium(entry.imageUrl)}
+            fill
+            alt={entry.title}
+            style={{ borderRadius: 12 }}
+            sizes="(max-width: 768px) 100vw"
+            priority
+            contentFit="cover"
+          />
+        </View>
+        <BeatSummaryColumn entry={entry} holders={details?.holders} />
+        <Details code={entry.code} issuer={entry.issuer} />
+
+        {details?.holders ? <Owners holders={details.holders} /> : null}
+
+        {details?.history ? <Activity activities={details.history} /> : null}
+      </View>
+    </View>
+  )
+}
+
 export default function BeatScreen(props: Props) {
   const id = useBeatParam()
   assert.ok(id !== undefined)
@@ -28,65 +84,17 @@ export default function BeatScreen(props: Props) {
   })
 
   const entry = props.entry ?? getEntryResult.entry
-  const details = data?.entry
 
   if (!entry) {
-    return <BeatPageSkeleton />
-  }
-
-  const Content = () => {
-    return (
-      <View className="w-full">
-        <View className="hidden md:flex">
-          <View className="w-full flex-row">
-            <View className="mr-4 flex flex-1 items-center">
-              <View className="relative aspect-square w-full rounded-md">
-                <SolitoImage
-                  src={imageUrlMedium(entry.imageUrl)}
-                  fill
-                  alt={entry.title}
-                  style={{ borderRadius: 12 }}
-                  sizes="(max-width: 768px) 100vw"
-                  priority
-                  contentFit="cover"
-                />
-              </View>
-
-              <Details code={entry.code} issuer={entry.issuer} />
-              {details?.holders && <Owners holders={details.holders} />}
-            </View>
-            <BeatSummaryColumn entry={entry} holders={details?.holders} />
-          </View>
-
-          {details?.history && <Activity activities={details.history} />}
-        </View>
-        <View className="md:hidden">
-          <View className="max-w-125 max-h-125 mb-3 aspect-square w-full">
-            <SolitoImage
-              src={imageUrlMedium(entry.imageUrl)}
-              fill
-              alt={entry.title}
-              style={{ borderRadius: 12 }}
-              sizes="(max-width: 768px) 100vw"
-              priority
-              contentFit="cover"
-            />
-          </View>
-          <BeatSummaryColumn entry={entry} holders={details?.holders} />
-          <Details code={entry.code} issuer={entry.issuer} />
-
-          {details?.holders && <Owners holders={details.holders} />}
-
-          {details?.history && <Activity activities={details.history} />}
-        </View>
-      </View>
-    )
+    // TO DO: fix loading skeletons
+    // return <BeatPageSkeleton/>
+    return null
   }
 
   return (
     <View className="flex flex-1">
       <ScrollView contentContainerClassName="flex min-h-full items-start w-full max-w-screen-xl mx-auto p-4">
-        <Content />
+        <Content entry={entry} data={data} />
       </ScrollView>
     </View>
   )

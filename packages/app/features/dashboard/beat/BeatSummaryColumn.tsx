@@ -45,9 +45,13 @@ export function BeatSummaryColumn({ entry, holders }: Props) {
           />
         </View>
       </View>
-      {!isOnlyOwner && <PriceContainer entry={entry} />}
-      {Platform.OS !== 'ios' && <OwnerOffers entry={entry} holders={holders} />}
-      {Platform.OS !== 'ios' && <AssetBids entry={entry} holders={holders} />}
+      {!isOnlyOwner ? <PriceContainer entry={entry} /> : null}
+      {Platform.OS !== 'ios' ? (
+        <OwnerOffers entry={entry} holders={holders} />
+      ) : null}
+      {Platform.OS !== 'ios' ? (
+        <AssetBids entry={entry} holders={holders} />
+      ) : null}
       <CollapsableView icon={InfoCircle} headerText="Description">
         <P className="p-5 text-sm leading-6">{entry.description}</P>
       </CollapsableView>
