@@ -1,7 +1,6 @@
 /** @jsxImportSource react */
 
-import { cache } from 'react'
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import CollectorScreen from 'app/features/dashboard/collector'
 import { combinedTitle } from 'app/constants/content'
 import { usersIndex } from 'app/api/algolia'
@@ -16,7 +15,7 @@ type Props = {
   params: { id: string }
 }
 
-const getUser = cache(async (id: string) => {
+const getUser = async (id: string) => {
   const res = await usersIndex.search<PublicUser>('', {
     filters: `id:${id}`,
     cacheable: true,
@@ -27,7 +26,7 @@ const getUser = cache(async (id: string) => {
   }
 
   return res.hits[0] as unknown as PublicUser
-})
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params

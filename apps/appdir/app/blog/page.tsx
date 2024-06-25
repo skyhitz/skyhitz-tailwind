@@ -1,6 +1,5 @@
 /** @jsxImportSource react */
 
-import { cache } from 'react'
 import { BlogScreen } from 'app/features/blog/screen'
 import { Post } from 'app/types'
 import { isEmpty } from 'ramda'

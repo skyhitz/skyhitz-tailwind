@@ -1,7 +1,6 @@
 /** @jsxImportSource react */
 
-import { cache } from 'react'
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import BeatScreen from 'app/features/dashboard/beat'
 import { entriesIndex } from 'app/api/algolia'
 import { isEmpty } from 'ramda'
@@ -16,7 +15,7 @@ type Props = {
   params: { id: string }
 }
 
-const getEntry = cache(async (id: string) => {
+const getEntry = async (id: string) => {
   const res = await entriesIndex.search('', {
     filters: `id:${id}`,
     cacheable: true,
@@ -27,7 +26,7 @@ const getEntry = cache(async (id: string) => {
   }
 
   return res.hits[0] as unknown as Entry
-})
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params

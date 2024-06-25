@@ -1,7 +1,6 @@
 /** @jsxImportSource react */
 
-import { cache } from 'react'
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata } from 'next'
 import { PostScreen } from 'app/features/post/screen'
 import { Post } from 'app/types'
 import { isEmpty } from 'ramda'
