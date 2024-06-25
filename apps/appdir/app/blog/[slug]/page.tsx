@@ -63,7 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-const getPost = cache(async (slug: string) => {
+const getPost = async (slug: string) => {
   const res = await blogIndex.search('', {
     filters: `objectID:${slug}`,
     cacheable: true,
@@ -74,7 +74,7 @@ const getPost = cache(async (slug: string) => {
   }
 
   return res.hits[0] as unknown as Post
-})
+}
 
 export default async function BlogPage({
   params,
