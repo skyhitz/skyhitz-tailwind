@@ -8,6 +8,23 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  * @type {import('next').NextConfig}
  */
 module.exports = withBundleAnalyzer({
+  async headers() {
+    return [
+      {
+        source: '/.well-known/stellar.toml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'text/plain',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+        ],
+      },
+    ]
+  },
   async redirects() {
     return [
       {
