@@ -17,8 +17,16 @@ ORG_TWITTER="Skyhitz"
 ORG_OFFICIAL_EMAIL="support@skyhitz.io"
 ORG_SUPPORT_EMAIL="support@skyhitz.io"
 
+[[VALIDATORS]]
+ALIAS="elysium"
+DISPLAY_NAME="Elysium"
+HOST="elysium.skyhitz.io:11625"
+PUBLIC_KEY="GDXRAFVQ4CGVWH2I3HAO457AEFUONRT6JWX4J4CNINMJXJYJW32YBOJJ"
+HISTORY="https://history.elysium.skyhitz.io/"
+
 [[PRINCIPALS]]
 name="Skyhitz"
 email="hello@skyhitz.io"
 twitter="skyhitz"
 github="skyhitz"
+
