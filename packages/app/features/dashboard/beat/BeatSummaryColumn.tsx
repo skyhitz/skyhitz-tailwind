@@ -11,7 +11,7 @@ import { LikesList } from 'app/features/player/components/likesList'
 import { ShareButton } from 'app/ui/buttons/ShareButton'
 import { Config } from 'app/config'
 import { OwnerOffers } from './offers/OwnerOffers'
-import { AssetBids } from './bids/AssetBids'
+// import { AssetBids } from './bids/AssetBids'
 import { useRecoilValue } from 'recoil'
 import { useUserAtomState } from 'app/state/user'
 import { useMemo } from 'react'
@@ -49,9 +49,9 @@ export function BeatSummaryColumn({ entry, holders }: Props) {
       {Platform.OS !== 'ios' ? (
         <OwnerOffers entry={entry} holders={holders} />
       ) : null}
-      {Platform.OS !== 'ios' ? (
+      {/* {Platform.OS !== 'ios' ? (
         <AssetBids entry={entry} holders={holders} />
-      ) : null}
+      ) : null} */}
       <CollapsableView icon={InfoCircle} headerText="Description">
         <P className="p-5 text-sm leading-6">{entry.description}</P>
       </CollapsableView>

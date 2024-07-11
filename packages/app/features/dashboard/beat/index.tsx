@@ -12,6 +12,7 @@ import { ReactNode } from 'react'
 import BeatPageSkeleton from 'app/ui/skeletons/BeatPageSkeleton'
 import { Owners } from './BeatOwners'
 import { SolitoImage } from 'app/design/solito-image'
+import { pinataGateway } from 'app/constants/constants'
 
 type Props = {
   entry?: Entry
@@ -43,7 +44,7 @@ const Content = ({
               />
             </View>
 
-            <Details code={entry.code} issuer={entry.issuer} />
+            <Details id={entry.id} link={`${pinataGateway}/${entry.id}`} />
             {details?.holders ? <Owners holders={details.holders} /> : null}
           </View>
           <BeatSummaryColumn entry={entry} holders={details?.holders} />
@@ -64,7 +65,7 @@ const Content = ({
           />
         </View>
         <BeatSummaryColumn entry={entry} holders={details?.holders} />
-        <Details code={entry.code} issuer={entry.issuer} />
+        <Details id={entry.id} link={`${pinataGateway}/${entry.id}`} />
 
         {details?.holders ? <Owners holders={details.holders} /> : null}
 
@@ -94,7 +95,7 @@ export default function BeatScreen(props: Props) {
   return (
     <View className="flex flex-1">
       <ScrollView contentContainerClassName="flex min-h-full items-start w-full max-w-screen-xl mx-auto p-4">
-        <Content entry={entry} data={data} />
+        <Content entry={{ ...entry, ...data?.entry } as Entry} data={data} />
       </ScrollView>
     </View>
   )

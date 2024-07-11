@@ -63,6 +63,9 @@ export type Entry = {
   issuer: Scalars['String']
   title: Scalars['String']
   videoUrl: Scalars['String']
+  apr: Scalars['Int']
+  tvl: Scalars['Int']
+  escrow: Scalars['Int']
 }
 
 export type EntryActivity = {
@@ -336,12 +339,11 @@ export type AcceptBidMutation = {
 export type BuyEntryMutationVariables = Exact<{
   id: Scalars['String']
   amount: Scalars['Float']
-  price: Scalars['Float']
 }>
 
 export type BuyEntryMutation = {
   __typename?: 'Mutation'
-  buyEntry: {
+  investEntry: {
     __typename?: 'ConditionalXDR'
     xdr?: string | null
     success: boolean
@@ -698,6 +700,9 @@ export type EntryDetailsQuery = {
       sourceAmount?: string | null
       price?: { __typename?: 'ActivityPrice'; n: number; d: number } | null
     }> | null
+    tvl: number
+    apr: number
+    escrow: number
   }
 }
 
@@ -850,8 +855,8 @@ export type AcceptBidMutationOptions = Apollo.BaseMutationOptions<
   AcceptBidMutationVariables
 >
 export const BuyEntryDocument = gql`
-  mutation BuyEntry($id: String!, $amount: Float!, $price: Float!) {
-    buyEntry(id: $id, amount: $amount, price: $price) {
+  mutation BuyEntry($id: String!, $amount: Float!) {
+    investEntry(id: $id, amount: $amount) {
       xdr
       success
       submitted
@@ -878,7 +883,6 @@ export type BuyEntryMutationFn = Apollo.MutationFunction<
  *   variables: {
  *      id: // value for 'id'
  *      amount: // value for 'amount'
- *      price: // value for 'price'
  *   },
  * });
  */
@@ -1908,6 +1912,9 @@ export const EntryDetailsDocument = gql`
         }
         sourceAmount
       }
+      tvl
+      apr
+      escrow
     }
   }
 `
