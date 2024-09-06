@@ -1,14 +1,14 @@
 import { Pressable } from 'react-native'
 import Download from 'app/ui/icons/download'
-import { Entry } from 'app/api/graphql'
 import { ErrorType } from 'app/types'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
-import { useRecoilValue } from 'recoil'
 import { useUserAtomState } from 'app/state/user'
 import { useToast } from 'app/provider/toast'
 import { ipfsProtocol, pinataGateway } from 'app/constants/constants'
 import { useState } from 'react'
 import { ActivityIndicator } from 'app/design/typography'
+import { Entry, useInvestEntryMutation } from 'app/api/graphql'
+import { lumensToStroops } from 'app/utils'
 
 type Props = {
   size: number
@@ -19,6 +19,7 @@ type Props = {
 function DownloadButton({ size, className, entry }: Props) {
   const { user } = useUserAtomState()
   const [downloading, setDownloading] = useState(false)
+  const [invest] = useInvestEntryMutation()
 
   const toast = useToast()
 
@@ -26,6 +27,12 @@ function DownloadButton({ size, className, entry }: Props) {
     if (!user) return
     setDownloading(true)
     try {
+      const { data } = await invest({
+        variables: {
+          id: entry.id!,
+          amount: lumensToStroops(0.3),
+        },
+      })
       const res = await fetch(
         `${entry.videoUrl.replace(ipfsProtocol, pinataGateway + '/')}`,
       )

@@ -1,10 +1,15 @@
 import { Pressable } from 'react-native'
 import Like from 'app/ui/icons/like'
-import { Entry, useLikeEntryMutation, useUserLikesQuery } from 'app/api/graphql'
+import {
+  Entry,
+  useInvestEntryMutation,
+  useLikeEntryMutation,
+  useUserLikesQuery,
+} from 'app/api/graphql'
 import useLikeCache from 'app/hooks/useLikeCache'
 import { ErrorType } from 'app/types'
 import { any } from 'ramda'
-import { isSome } from 'app/utils'
+import { isSome, lumensToStroops } from 'app/utils'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
 import { useUserAtomState } from 'app/state/user'
 import { useToast } from 'app/provider/toast'
@@ -26,12 +31,20 @@ function LikeButton({ size, className, entry }: Props) {
     (item) => isSome(item) && item.id === entry.id,
     userLikesData?.userLikes ?? [],
   )
+  const [invest] = useInvestEntryMutation()
 
   const update = async () => {
     if (!user) return
     active ? removeLikeFromCache(entry) : addLikeToCache(entry)
     try {
+      console.log('like entry')
       await likeEntry({ variables: { id: entry.id, like: !active } })
+      await invest({
+        variables: {
+          id: entry?.id!,
+          amount: lumensToStroops(0.2),
+        },
+      })
     } catch (e) {
       active ? addLikeToCache(entry) : removeLikeFromCache(entry)
 

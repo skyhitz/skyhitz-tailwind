@@ -2,7 +2,6 @@ import { P } from 'app/design/typography'
 import { Platform, View } from 'react-native'
 import { Entry } from 'app/api/graphql'
 import { Pressable } from 'react-native'
-import Price from 'app/ui/price'
 import LikeButton from 'app/ui/buttons/likeButton'
 import VerticalDots from 'app/ui/icons/verticalDots'
 import { ReactElement } from 'react'
@@ -11,6 +10,8 @@ import { usePlayback } from 'app/hooks/usePlayback'
 import { SolitoImage } from 'app/design/solito-image'
 import DownloadBtn from '../buttons/DownloadBtn'
 import { useLink } from 'solito/navigation'
+import { stroopsToLumens } from 'app/utils'
+import Icon from '../icons/dollar'
 
 export type PressableState = Readonly<{
   hovered?: boolean
@@ -30,6 +31,7 @@ export function BeatListEntry({
   const linkProps = useLink({
     href: `/dashboard/beat/${entry.id}`,
   })
+  const tvl = entry.tvl ? stroopsToLumens(entry.tvl) : 0
 
   return (
     <Pressable onPress={() => playEntry(entry, playlist)} className="flex">
@@ -63,7 +65,21 @@ export function BeatListEntry({
               </P>
             </View>
             <View className="flex flex-row items-center">
-              <Price entry={entry} className="mr-3" hovered={hovered} />
+              {entry.tvl && entry.apr && (
+                <Pressable
+                  className="flex flex-row items-center"
+                  {...linkProps}
+                >
+                  <P className="font-unbounded mr-3 flex flex-row items-center text-xs">
+                    TVL : <Icon className={'mx-1'} size={10} />
+                    {tvl}
+                  </P>
+                  <P className="font-unbounded mr-3 text-xs">
+                    APR : {entry.apr}%
+                  </P>
+                </Pressable>
+              )}
+
               {Platform.OS === 'web' && (
                 <DownloadBtn size={14} className="mr-3" entry={entry} />
               )}

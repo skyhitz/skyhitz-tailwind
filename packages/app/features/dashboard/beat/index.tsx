@@ -1,32 +1,23 @@
 'use client'
 import { useBeatParam } from 'app/hooks/param/useBeatParam'
-import { Entry, EntryDetailsQuery, useEntryDetailsQuery } from 'app/api/graphql'
+import { Entry } from 'app/api/graphql'
 import { ScrollView, View } from 'react-native'
-import { Activity } from './BeatActivities'
 import { Details } from './BeatDetails'
 import { imageUrlMedium } from 'app/utils/entry'
 import { BeatSummaryColumn } from './BeatSummaryColumn'
-import { useGetEntry } from 'app/hooks/algolia/useGetEntry'
 import * as assert from 'assert'
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import BeatPageSkeleton from 'app/ui/skeletons/BeatPageSkeleton'
-import { Owners } from './BeatOwners'
 import { SolitoImage } from 'app/design/solito-image'
 import { pinataGateway } from 'app/constants/constants'
+import { useGetEntry } from 'app/hooks/algolia/useGetEntry'
 
 type Props = {
   entry?: Entry
   children?: ReactNode
 }
 
-const Content = ({
-  entry,
-  data,
-}: {
-  entry: Entry
-  data?: EntryDetailsQuery
-}) => {
-  const details = data?.entry
+const Content = ({ entry }: { entry: Entry }) => {
   return (
     <View className="w-full">
       <View className="hidden md:flex">
@@ -45,12 +36,9 @@ const Content = ({
             </View>
 
             <Details id={entry.id} link={`${pinataGateway}/${entry.id}`} />
-            {details?.holders ? <Owners holders={details.holders} /> : null}
           </View>
-          <BeatSummaryColumn entry={entry} holders={details?.holders} />
+          <BeatSummaryColumn entry={entry} />
         </View>
-
-        {details?.history ? <Activity activities={details.history} /> : null}
       </View>
       <View className="md:hidden">
         <View className="max-w-125 max-h-125 mb-3 aspect-square w-full">
@@ -64,27 +52,20 @@ const Content = ({
             contentFit="cover"
           />
         </View>
-        <BeatSummaryColumn entry={entry} holders={details?.holders} />
+        <BeatSummaryColumn entry={entry} />
         <Details id={entry.id} link={`${pinataGateway}/${entry.id}`} />
-
-        {details?.holders ? <Owners holders={details.holders} /> : null}
-
-        {details?.history ? <Activity activities={details.history} /> : null}
       </View>
     </View>
   )
 }
 
-export default function BeatScreen(props: Props) {
+export default function BeatScreen({ entry: serverEntry }: Props) {
   const id = useBeatParam()
   assert.ok(id !== undefined)
-  const getEntryResult = useGetEntry({ id, skip: props.entry !== undefined })
-  const { data } = useEntryDetailsQuery({
-    variables: { id: id! },
-    skip: !id,
+  const { entry } = useGetEntry({
+    id,
+    serverEntry,
   })
-
-  const entry = props.entry ?? getEntryResult.entry
 
   if (!entry) {
     // TO DO: fix loading skeletons
@@ -95,7 +76,7 @@ export default function BeatScreen(props: Props) {
   return (
     <View className="flex flex-1">
       <ScrollView contentContainerClassName="flex min-h-full items-start w-full max-w-screen-xl mx-auto p-4">
-        <Content entry={{ ...entry, ...data?.entry } as Entry} data={data} />
+        <Content entry={entry} />
       </ScrollView>
     </View>
   )

@@ -5,8 +5,12 @@ import {
   AVPlaybackStatus,
 } from 'expo-av'
 import { useEffect } from 'react'
-import { Entry, useSetLastPlayedEntryMutation } from 'app/api/graphql'
-import { isSome } from 'app/utils'
+import {
+  Entry,
+  useInvestEntryMutation,
+  useSetLastPlayedEntryMutation,
+} from 'app/api/graphql'
+import { isSome, lumensToStroops } from 'app/utils'
 import { append, findIndex, init, last } from 'ramda'
 import { videoSrc } from 'app/utils/entry'
 import { useErrorReport } from 'app/hooks/useErrorReport'
@@ -46,6 +50,8 @@ export function usePlayback() {
     timeoutIdRef,
     setTimeoutId,
   } = usePlabackInstance()
+
+  const [invest] = useInvestEntryMutation()
 
   useEffect(() => {
     Audio.setAudioModeAsync({
@@ -216,6 +222,18 @@ export function usePlayback() {
     }
   }
 
+  const onDidJustFinish = async () => {
+    const entry = getCurrentEntry()
+    if (user) {
+      await invest({
+        variables: {
+          id: entry?.id!,
+          amount: lumensToStroops(0.1),
+        },
+      })
+    }
+  }
+
   const skipBackward = async () => {
     const previousEntry = last(init(playingHistory))
     if (previousEntry === undefined) {
@@ -250,6 +268,7 @@ export function usePlayback() {
 
     if (status.didJustFinish && getPlaybackState() === 'PLAYING' && !looping) {
       skipForward()
+      onDidJustFinish()
     }
 
     if (status.durationMillis && !isNaN(status.durationMillis)) {

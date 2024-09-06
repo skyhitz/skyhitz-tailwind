@@ -1,35 +1,46 @@
-import { entriesIndex } from "app/api/algolia";
-import { Entry } from "app/api/graphql";
-import { isEmpty } from "ramda";
-import { useEffect, useState } from "react";
+import { Entry } from 'app/api/graphql'
+import { useEffect } from 'react'
+import { getEntry } from './getEntry'
+import { useRecoilState, useResetRecoilState } from 'recoil'
+import { entryDetailAtom } from 'app/state/entry'
 
 type Props = {
-  id: string;
-  skip?: boolean;
-};
+  id: string
+  serverEntry?: Entry
+}
 
 type Result = {
-  entry?: Entry;
-};
+  entry?: Entry
+  getEntry: (id: string) => Promise<Entry | null>
+  refetch: () => Promise<void>
+}
 
-export function useGetEntry({ id, skip }: Props): Result {
-  const [entry, setEntry] = useState<Entry | undefined>();
+export function useGetEntry({ id, serverEntry }: Props): Result {
+  const [entry, setEntry] = useRecoilState(entryDetailAtom)
+  const resetAtom = useResetRecoilState(entryDetailAtom)
+  const skip = serverEntry !== undefined
+
+  const fetchAndSet = async (id: string) => {
+    console.log('refetching entry', id)
+    const entry = await getEntry(id)
+    console.log('new entry', entry)
+    entry ? setEntry(entry) : null
+  }
+
+  const refetch = async () => {
+    console.log('refetch')
+    entry ? fetchAndSet(id) : null
+  }
 
   useEffect(() => {
-    const getEntry = async () => {
-      const res = await entriesIndex.search("", {
-        filters: `id:${id}`,
-      });
-
-      if (!isEmpty(res.hits)) {
-        const first = res.hits[0] as unknown as Entry;
-        setEntry(first);
-      }
-    };
     if (!skip) {
-      getEntry();
+      fetchAndSet(id)
     }
-  }, [skip]);
+    return () => {
+      console.log('resetting entry')
+      resetAtom()
+    }
+  }, [skip])
 
-  return { entry };
+  return { entry: entry ?? serverEntry, getEntry, refetch }
 }
