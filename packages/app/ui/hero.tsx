@@ -86,7 +86,12 @@ export const Hero = ({ title, desc }: HeroProps) => {
                   <FormInputWithIcon
                     value={values.link}
                     containerClassNames="border border-white rounded md:mr-2 !py-2"
-                    icon={LinkIcon}
+                    icon={() => (
+                      <LinkIcon
+                        size={22}
+                        className="absolute right-2 border-4 border-white bg-white"
+                      />
+                    )}
                     onChangeText={handleChange('link')}
                     onBlur={handleBlur('link')}
                     className="text-md border-grey-light ml-2 flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
@@ -99,7 +104,12 @@ export const Hero = ({ title, desc }: HeroProps) => {
                   <FormInputWithIcon
                     value={values.email}
                     containerClassNames="border border-white rounded md:mr-2 !py-2"
-                    icon={MailIcon}
+                    icon={() => (
+                      <MailIcon
+                        size={22}
+                        className="absolute right-2 border-4 border-white bg-white"
+                      />
+                    )}
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
                     className="text-md border-grey-light ml-2 flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
