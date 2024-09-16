@@ -2,30 +2,15 @@
 
 import type { Metadata } from 'next'
 import BeatScreen from 'app/features/dashboard/beat'
-import { entriesIndex } from 'app/api/algolia'
-import { isEmpty } from 'ramda'
-import { Entry } from 'app/api/graphql'
 import { redirect } from 'next/navigation'
 import { imageUrlMedium, videoSrc } from 'app/utils/entry'
 import { combinedTitle } from 'app/constants/content'
 import { Config } from 'app/config'
 import JsonLdScript from 'app/seo/jsonLd'
+import { getEntry } from 'app/hooks/algolia/getEntry'
 
 type Props = {
   params: { id: string }
-}
-
-const getEntry = async (id: string) => {
-  const res = await entriesIndex.search('', {
-    filters: `id:${id}`,
-    cacheable: true,
-  })
-
-  if (isEmpty(res.hits)) {
-    return null
-  }
-
-  return res.hits[0] as unknown as Entry
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

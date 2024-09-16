@@ -1,21 +1,15 @@
 import { CollapsableView } from 'app/ui/CollapsableView'
 import { View } from 'react-native'
-import { Config } from 'app/config'
 import { ReactElement } from 'react'
-import { StellarExpertLink } from 'app/ui/links/StellarExpertLink'
 import { Details as DetailsIcon } from 'app/ui/icons/details'
-import { P } from 'app/design/typography'
-
-const getAssetId = (code: string, issuer: string) => {
-  return `${code}-${issuer}`
-}
+import { A, P } from 'app/design/typography'
 
 type Props = {
-  issuer: string
-  code: string
+  id: string
+  link: string
 }
 
-export function Details({ issuer, code }: Props) {
+export function Details({ id, link }: Props) {
   const Row = ({
     label,
     trailingWidget,
@@ -25,44 +19,26 @@ export function Details({ issuer, code }: Props) {
     trailingWidget?: ReactElement
     value?: string
   }) => {
-    const defaultTrailingWidget = <P className="shrink text-sm">{value}</P>
-
     return (
-      <View className="my-2 flex-row items-center justify-center">
-        <P className="mr-2 min-w-max flex-1 grow text-sm text-gray-600">
-          {label}
-        </P>
-        {trailingWidget ?? defaultTrailingWidget}
+      <View className="my-2 flex flex-row items-center justify-start truncate">
+        <P className="mr-2 min-w-max flex-1 grow text-sm">{label}</P>
+        {trailingWidget ? trailingWidget : null}
       </View>
     )
   }
   return (
     <CollapsableView headerText="Details" icon={DetailsIcon}>
-      <View className="p-5">
+      <View className="truncate bg-white p-5">
         <Row
-          label="Issuer:"
+          label="Metadata:"
           trailingWidget={
-            <StellarExpertLink
-              id={issuer}
-              path="account"
-              className="shrink"
-              align="end"
-            />
+            <View className="flex">
+              <A href={link} target="_blank">
+                {id}
+              </A>
+            </View>
           }
         />
-        <Row
-          label="Asset code:"
-          trailingWidget={
-            <StellarExpertLink
-              id={getAssetId(code, issuer)}
-              text={code}
-              path="asset"
-              className="grow-1"
-              align="end"
-            />
-          }
-        />
-        <Row label="Chain:" value={Config.CHAIN_ID} />
       </View>
     </CollapsableView>
   )

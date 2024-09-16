@@ -11,9 +11,52 @@ import { useUserAtomState } from 'app/state/user'
 import { SolitoImage } from 'app/design/solito-image'
 import { HeroProps } from 'app/types'
 import { TextLink } from 'solito/link'
+import { FormInputWithIcon } from './inputs/FormInputWithIcon'
+import LinkIcon from './icons/link'
+import MailIcon from './icons/mail-outline'
+import { useSubmitLinkMutation } from 'app/api/graphql'
+import { Formik, FormikProps } from 'formik'
+import * as Yup from 'yup'
+import { Button } from 'app/design/button'
+import { useState } from 'react'
+
+const validationSchema = Yup.object().shape({
+  link: Yup.string().url('Invalid URL').required('Link is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+})
+
+type FormData = {
+  link: string
+  email: string
+}
 
 export const Hero = ({ title, desc }: HeroProps) => {
   const { user } = useUserAtomState()
+  const [submitted, setSubmitted] = useState(false)
+
+  const [submitLink, { loading, error }] = useSubmitLinkMutation()
+
+  const handleSubmit = async (
+    formData: FormData,
+    { resetForm }: { resetForm: () => void },
+  ) => {
+    if (loading) return
+    const res = await submitLink({
+      variables: {
+        link: formData.link,
+        email: formData.email,
+      },
+    })
+    if (res.data?.submitLink.success) {
+      setSubmitted(true)
+      resetForm()
+    }
+  }
+
+  const initialValues: FormData = {
+    link: '',
+    email: '',
+  }
   return (
     <View className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
       <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
@@ -21,18 +64,81 @@ export const Hero = ({ title, desc }: HeroProps) => {
           {title}
         </H1>
         <P className="mt-6 leading-8 text-gray-600">{desc}</P>
-        <View className="mt-10 flex flex-row items-center gap-x-6">
-          <View className="bg-blue rounded-lg px-3 py-2">
-            <TextLink href={user ? '/dashboard/chart' : '/sign-up'}>
-              <P className="tracking-0.5 p-2 text-sm font-bold text-white">
-                Get started
-              </P>
-            </TextLink>
-          </View>
-          <A href="#mission" className="text-sm font-semibold leading-6">
-            Learn more →
-          </A>
-        </View>
+
+        <Formik
+          validateOnMount
+          initialValues={initialValues}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          {({
+            values,
+            handleChange,
+            handleBlur,
+            errors,
+            touched,
+            isValid,
+            handleSubmit,
+          }: FormikProps<FormData>) => (
+            <View className="flex">
+              <View className="mt-10 flex flex-row items-center gap-x-6">
+                <View className="flex flex-grow">
+                  <FormInputWithIcon
+                    value={values.link}
+                    containerClassNames="border border-white rounded md:mr-2 !py-2"
+                    icon={() => (
+                      <LinkIcon
+                        size={22}
+                        className="absolute right-2 border-4 border-white bg-white"
+                      />
+                    )}
+                    onChangeText={handleChange('link')}
+                    onBlur={handleBlur('link')}
+                    className="text-md border-grey-light ml-2 flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
+                    placeholder="Music NFT link"
+                    iconPosition="right"
+                    keyboardType="url"
+                    onSubmitEditing={() => handleSubmit()}
+                    editable={!loading}
+                  />
+                  <FormInputWithIcon
+                    value={values.email}
+                    containerClassNames="border border-white rounded md:mr-2 !py-2"
+                    icon={() => (
+                      <MailIcon
+                        size={22}
+                        className="absolute right-2 border-4 border-white bg-white"
+                      />
+                    )}
+                    onChangeText={handleChange('email')}
+                    onBlur={handleBlur('email')}
+                    className="text-md border-grey-light ml-2 flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
+                    placeholder="Email"
+                    iconPosition="right"
+                    onSubmitEditing={() => handleSubmit()}
+                    editable={!loading}
+                  />
+                </View>
+
+                <Button
+                  onPress={handleSubmit}
+                  loading={loading}
+                  text={submitted ? 'Done!' : 'Submit'}
+                  size="default"
+                  className="mr-2"
+                  disabled={!isValid}
+                />
+              </View>
+              <View className="mt-4 flex-row">
+                <P className="text-red min-h-5 w-full px-2 text-left text-sm">
+                  {(touched.link && errors.link) ||
+                    (touched.email && errors.email) ||
+                    error?.message}
+                </P>
+              </View>
+            </View>
+          )}
+        </Formik>
       </View>
       <View className="mt-16 sm:mt-24 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
         <Svg

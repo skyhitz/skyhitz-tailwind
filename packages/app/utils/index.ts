@@ -26,3 +26,7 @@ export function convertToString(num: number, fractionDigits = 6): string {
 export function randomIntFromInterval(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
+
+export const lumensToStroops = (lumens: number) => lumens * 10000000
+
+export const stroopsToLumens = (stroops: number) => stroops / 10000000

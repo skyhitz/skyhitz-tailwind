@@ -63,7 +63,7 @@ export function WithdrawCredits() {
 
   return (
     <View className="mt-8">
-      <Text className="mb-4 text-sm font-bold">Credits</Text>
+      <Text className="mb-4 text-sm font-bold">Balance</Text>
       <Button text="Withdraw" onPress={() => setModalVisible(true)} />
       <Modal visible={modalVisible} transparent>
         <KeyboardAvoidingView behavior="padding" className="flex-1">
@@ -76,7 +76,7 @@ export function WithdrawCredits() {
                 <X className="text-gray-600" />
               </Pressable>
               <View className="flex w-72 items-center">
-                <P className="text-lg font-bold">Withdraw Credits</P>
+                <P className="text-lg font-bold">Withdraw XLM</P>
                 <P className="mt-12 w-full">
                   Current Balance: {convertToString(credits?.userCredits ?? 0)}
                   XLM
@@ -141,7 +141,7 @@ export function WithdrawCredits() {
                         XLM
                       </P>
                       {(errors.address || errors.amount || error) && (
-                        <P className="min-h-5 my-4 w-full text-center text-sm text-[#d9544f]">
+                        <P className="my-4 min-h-5 w-full text-center text-sm text-[#d9544f]">
                           {errors.address || errors.amount || error?.message}
                         </P>
                       )}

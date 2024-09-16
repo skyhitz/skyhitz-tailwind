@@ -1,112 +1,153 @@
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 import { Button } from 'app/design/button'
-import { Entry, useCreateBidMutation } from 'app/api/graphql'
+import { Entry, useInvestEntryMutation } from 'app/api/graphql'
 import Dollar from 'app/ui/icons/dollar'
 import { FormInputWithIcon } from 'app/ui/inputs/FormInputWithIcon'
 import PieChartIcon from 'app/ui/icons/pie'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useErrorReport } from 'app/hooks/useErrorReport'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
 import { useToast } from 'app/provider/toast'
-// import { useWalletConnectClient } from "app/provider/WalletConnect";
-// import { WalletConnectModal } from "app/ui/modal/WalletConnectModal";
 import { useSWRConfig } from 'swr'
 import { getUserBidsUrl } from 'app/hooks/useUserBids'
-import { useRecoilValue } from 'recoil'
 import { useUserAtomState } from 'app/state/user'
-import { P } from 'app/design/typography'
+import { H2, P } from 'app/design/typography'
+import { lumensToStroops, stroopsToLumens } from 'app/utils'
+import Icon from 'app/ui/icons/dollar'
+import { useGetEntry } from 'app/hooks/algolia/useGetEntry'
+import { sharesIndex } from 'app/api/algolia'
 
 type Props = {
   entry: Entry
 }
 
+type Share = { shares: number }
+
 export function CreateBid({ entry }: Props) {
-  const [proposedPrice, setProposedPrice] = useState('')
-  const [createOffer] = useCreateBidMutation()
+  const [amountToInvest, setAmountToInvest] = useState('')
+  const [shares, setShares] = useState(0)
+
+  const [invest] = useInvestEntryMutation()
+
   const [equityToBuy, setEquityToBuy] = useState('')
   const reportError = useErrorReport()
   const toast = useToast()
   const [loading, setLoading] = useState<boolean>(false)
-  //   const { signAndSubmitXdr, session, connect } = useWalletConnectClient();
-  //   const [walletConnectModalVisible, setWalletConnectModalVisible] =
-  //     useState<boolean>(false);
-  //   const [uri, setUri] = useState<string>("");
   const { mutate } = useSWRConfig()
   const { user } = useUserAtomState()
+  const { refetch } = useGetEntry({
+    id: entry.id,
+  })
 
   const onSubmit = useCallback(async () => {
     try {
       setLoading(true)
-      const { data } = await createOffer({
+      const { data } = await invest({
         variables: {
           id: entry.id!,
-          price: parseInt(proposedPrice, 10),
-          equityToBuy: parseFloat(equityToBuy) / 100,
+          amount: lumensToStroops(parseInt(amountToInvest, 10)),
         },
       })
-      if (!data?.createBid.success) {
+      if (!data?.investEntry.success) {
         throw Error('Error during transaction creation.')
       }
-      //   if (!data?.createBid.submitted) {
-      //     const xdr = data.createBid.xdr!;
-
-      //     let currentSession = session;
-      //     if (!currentSession) {
-      //       currentSession = await connect((newUri) => {
-      //         setUri(newUri);
-      //         setWalletConnectModalVisible(true);
-      //       });
-      //     }
-      //     const response = await signAndSubmitXdr(xdr, currentSession);
-
-      //     const { status } = response as { status: string };
-      //     if (status !== "success") {
-      //       throw Error("Error during signing transaction in your wallet");
-      //     }
-      //   }
       setLoading(false)
-      setProposedPrice('')
+      setAmountToInvest('')
       setEquityToBuy('')
-      toast.show('You have successfully created a bid', {
+      toast.show('You have successfully invested', {
         type: 'success',
       })
       mutate(getUserBidsUrl(user!.publicKey))
+      refetch()
+      fetchShares()
     } catch (ex) {
       setLoading(false)
       reportError(ex)
     }
-  }, [
-    proposedPrice,
-    equityToBuy,
-    setLoading,
-    // session,
-    // connect,
-    // signAndSubmitXdr,
-    // setUri,
-    // setWalletConnectModalVisible,
-    toast,
-    reportError,
-  ])
+  }, [amountToInvest, equityToBuy, setLoading, toast, reportError])
+
+  const fetchShares = async () => {
+    if (!user) {
+      return
+    }
+    // entryId and userId should be on facet attributes with filterOnly for this to work
+    const { hits } = await sharesIndex.search('', {
+      filters: `entryId:${entry.id} AND userId:${user.id}`,
+      cacheable: false,
+    })
+
+    const sharesObject = hits[0] as unknown as Share
+    const userStroops = sharesObject ? sharesObject.shares : 0
+    setShares(userStroops)
+  }
+
+  useEffect(() => {
+    fetchShares()
+  }, [user])
+
+  useEffect(() => {
+    if (!amountToInvest) {
+      return
+    }
+
+    if (entry.tvl === 0 || !entry?.tvl) {
+      setEquityToBuy('100')
+      return
+    }
+
+    const amountInStroops = lumensToStroops(parseInt(amountToInvest))
+    const newTvl = entry.tvl + amountInStroops
+    const currentOwnershipPercentage = entry.tvl
+      ? (shares / entry.tvl) * 100
+      : 0
+
+    // Calculate the user's new ownership percentage after the investment
+    const newUserStroops = shares + amountInStroops
+    const newOwnershipPercentage = (newUserStroops / newTvl) * 100
+
+    // Calculate the additional percentage
+    const additionalPercentage =
+      newOwnershipPercentage - currentOwnershipPercentage
+
+    setEquityToBuy(
+      currentOwnershipPercentage === currentOwnershipPercentage
+        ? currentOwnershipPercentage.toString()
+        : additionalPercentage.toString(),
+    )
+  }, [amountToInvest])
+
+  const tvl = entry.tvl ? stroopsToLumens(entry.tvl) : 0
+  const ownershipPercentage = entry.tvl ? (shares / entry.tvl) * 100 : 0
 
   return (
     <>
       <ComponentAuthGuard>
-        <View className="border-grey-light mt-4 flex items-center rounded-lg border-[0.5px] p-4 md:items-start">
-          <P className="mb-3 text-sm">Create a bid for this asset</P>
-          <View className="mb-3 flex items-center md:flex-row">
+        <View className="border-grey-light mt-4 flex items-center gap-y-4 rounded-lg border-[0.5px] p-4 md:items-start">
+          {tvl ? (
+            <H2 className="flex flex-row items-center text-sm">
+              TVL : <Icon className={'mx-1'} size={12} />
+              {tvl} XLM
+            </H2>
+          ) : null}
+          {entry.apr ? <H2 className="text-sm">APR : {entry.apr}%</H2> : null}
+          {ownershipPercentage ? (
+            <H2 className="text-sm">Share : {ownershipPercentage}%</H2>
+          ) : null}
+          <View className="flex items-center md:flex-row">
             <FormInputWithIcon
               containerClassNames="border border-white rounded p-5 md:mr-2 mb-2 md:mb-0"
               icon={Dollar}
-              value={proposedPrice}
+              value={amountToInvest}
               onChangeText={(text) => {
                 if (text === '') {
-                  setProposedPrice('')
+                  setAmountToInvest('')
                 } else {
                   const num = parseInt(text.replace(/[^0-9]/g, ''), 10)
-                  setProposedPrice(num.toString())
+                  setAmountToInvest(num.toString())
                 }
               }}
-              placeholder="Price (XLM)"
+              className="text-md border-grey-light ml-2 rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
+              placeholder="Amount (XLM)"
               keyboardType="numeric"
               maxLength={10}
             />
@@ -114,34 +155,31 @@ export function CreateBid({ entry }: Props) {
               containerClassNames="border border-white rounded p-5 md:ml-2"
               icon={PieChartIcon}
               value={equityToBuy}
-              onChangeText={(text) => {
-                if (text === '') {
-                  setEquityToBuy('')
-                } else {
-                  const num = parseInt(text.replace(/[^0-9]/g, ''), 10)
-                  if (num <= 100 && num >= 1) {
-                    setEquityToBuy(num.toString())
-                  }
-                }
-              }}
-              placeholder="Equity To Buy (1-100)%"
+              // onChangeText={(text) => {
+              //   if (text === '') {
+              //     setEquityToBuy('')
+              //   } else {
+              //     const num = parseInt(text.replace(/[^0-9]/g, ''), 10)
+              //     if (num <= 100 && num >= 1) {
+              //       setEquityToBuy(num.toString())
+              //     }
+              //   }
+              // }}
+              placeholder="Pool share %"
               keyboardType="numeric"
               maxLength={10}
+              editable={false}
             />
           </View>
           <Button
-            text="Submit offer"
+            text="Invest"
             onPress={onSubmit}
-            disabled={!proposedPrice || !equityToBuy || loading}
+            disabled={!amountToInvest || !equityToBuy || loading}
             loading={loading}
+            className="w-full"
           />
         </View>
       </ComponentAuthGuard>
-      {/* <WalletConnectModal
-        visible={walletConnectModalVisible}
-        close={() => setWalletConnectModalVisible(false)}
-        uri={uri}
-      /> */}
     </>
   )
 }

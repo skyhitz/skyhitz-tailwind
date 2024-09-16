@@ -13,8 +13,8 @@ export const keywords =
 export const socialDesc =
   'Collect, stream and trade valuable music NFTs with the best music nft platform!'
 export const header = {
-  title: 'Join the future of music NFTs',
-  desc: 'The ultimate destination for music fans, collectors, and creators, offering a novel way to stream and experience music nfts like never before. We are a music blockchain platform that enables fans to discover, stream, download and collect unique creations through a decentralized framework.',
+  title: 'Discover Music with NFTs',
+  desc: 'The ultimate platform for music fans, collectors, and creators, offering a novel way to experience music nfts like never before. We enable fans to discover, stream, download and collect unique creations through a decentralized framework.  Help us grow the future of music by sharing your favorite music NFTs below!',
 }
 export const combinedTitle = `${orgName} - ${header.title}`
 const cta = {

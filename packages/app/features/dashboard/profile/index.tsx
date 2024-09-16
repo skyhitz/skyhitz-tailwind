@@ -1,7 +1,5 @@
 'use client'
 import { View } from 'react-native'
-import { useRecoilValue } from 'recoil'
-import { useUserAtomState } from 'app/state/user'
 import {
   ProfileHeader,
   SocialLinks,
@@ -92,12 +90,6 @@ export function ProfileScreen({ user }: { user: User }) {
           trailingNumber={userCollectionData?.userEntries?.length}
           title="Collection"
           onPress={() => push('/dashboard/profile/collection')}
-        />
-        <ProfileRow
-          icon={<StarBorder size={24} className="text-blue" />}
-          trailingNumber={bids.length}
-          title="Your bids"
-          onPress={() => push('/dashboard/profile/bids')}
         />
       </View>
       {/* <Button

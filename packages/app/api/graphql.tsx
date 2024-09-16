@@ -63,6 +63,9 @@ export type Entry = {
   issuer: Scalars['String']
   title: Scalars['String']
   videoUrl: Scalars['String']
+  apr: Scalars['Int']
+  tvl: Scalars['Int']
+  escrow: Scalars['Int']
 }
 
 export type EntryActivity = {
@@ -333,15 +336,14 @@ export type AcceptBidMutation = {
   }
 }
 
-export type BuyEntryMutationVariables = Exact<{
+export type InvestEntryMutationVariables = Exact<{
   id: Scalars['String']
   amount: Scalars['Float']
-  price: Scalars['Float']
 }>
 
-export type BuyEntryMutation = {
+export type InvestEntryMutation = {
   __typename?: 'Mutation'
-  buyEntry: {
+  investEntry: {
     __typename?: 'ConditionalXDR'
     xdr?: string | null
     success: boolean
@@ -455,6 +457,9 @@ export type CreateUserWithEmailMutation = {
         artist: string
         code: string
         issuer: string
+        apr: number
+        tvl: number
+        escrow: number
       } | null
     } | null
   }
@@ -540,6 +545,9 @@ export type SignInWithTokenMutation = {
       artist: string
       code: string
       issuer: string
+      apr: number
+      tvl: number
+      escrow: number
     } | null
   }
 }
@@ -636,34 +644,6 @@ export type WithdrawToExternalWalletMutation = {
   withdrawToExternalWallet: boolean
 }
 
-export type AssetBidsQueryVariables = Exact<{
-  assetCode: Scalars['String']
-  assetIssuer: Scalars['String']
-}>
-
-export type AssetBidsQuery = {
-  __typename?: 'Query'
-  bids: Array<{
-    __typename?: 'Offer'
-    id: string
-    seller: string
-    amount: string
-    price: string
-    selling: {
-      __typename?: 'Asset'
-      asset_type: string
-      asset_code?: string | null
-      asset_issuer?: string | null
-    }
-    buying: {
-      __typename?: 'Asset'
-      asset_type: string
-      asset_code?: string | null
-      asset_issuer?: string | null
-    }
-  }>
-}
-
 export type EntryDetailsQueryVariables = Exact<{
   id: Scalars['String']
 }>
@@ -698,6 +678,10 @@ export type EntryDetailsQuery = {
       sourceAmount?: string | null
       price?: { __typename?: 'ActivityPrice'; n: number; d: number } | null
     }> | null
+    tvl: number
+    apr: number
+    escrow: number
+    shares: Array<[string, number]>
   }
 }
 
@@ -778,6 +762,9 @@ export type UserCollectionQuery = {
     artist: string
     code: string
     issuer: string
+    apr: number
+    tvl: number
+    escrow: number
   }>
 }
 
@@ -795,6 +782,9 @@ export type UserLikesQuery = {
     artist: string
     code: string
     issuer: string
+    apr: number
+    tvl: number
+    escrow: number
   }>
 }
 
@@ -849,56 +839,94 @@ export type AcceptBidMutationOptions = Apollo.BaseMutationOptions<
   AcceptBidMutation,
   AcceptBidMutationVariables
 >
-export const BuyEntryDocument = gql`
-  mutation BuyEntry($id: String!, $amount: Float!, $price: Float!) {
-    buyEntry(id: $id, amount: $amount, price: $price) {
+
+export type SubmitLinkMutation = {
+  __typename?: 'Mutation'
+  submitLink: {
+    __typename?: 'SubmitLinkResponse'
+    success: boolean | null
+    message: string | null
+  }
+}
+
+export type SubmitLinkMutationVariables = Exact<{
+  link: Scalars['String']
+  email: Scalars['String']
+}>
+
+export const SubmitLinkDocument = gql`
+  mutation SubmitLink($link: String!, $email: String!) {
+    submitLink(link: $link, email: $email) {
+      success
+      message
+    }
+  }
+`
+
+export function useSubmitLinkMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    SubmitLinkMutation,
+    SubmitLinkMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<SubmitLinkMutation, SubmitLinkMutationVariables>(
+    SubmitLinkDocument,
+    options,
+  )
+}
+
+export const InvestEntryDocument = gql`
+  mutation InvestEntry($id: String!, $amount: Float!) {
+    investEntry(id: $id, amount: $amount) {
       xdr
       success
       submitted
     }
   }
 `
-export type BuyEntryMutationFn = Apollo.MutationFunction<
-  BuyEntryMutation,
-  BuyEntryMutationVariables
+export type InvestEntryMutationFn = Apollo.MutationFunction<
+  InvestEntryMutation,
+  InvestEntryMutationVariables
 >
 
 /**
- * __useBuyEntryMutation__
+ * __useInvestEntryMutation__
  *
- * To run a mutation, you first call `useBuyEntryMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useBuyEntryMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useInvestEntryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInvestEntryMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [buyEntryMutation, { data, loading, error }] = useBuyEntryMutation({
+ * const [investEntryMutation, { data, loading, error }] = useInvestEntryMutation({
  *   variables: {
  *      id: // value for 'id'
  *      amount: // value for 'amount'
- *      price: // value for 'price'
  *   },
  * });
  */
-export function useBuyEntryMutation(
+export function useInvestEntryMutation(
   baseOptions?: Apollo.MutationHookOptions<
-    BuyEntryMutation,
-    BuyEntryMutationVariables
+    InvestEntryMutation,
+    InvestEntryMutationVariables
   >,
 ) {
   const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useMutation<BuyEntryMutation, BuyEntryMutationVariables>(
-    BuyEntryDocument,
+  return Apollo.useMutation<InvestEntryMutation, InvestEntryMutationVariables>(
+    InvestEntryDocument,
     options,
   )
 }
-export type BuyEntryMutationHookResult = ReturnType<typeof useBuyEntryMutation>
-export type BuyEntryMutationResult = Apollo.MutationResult<BuyEntryMutation>
+export type BuyEntryMutationHookResult = ReturnType<
+  typeof useInvestEntryMutation
+>
+export type BuyEntryMutationResult = Apollo.MutationResult<InvestEntryMutation>
 export type BuyEntryMutationOptions = Apollo.BaseMutationOptions<
-  BuyEntryMutation,
-  BuyEntryMutationVariables
+  InvestEntryMutation,
+  InvestEntryMutationVariables
 >
 export const CancelBidDocument = gql`
   mutation CancelBid($id: String!) {
@@ -1811,73 +1839,7 @@ export type WithdrawToExternalWalletMutationOptions =
     WithdrawToExternalWalletMutation,
     WithdrawToExternalWalletMutationVariables
   >
-export const AssetBidsDocument = gql`
-  query AssetBids($assetCode: String!, $assetIssuer: String!) {
-    bids(assetCode: $assetCode, assetIssuer: $assetIssuer) {
-      id
-      seller
-      selling {
-        asset_type
-        asset_code
-        asset_issuer
-      }
-      buying {
-        asset_type
-        asset_code
-        asset_issuer
-      }
-      amount
-      price
-    }
-  }
-`
 
-/**
- * __useAssetBidsQuery__
- *
- * To run a query within a React component, call `useAssetBidsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAssetBidsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useAssetBidsQuery({
- *   variables: {
- *      assetCode: // value for 'assetCode'
- *      assetIssuer: // value for 'assetIssuer'
- *   },
- * });
- */
-export function useAssetBidsQuery(
-  baseOptions: Apollo.QueryHookOptions<AssetBidsQuery, AssetBidsQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<AssetBidsQuery, AssetBidsQueryVariables>(
-    AssetBidsDocument,
-    options,
-  )
-}
-export function useAssetBidsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    AssetBidsQuery,
-    AssetBidsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<AssetBidsQuery, AssetBidsQueryVariables>(
-    AssetBidsDocument,
-    options,
-  )
-}
-export type AssetBidsQueryHookResult = ReturnType<typeof useAssetBidsQuery>
-export type AssetBidsLazyQueryHookResult = ReturnType<
-  typeof useAssetBidsLazyQuery
->
-export type AssetBidsQueryResult = Apollo.QueryResult<
-  AssetBidsQuery,
-  AssetBidsQueryVariables
->
 export const EntryDetailsDocument = gql`
   query entryDetails($id: String!) {
     entry(id: $id) {
@@ -1908,6 +1870,10 @@ export const EntryDetailsDocument = gql`
         }
         sourceAmount
       }
+      tvl
+      apr
+      escrow
+      shares
     }
   }
 `

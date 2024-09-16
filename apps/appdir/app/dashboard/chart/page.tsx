@@ -17,7 +17,10 @@ export const metadata: Metadata = {
 }
 
 const getChart = async () => {
-  const res = await ratingEntriesIndex.search<Entry>('', { cacheable: true })
+  const res = await ratingEntriesIndex.search<Entry>('', {
+    attributesToRetrieve: ['*'],
+    cacheable: false,
+  })
 
   if (isEmpty(res.hits)) {
     return []

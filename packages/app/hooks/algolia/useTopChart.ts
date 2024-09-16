@@ -12,6 +12,8 @@ const fetchChart = async (key: string) => {
   const response = await ratingEntriesIndex.search<Entry>('', {
     page,
     hitsPerPage: pageSize,
+    attributesToRetrieve: ['*'],
+    cacheable: false,
   })
   return filter(isSome, response.hits) as NonNullable<Entry>[]
 }

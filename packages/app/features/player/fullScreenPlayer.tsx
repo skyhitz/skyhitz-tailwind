@@ -1,10 +1,8 @@
 import { Pressable, SafeAreaView, Text, View } from 'react-native'
 import ChevronDown from 'app/ui/icons/chevron-down'
-import { LikesList } from './components/likesList'
 import { PlayerButtonsRow } from './components/playerButtonsRow'
 import { PlayerSlider } from './components/playerSlider'
 import { VideoPlayer } from 'app/ui/VideoPlayer'
-import { BuyNowBtn } from 'app/ui/buttons/BuyNowBtn'
 import { MotiView } from 'app/design/moti'
 import { entryAtom } from 'app/state/player'
 import { useRecoilValue } from 'recoil'
@@ -12,16 +10,6 @@ import { useRecoilValue } from 'recoil'
 type Props = {
   onTogglePress: () => void
   animatedStyle: any
-}
-
-function BuyNowCurrentEntry() {
-  const entry = useRecoilValue(entryAtom)
-
-  return (
-    <View className="md:hidden">
-      {entry && <BuyNowBtn size={'small'} entry={entry!} />}
-    </View>
-  )
 }
 
 function EntryInfo() {
@@ -60,7 +48,6 @@ export function FullScreenPlayer({ onTogglePress, animatedStyle }: Props) {
           <Pressable className="" onPress={onTogglePress} hitSlop={10}>
             <ChevronDown className="text-gray-600" size={24} />
           </Pressable>
-          <BuyNowCurrentEntry />
         </View>
         <View className="w-full items-center justify-between gap-y-8 md:flex-row">
           <VideoPlayer />

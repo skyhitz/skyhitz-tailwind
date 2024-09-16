@@ -53,7 +53,7 @@ export function Owners({ holders }: Props) {
   }
 
   return (
-    <CollapsableView headerText="Owners" icon={PeopleIcon}>
+    <CollapsableView headerText="Collectors" icon={PeopleIcon}>
       <View className="m-5">
         <Content />
       </View>

@@ -13,6 +13,7 @@ export const algoliaClient = algoliasearch(
 export const entriesIndex = algoliaClient.initIndex(`${appDomain}:entries`)
 export const usersIndex = algoliaClient.initIndex(`${appDomain}:users`)
 export const blogIndex = algoliaClient.initIndex(`${appDomain}:blog`)
+export const sharesIndex = algoliaClient.initIndex(`${appDomain}:shares`)
 export const ratingEntriesIndex = algoliaClient.initIndex(
   `${appDomain}:entries_rating_desc`,
 )
