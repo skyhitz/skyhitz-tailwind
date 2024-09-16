@@ -457,6 +457,9 @@ export type CreateUserWithEmailMutation = {
         artist: string
         code: string
         issuer: string
+        apr: number
+        tvl: number
+        escrow: number
       } | null
     } | null
   }
@@ -542,6 +545,9 @@ export type SignInWithTokenMutation = {
       artist: string
       code: string
       issuer: string
+      apr: number
+      tvl: number
+      escrow: number
     } | null
   }
 }
@@ -756,6 +762,9 @@ export type UserCollectionQuery = {
     artist: string
     code: string
     issuer: string
+    apr: number
+    tvl: number
+    escrow: number
   }>
 }
 
@@ -773,6 +782,9 @@ export type UserLikesQuery = {
     artist: string
     code: string
     issuer: string
+    apr: number
+    tvl: number
+    escrow: number
   }>
 }
 
