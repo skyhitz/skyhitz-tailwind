@@ -81,8 +81,8 @@ export const Hero = ({ title, desc }: HeroProps) => {
             handleSubmit,
           }: FormikProps<FormData>) => (
             <View className="flex">
-              <View className="mt-10 flex flex-row items-center gap-x-6">
-                <View className="flex flex-grow">
+              <View className="mt-10 flex flex-col items-center gap-x-6 md:flex-row">
+                <View className="flex w-full flex-grow md:w-auto">
                   <FormInputWithIcon
                     value={values.link}
                     containerClassNames="border border-white rounded md:mr-2 !py-2"
@@ -94,7 +94,7 @@ export const Hero = ({ title, desc }: HeroProps) => {
                     )}
                     onChangeText={handleChange('link')}
                     onBlur={handleBlur('link')}
-                    className="text-md border-grey-light ml-2 flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
+                    className="text-md border-grey-light flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600 md:ml-2"
                     placeholder="Music NFT link"
                     iconPosition="right"
                     keyboardType="url"
@@ -112,7 +112,7 @@ export const Hero = ({ title, desc }: HeroProps) => {
                     )}
                     onChangeText={handleChange('email')}
                     onBlur={handleBlur('email')}
-                    className="text-md border-grey-light ml-2 flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600"
+                    className="text-md border-grey-light flex-grow rounded-md border-[0.5px] px-4 py-2 font-bold text-gray-600 focus:border-gray-600 focus-visible:outline-gray-600 md:ml-2"
                     placeholder="Email"
                     iconPosition="right"
                     onSubmitEditing={() => handleSubmit()}
@@ -125,7 +125,7 @@ export const Hero = ({ title, desc }: HeroProps) => {
                   loading={loading}
                   text={submitted ? 'Done!' : 'Submit'}
                   size="default"
-                  className="mr-2"
+                  className="w-full md:mr-2 md:w-40"
                   disabled={!isValid}
                 />
               </View>
