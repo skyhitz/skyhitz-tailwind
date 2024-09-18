@@ -63,11 +63,23 @@ export function BeatListEntry({
               >
                 {entry.artist}
               </P>
+              {entry.tvl && entry.apr ? (
+                <Pressable
+                  className="flex flex-row items-center md:hidden"
+                  {...linkProps}
+                >
+                  <P className="mr-3 flex flex-row items-center text-xs leading-6">
+                    TVL : <Icon className={'mx-1'} size={10} />
+                    {tvl}
+                  </P>
+                  <P className="mr-3 text-xs leading-6">APR : {entry.apr}%</P>
+                </Pressable>
+              ) : null}
             </View>
             <View className="flex flex-row items-center">
               {entry.tvl && entry.apr ? (
                 <Pressable
-                  className="flex flex-row items-center"
+                  className="hidden flex-row items-center md:flex"
                   {...linkProps}
                 >
                   <P className="font-unbounded mr-3 flex flex-row items-center text-xs">
