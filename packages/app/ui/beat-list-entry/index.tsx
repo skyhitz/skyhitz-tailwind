@@ -65,7 +65,7 @@ export function BeatListEntry({
               </P>
             </View>
             <View className="flex flex-row items-center">
-              {entry.tvl && entry.apr && (
+              {entry.tvl && entry.apr ? (
                 <Pressable
                   className="flex flex-row items-center"
                   {...linkProps}
@@ -78,7 +78,7 @@ export function BeatListEntry({
                     APR : {entry.apr}%
                   </P>
                 </Pressable>
-              )}
+              ) : null}
 
               {Platform.OS === 'web' && (
                 <DownloadBtn size={14} className="mr-3" entry={entry} />
