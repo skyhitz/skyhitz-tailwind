@@ -9,6 +9,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
  */
 module.exports = withBundleAnalyzer({
   cacheMaxMemorySize: 0,
+
   async headers() {
     return [
       {
@@ -21,6 +22,15 @@ module.exports = withBundleAnalyzer({
           {
             key: 'Access-Control-Allow-Origin',
             value: '*',
+          },
+        ],
+      },
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-store, no-cache, must-revalidate, proxy-revalidate', // No caching for dynamic content
           },
         ],
       },
