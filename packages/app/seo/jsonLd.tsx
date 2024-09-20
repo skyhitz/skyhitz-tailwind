@@ -82,7 +82,7 @@ export default function JsonLdScript({
           image: imageUrlMedium(entry.imageUrl),
           ...(entry.description ? { description: entry.description } : {}),
           category: 'Music NFTs',
-          // aggregateRating: getAggregateRating(),
+          aggregateRating: getAggregateRating(),
         },
       })),
     }
@@ -153,7 +153,7 @@ export default function JsonLdScript({
       image: imageUrlMedium(entry.imageUrl),
       ...(entry.description ? { description: entry.description } : {}),
       category: 'Music NFTs',
-      // aggregateRating: getAggregateRating(),
+      aggregateRating: getAggregateRating(),
     }
   }
 
