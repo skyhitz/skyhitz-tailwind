@@ -30,7 +30,7 @@ const featured = {
   features: [
     {
       name: 'Music wallet setup made easy',
-      desc: 'Set up your digital wallet using email for a non custodial experience, ensuring seamless and secure transactions.',
+      desc: 'Effortlessly set up your digital wallet with just your email for a seamless and secure experience, making transactions smoother than ever.',
       icon: Wallet,
     },
     {
