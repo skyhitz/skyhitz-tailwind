@@ -21,9 +21,7 @@ export function useGetEntry({ id, serverEntry }: Props): Result {
   const skip = serverEntry !== undefined
 
   const fetchAndSet = async (id: string) => {
-    console.log('refetching entry', id)
     const entry = await getEntry(id)
-    console.log('new entry', entry)
     entry ? setEntry(entry) : null
   }
 
