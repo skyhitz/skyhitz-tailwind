@@ -131,7 +131,9 @@ export function CreateBid({ entry }: Props) {
           ) : null}
           {entry.apr ? <H2 className="text-sm">APR : {entry.apr}%</H2> : null}
           {ownershipPercentage ? (
-            <H2 className="text-sm">Share : {ownershipPercentage}%</H2>
+            <H2 className="text-sm">
+              Share : {ownershipPercentage.toFixed(4)}%
+            </H2>
           ) : null}
           <View className="flex items-center md:flex-row">
             <FormInputWithIcon
