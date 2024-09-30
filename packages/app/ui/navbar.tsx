@@ -9,9 +9,9 @@ const Navbar = ({ className }: { className?: string }) => {
 
   return (
     <View
-      className={`w-full flex-row flex-wrap items-center justify-center p-3 sm:justify-between ${className}`}
+      className={`w-full flex-row flex-wrap items-center justify-between p-3 ${className}`}
     >
-      <View className="flex sm:flex-row">
+      <View className="flex flex-row">
         <TextLink href="/">
           <View className="flex flex-row items-center justify-start">
             <View className="flex min-h-[2.25rem] flex-row items-center">
@@ -34,7 +34,7 @@ const Navbar = ({ className }: { className?: string }) => {
         )}
       </View>
       {user || userLoading ? null : (
-        <View className="hidden flex-row items-center justify-end sm:flex">
+        <View className="flex-row items-center justify-end sm:flex">
           <TextLink href="/sign-in">
             <P className="font-raleway tracking-0.5 mr-4 text-sm font-bold">
               Log in

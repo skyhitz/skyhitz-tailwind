@@ -58,9 +58,9 @@ export const Hero = ({ title, desc }: HeroProps) => {
     email: '',
   }
   return (
-    <View className="mx-auto max-w-7xl px-6 pb-24 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+    <View className="mx-auto max-w-7xl px-6 pt-8 md:flex-row md:pb-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
       <View className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-        <H1 className="mt-10 max-w-lg text-4xl font-bold tracking-tight sm:text-5xl">
+        <H1 className="mt-10 max-w-lg text-4xl font-bold !leading-tight tracking-tight sm:text-5xl">
           {title}
         </H1>
         <P className="mt-6 leading-8 text-gray-600">{desc}</P>
