@@ -11,16 +11,16 @@ export const keywords =
   'music nfts, music nft, nft music, nft for music, nft music meaning, nft and music, music nft marketplace, sell music nft, blockchain technology, non custodial, music blockchain, MFTs, music ownership, on-chain music, music creators, exclusive music nfts, download music nfts, stream music nfts, blockchain music, collect, music nft platform'
 
 export const socialDesc =
-  'Collect, stream and trade valuable music NFTs with the best music nft platform!'
+  'Collect, stream and trade valuable music NFTs with the best smart music contracts platform!'
 export const header = {
-  title: 'Discover Music with NFTs',
-  desc: 'The ultimate platform for music fans, collectors, and creators, offering a novel way to experience music nfts like never before. We enable fans to discover, stream, download and collect unique creations through a decentralized framework.  Help us grow the future of music by sharing your favorite music NFTs below!',
+  title: 'Recording Label with Smart Music Contracts',
+  desc: 'The next-gen recording label, powered by smart contracts, offering music fans, collectors, and creators a groundbreaking way to discover, stream, and invest in unique tracks. Through a decentralized platform, users can access exclusive music while empowering creators with transparent monetization.',
 }
 export const combinedTitle = `${orgName} - ${header.title}`
 const cta = {
   title: 'Redefine music ownership and accessibility',
   subtitle: 'Our Mission',
-  desc: 'We envision a future where artists have full control over their creations, fans have direct and transparent access to the best music NFT platform, and the nft music industry is reshaped through the innovative use of Ai and blockchain technology.',
+  desc: 'We envision a future where artists have full control over their creations, fans have direct and transparent access to the best releases, and the industry is reshaped through the innovative use of Ai and blockchain technology.',
   cta: 'Explore Music',
 }
 const featured = {
@@ -59,6 +59,10 @@ const featured = {
 const faq = {
   title: 'Frequently asked questions',
   faqs: [
+    {
+      question: "I'm a music creator. How can I get involved?",
+      answer: "Send us an email to ar@skyhitz.io and we'll get back to you.",
+    },
     {
       question: 'On which network are you based?',
       answer:
