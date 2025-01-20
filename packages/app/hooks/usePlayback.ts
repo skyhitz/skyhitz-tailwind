@@ -105,7 +105,9 @@ export function usePlayback() {
     shouldPlayEntry = shouldPlayRef?.current,
   ) => {
     if (!isSome(entry.videoUrl)) return
-    const videoUrl = videoSrc(entry.videoUrl, fallback)
+    const videoUrl = `https://customer-5wyqdpdu95sicqod.cloudflarestream.com/b8055eb5954991fb26474d93f01d126c/manifest/video.m3u8?parentOrigin=https%3A%2F%2Fipfs.skyhitz.io`
+    // const videoUrl = videoSrc(entry.videoUrl, fallback)
+
     if (playbackRef?.current !== null) {
       if (!fallback) {
         setPlaybackState('LOADING')
@@ -135,6 +137,7 @@ export function usePlayback() {
       setTimeoutId(id)
 
       const source = { uri: videoUrl }
+      console.log(source)
       const initialStatus = {
         shouldPlay: shouldPlayEntry,
       }
