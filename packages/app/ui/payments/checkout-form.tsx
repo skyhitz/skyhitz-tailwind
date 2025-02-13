@@ -93,12 +93,6 @@ const InnerCheckoutForm = ({ setAmount }: { setAmount: any }) => {
 
   const paymentElementOptions: StripePaymentElementOptions = {
     layout: 'accordion',
-    // fields: {
-    //   billingDetails: {
-    //     name: 'never',
-    //     address: 'never',
-    //   },
-    // },
   }
 
   const handleSubmit = async (e: any) => {
@@ -234,7 +228,7 @@ const InnerCheckoutForm = ({ setAmount }: { setAmount: any }) => {
               }
             }}
             onBlur={handleBlur('amount')}
-            placeholder="Amount"
+            placeholder="Amount (USD)"
             showFeedback={touched.amount}
             valid={!errors.amount}
             blurOnSubmit={false}
