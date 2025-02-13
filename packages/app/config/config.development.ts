@@ -1,7 +1,7 @@
 import { ConfigInterface } from './config'
 
 export const DevelopmentConfig: ConfigInterface = {
-  APP_URL: 'https://skyhitz-expo-next.vercel.app',
+  APP_URL: 'http://localhost:3000',
   GRAPHQL_URL: 'http://localhost:8000',
   HORIZON_URL: 'https://horizon-testnet.stellar.org',
   STELLAR_EXPERT_URL: 'https://stellar.expert/explorer/testnet',

@@ -135,6 +135,12 @@ export type Mutation = {
   updatePricing: ConditionalXdr
   updateUser: User
   withdrawToExternalWallet: Scalars['Boolean']
+  createPaymentIntent: PaymentIntentResponse
+}
+
+export type PaymentIntentResponse = {
+  __typename?: 'PaymentIntentResponse'
+  clientSecret: Scalars['String']
 }
 
 export type MutationAcceptBidArgs = {
@@ -334,6 +340,18 @@ export type AcceptBidMutation = {
     success: boolean
     submitted: boolean
   }
+}
+
+export type CreatePaymentIntentMutation = {
+  __typename?: 'Mutation'
+  createPaymentIntent: {
+    __typename?: 'CreatePaymentIntentResponse'
+    clientSecret: string
+  }
+}
+
+export type CreatePaymentIntentMutationVariables = {
+  amount: Scalars['Int']
 }
 
 export type InvestEntryMutationVariables = Exact<{
@@ -786,6 +804,31 @@ export type UserLikesQuery = {
     tvl: number
     escrow: number
   }>
+}
+
+export const CreatePaymentIntentDocument = gql`
+  mutation CreatePaymentIntent($amount: Int!) {
+    createPaymentIntent(amount: $amount) {
+      clientSecret
+    }
+  }
+`
+export type CreatePaymentIntentMutationFn = Apollo.MutationFunction<
+  CreatePaymentIntentMutation,
+  CreatePaymentIntentMutationVariables
+>
+
+export function useCreatePaymentIntentMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreatePaymentIntentMutation,
+    CreatePaymentIntentMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<
+    CreatePaymentIntentMutation,
+    CreatePaymentIntentMutationVariables
+  >(CreatePaymentIntentDocument, options)
 }
 
 export const AcceptBidDocument = gql`

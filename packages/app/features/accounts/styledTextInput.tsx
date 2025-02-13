@@ -6,10 +6,18 @@ import Close from 'app/ui/icons/close'
 type StyledInputProps = TextInputProps & {
   valid?: boolean
   showFeedback?: boolean
+  textInputClassName?: string
 }
 
 const StyledTextInput = React.forwardRef(function StyledTextInput(
-  { className, valid, value, showFeedback, ...rest }: StyledInputProps,
+  {
+    className,
+    valid,
+    value,
+    showFeedback,
+    textInputClassName,
+    ...rest
+  }: StyledInputProps,
   ref: ForwardedRef<TextInput>,
 ) {
   return (
@@ -19,9 +27,11 @@ const StyledTextInput = React.forwardRef(function StyledTextInput(
       )}
     >
       <TextInput
-        placeholderTextColor="white"
+        placeholderTextColor={
+          rest.placeholderTextColor ? rest.placeholderTextColor : 'white'
+        }
         autoCapitalize="none"
-        className="remove-font-padding grow text-sm leading-none text-white outline-none"
+        className={`remove-font-padding grow text-sm leading-none text-white outline-none ${textInputClassName}`}
         value={value}
         {...rest}
         ref={ref}
