@@ -10,7 +10,7 @@ import { SafeAreaView } from 'app/design/safe-area-view'
 import Like from 'app/ui/icons/like'
 import StarBorder from 'app/ui/icons/star-border'
 import { ProfileRow } from 'app/features/dashboard/profile/profileRow'
-import { Link } from 'solito/link'
+import { Link, TextLink } from 'solito/link'
 import Dollar from 'app/ui/icons/dollar'
 import { useRouter } from 'solito/navigation'
 import { useState } from 'react'
@@ -21,11 +21,8 @@ import {
   useUserCreditsQuery,
   useUserLikesQuery,
 } from 'app/api/graphql'
-import { useUserBids } from 'app/hooks/useUserBids'
 import { Config } from 'app/config'
 import { P } from 'app/design/typography'
-// import { useSendwyreCheckout } from "app/hooks/useSendwyreCheckout";
-// import { Button } from 'app/design/button'
 
 export function ProfileScreen({ user }: { user: User }) {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -35,11 +32,6 @@ export function ProfileScreen({ user }: { user: User }) {
   const { data: userCollectionData } = useUserCollectionQuery({
     variables: { userId: user.id },
   })
-  const { bids } = useUserBids(user.publicKey)
-  // TODO uncomment when production ready
-  // const { startCheckout, loading } = useSendwyreCheckout({
-  //   publicAddress: user.publicKey!,
-  // });
 
   return (
     <SafeAreaView edges={['top']} className="w-full flex-1">
@@ -92,15 +84,13 @@ export function ProfileScreen({ user }: { user: User }) {
           onPress={() => push('/dashboard/profile/collection')}
         />
       </View>
-      {/* <Button
-        text="Buy XLM"
-        onPress={startCheckout}
-        icon={Dollar}
-        loading={loading}
-        disabled={loading}
-        className="mx-auto mt-16"
-        size="large"
-      /> */}
+      <View className="bg-blue rounded-lg px-3 py-2">
+        <TextLink href={'/top-up'}>
+          <P className="tracking-0.5 p-2 text-sm font-bold text-white">
+            Top up
+          </P>
+        </TextLink>
+      </View>
 
       <LowBalanceModal
         visible={modalVisible}

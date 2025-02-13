@@ -9,7 +9,6 @@ import { useErrorReport } from 'app/hooks/useErrorReport'
 import { ComponentAuthGuard } from 'app/utils/authGuard'
 import { useToast } from 'app/provider/toast'
 import { useSWRConfig } from 'swr'
-import { getUserBidsUrl } from 'app/hooks/useUserBids'
 import { useUserAtomState } from 'app/state/user'
 import { H2, P } from 'app/design/typography'
 import { lumensToStroops, stroopsToLumens } from 'app/utils'
@@ -33,7 +32,6 @@ export function CreateBid({ entry }: Props) {
   const reportError = useErrorReport()
   const toast = useToast()
   const [loading, setLoading] = useState<boolean>(false)
-  const { mutate } = useSWRConfig()
   const { user } = useUserAtomState()
   const { refetch } = useGetEntry({
     id: entry.id,
@@ -57,7 +55,6 @@ export function CreateBid({ entry }: Props) {
       toast.show('You have successfully invested', {
         type: 'success',
       })
-      mutate(getUserBidsUrl(user!.publicKey))
       refetch()
       fetchShares()
     } catch (ex) {

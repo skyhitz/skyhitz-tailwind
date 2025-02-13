@@ -53,6 +53,15 @@ export const signUpFormSchema = Yup.object().shape({
   email: emailSchema,
 })
 
+export const topUpFormSchema = Yup.object().shape({
+  email: emailSchema,
+  amount: Yup.number()
+    .typeError('Must be a number')
+    .required('Amount is required')
+    .min(10, 'Minimal amount to top up is 10 USD')
+    .max(1000, 'Maximum amount to top up is 1000 USD'),
+})
+
 export const mintFormSchema: SchemaOf<MintForm> = object().shape({
   artist: Yup.string()
     .required('Artist name is required')
