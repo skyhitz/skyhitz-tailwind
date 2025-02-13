@@ -84,10 +84,10 @@ export function ProfileScreen({ user }: { user: User }) {
           onPress={() => push('/dashboard/profile/collection')}
         />
       </View>
-      <View className="bg-blue rounded-lg px-3 py-2">
+      <View className="bg-blue mx-auto mt-4 w-fit rounded-lg px-3 py-2">
         <TextLink href={'/top-up'}>
           <P className="tracking-0.5 p-2 text-sm font-bold text-white">
-            Top up
+            Top Up
           </P>
         </TextLink>
       </View>
