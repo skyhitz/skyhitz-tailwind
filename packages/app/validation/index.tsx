@@ -58,7 +58,7 @@ export const topUpFormSchema = Yup.object().shape({
   amount: Yup.number()
     .typeError('Must be a number')
     .required('Amount is required')
-    .min(1, 'Minimal amount to top up is 1 USD')
+    .min(10, 'Minimal amount to top up is 10 USD')
     .max(1000, 'Maximum amount to top up is 1000 USD'),
 })
 

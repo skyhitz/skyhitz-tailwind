@@ -88,7 +88,7 @@ const InnerCheckoutForm = ({ setAmount }: { setAmount: any }) => {
 
   const initialValues: FormFields = {
     email: '',
-    amount: 1,
+    amount: 10,
   }
 
   const paymentElementOptions: StripePaymentElementOptions = {
