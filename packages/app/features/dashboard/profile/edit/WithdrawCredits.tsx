@@ -1,10 +1,4 @@
-import {
-  Modal,
-  Pressable,
-  Text,
-  View,
-  KeyboardAvoidingView,
-} from 'react-native'
+import { Modal, Pressable, View, KeyboardAvoidingView } from 'react-native'
 import { useCallback, useEffect, useState } from 'react'
 import { SafeAreaView } from 'app/design/safe-area-view'
 import X from 'app/ui/icons/x'
@@ -23,6 +17,8 @@ import { useToast } from 'app/provider/toast'
 import { convertToString } from 'app/utils'
 import { Button } from 'app/design/button'
 import { P } from 'app/design/typography'
+import { ProfileRow } from 'app/features/dashboard/profile/profileRow'
+import Send from 'app/ui/icons/send'
 
 export function WithdrawCredits() {
   const [modalVisible, setModalVisible] = useState(false)
@@ -62,9 +58,12 @@ export function WithdrawCredits() {
   )
 
   return (
-    <View className="mt-8">
-      <Text className="mb-4 text-sm font-bold">Balance</Text>
-      <Button text="Withdraw" onPress={() => setModalVisible(true)} />
+    <View>
+      <ProfileRow
+        icon={<Send size={24} className="text-blue" />}
+        title="Send"
+        onPress={() => setModalVisible(true)}
+      />
       <Modal visible={modalVisible} transparent>
         <KeyboardAvoidingView behavior="padding" className="flex-1">
           <SafeAreaView className="flex flex-1 items-center justify-center px-2">
@@ -76,7 +75,7 @@ export function WithdrawCredits() {
                 <X className="text-gray-600" />
               </Pressable>
               <View className="flex w-72 items-center">
-                <P className="text-lg font-bold">Withdraw XLM</P>
+                <P className="text-lg font-bold">Send XLM</P>
                 <P className="mt-12 w-full">
                   Current Balance: {convertToString(credits?.userCredits ?? 0)}
                   XLM
@@ -110,7 +109,7 @@ export function WithdrawCredits() {
                         value={
                           values.amount > 0 ? values.amount.toString() : ''
                         }
-                        placeholder="XLM to withdraw"
+                        placeholder="XLM to send"
                         icon={Dollar}
                         containerClassNames="py-1 mt-2 w-full"
                         onChangeText={(text) => {
@@ -126,20 +125,12 @@ export function WithdrawCredits() {
 
                       <Line />
                       <P className="my-4 text-xs">
-                        Withdraw to Stellar Public Network address only. Do not
-                        send if a memo is required, funds will be lost if you
-                        send to a wallet that requires a Memo
+                        Send to Stellar Public Network address only. Do not send
+                        if a memo is required, funds will be lost if you send to
+                        a wallet that requires a Memo.
                       </P>
                       <Line />
-                      <P className="my-4 text-xs">
-                        We collect a transaction fee that equals 6% of the
-                        withdrawal amount.
-                      </P>
-                      <Line />
-                      <P className="my-4 text-sm">
-                        Withdrawal fee: {convertToString(values.amount * 0.06)}{' '}
-                        XLM
-                      </P>
+
                       {(errors.address || errors.amount || error) && (
                         <P className="my-4 min-h-5 w-full text-center text-sm text-[#d9544f]">
                           {errors.address || errors.amount || error?.message}

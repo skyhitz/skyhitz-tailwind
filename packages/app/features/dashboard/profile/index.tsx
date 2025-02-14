@@ -1,5 +1,5 @@
 'use client'
-import { View } from 'react-native'
+import { Platform, View } from 'react-native'
 import {
   ProfileHeader,
   SocialLinks,
@@ -23,6 +23,7 @@ import {
 } from 'app/api/graphql'
 import { Config } from 'app/config'
 import { P } from 'app/design/typography'
+import { WithdrawCredits } from 'app/features/dashboard/profile/edit/WithdrawCredits'
 
 export function ProfileScreen({ user }: { user: User }) {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -83,6 +84,7 @@ export function ProfileScreen({ user }: { user: User }) {
           title="Collection"
           onPress={() => push('/dashboard/profile/collection')}
         />
+        {Platform.OS !== 'ios' && <WithdrawCredits />}
       </View>
       <View className="bg-blue mx-auto mt-4 w-fit rounded-lg px-3 py-2">
         <TextLink href={'/top-up'}>

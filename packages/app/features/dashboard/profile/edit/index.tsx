@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react'
 import { User, useUpdateUserMutation } from 'app/api/graphql'
 import { Formik, FormikProps } from 'formik'
 import { LogOutBtn } from 'app/features/dashboard/profile/edit/logOutBtn'
-import { WithdrawCredits } from 'app/features/dashboard/profile/edit/WithdrawCredits'
 import { useUserAtomState } from 'app/state/user'
 import { FormInputWithIcon } from 'app/ui/inputs/FormInputWithIcon'
 import { useRouter } from 'solito/navigation'
@@ -162,7 +161,6 @@ export default function EditProfileScreen({ user }: { user: User }) {
               error={errors.email}
             />
             <Line />
-            {user.managed && Platform.OS !== 'ios' && <WithdrawCredits />}
           </View>
           <Text className="px-4 pb-2 pt-8 text-sm font-bold">More</Text>
           <LogOutBtn />
