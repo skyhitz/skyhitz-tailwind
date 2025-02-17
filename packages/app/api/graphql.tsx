@@ -56,7 +56,6 @@ export type ConditionalXdr = {
 export type Entry = {
   __typename?: 'Entry'
   artist: Scalars['String']
-  code: Scalars['String']
   description?: Maybe<Scalars['String']>
   id: Scalars['String']
   imageUrl: Scalars['String']
@@ -86,7 +85,6 @@ export type EntryActivity = {
 export type EntryDetails = {
   __typename?: 'EntryDetails'
   artist: Scalars['String']
-  code: Scalars['String']
   description?: Maybe<Scalars['String']>
   history?: Maybe<Array<EntryActivity>>
   holders?: Maybe<Array<EntryHolder>>
@@ -168,7 +166,6 @@ export type MutationCreateBidArgs = {
 }
 
 export type MutationCreateEntryArgs = {
-  code: Scalars['String']
   equityForSale: Scalars['Float']
   fileCid: Scalars['String']
   forSale: Scalars['Boolean']
@@ -424,7 +421,6 @@ export type CreateBidMutation = {
 export type CreateEntryMutationVariables = Exact<{
   fileCid: Scalars['String']
   metaCid: Scalars['String']
-  code: Scalars['String']
   forSale: Scalars['Boolean']
   price: Scalars['Int']
   equityForSale: Scalars['Float']
@@ -473,7 +469,6 @@ export type CreateUserWithEmailMutation = {
         title: string
         id: string
         artist: string
-        code: string
         issuer: string
         apr: number
         tvl: number
@@ -503,7 +498,6 @@ export type IndexEntryMutation = {
     title: string
     id: string
     artist: string
-    code: string
     issuer: string
   }
 }
@@ -561,7 +555,6 @@ export type SignInWithTokenMutation = {
       title: string
       id: string
       artist: string
-      code: string
       issuer: string
       apr: number
       tvl: number
@@ -596,7 +589,6 @@ export type SignInWithXdrMutation = {
       title: string
       id: string
       artist: string
-      code: string
       issuer: string
     } | null
   }
@@ -676,7 +668,6 @@ export type EntryDetailsQuery = {
     title: string
     id: string
     artist: string
-    code: string
     issuer: string
     holders?: Array<{
       __typename?: 'EntryHolder'
@@ -754,7 +745,6 @@ export type AuthenticatedUserQuery = {
       title: string
       id: string
       artist: string
-      code: string
       issuer: string
     } | null
   }
@@ -778,7 +768,6 @@ export type UserCollectionQuery = {
     title: string
     id: string
     artist: string
-    code: string
     issuer: string
     apr: number
     tvl: number
@@ -798,7 +787,6 @@ export type UserLikesQuery = {
     title: string
     id: string
     artist: string
-    code: string
     issuer: string
     apr: number
     tvl: number
@@ -1239,7 +1227,6 @@ export const CreateUserWithEmailDocument = gql`
           title
           id
           artist
-          code
           issuer
         }
       }
@@ -1346,7 +1333,6 @@ export const IndexEntryDocument = gql`
       title
       id
       artist
-      code
       issuer
     }
   }
@@ -1558,7 +1544,6 @@ export const SignInWithTokenDocument = gql`
         title
         id
         artist
-        code
         issuer
       }
     }
@@ -1628,7 +1613,6 @@ export const SignInWithXdrDocument = gql`
         title
         id
         artist
-        code
         issuer
       }
     }
@@ -1892,7 +1876,6 @@ export const EntryDetailsDocument = gql`
       title
       id
       artist
-      code
       issuer
       holders {
         account
@@ -2104,7 +2087,6 @@ export const AuthenticatedUserDocument = gql`
         title
         id
         artist
-        code
         issuer
       }
       twitter
@@ -2224,7 +2206,6 @@ export const UserCollectionDocument = gql`
       title
       id
       artist
-      code
       issuer
     }
   }
@@ -2289,7 +2270,6 @@ export const UserLikesDocument = gql`
       title
       id
       artist
-      code
       issuer
     }
   }
