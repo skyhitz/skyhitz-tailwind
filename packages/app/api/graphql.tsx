@@ -9,7 +9,7 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
   [SubKey in K]?: Maybe<T[SubKey]>
 }
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>
+  [SubKey in K]?: Maybe<T[SubKey]>
 }
 const defaultOptions = {} as const
 /** All built-in and custom scalars, mapped to their actual values */
@@ -59,7 +59,6 @@ export type Entry = {
   description?: Maybe<Scalars['String']>
   id: Scalars['String']
   imageUrl: Scalars['String']
-  issuer: Scalars['String']
   title: Scalars['String']
   videoUrl: Scalars['String']
   apr: Scalars['Int']
@@ -90,7 +89,6 @@ export type EntryDetails = {
   holders?: Maybe<Array<EntryHolder>>
   id: Scalars['String']
   imageUrl: Scalars['String']
-  issuer: Scalars['String']
   title: Scalars['String']
   videoUrl: Scalars['String']
 }
@@ -469,7 +467,6 @@ export type CreateUserWithEmailMutation = {
         title: string
         id: string
         artist: string
-        issuer: string
         apr: number
         tvl: number
         escrow: number
@@ -498,7 +495,6 @@ export type IndexEntryMutation = {
     title: string
     id: string
     artist: string
-    issuer: string
   }
 }
 
@@ -555,7 +551,6 @@ export type SignInWithTokenMutation = {
       title: string
       id: string
       artist: string
-      issuer: string
       apr: number
       tvl: number
       escrow: number
@@ -589,7 +584,6 @@ export type SignInWithXdrMutation = {
       title: string
       id: string
       artist: string
-      issuer: string
     } | null
   }
 }
@@ -668,7 +662,6 @@ export type EntryDetailsQuery = {
     title: string
     id: string
     artist: string
-    issuer: string
     holders?: Array<{
       __typename?: 'EntryHolder'
       account: string
@@ -745,7 +738,6 @@ export type AuthenticatedUserQuery = {
       title: string
       id: string
       artist: string
-      issuer: string
     } | null
   }
 }
@@ -768,7 +760,6 @@ export type UserCollectionQuery = {
     title: string
     id: string
     artist: string
-    issuer: string
     apr: number
     tvl: number
     escrow: number
@@ -787,7 +778,6 @@ export type UserLikesQuery = {
     title: string
     id: string
     artist: string
-    issuer: string
     apr: number
     tvl: number
     escrow: number
@@ -1227,7 +1217,9 @@ export const CreateUserWithEmailDocument = gql`
           title
           id
           artist
-          issuer
+          apr
+          tvl
+          escrow
         }
       }
     }
@@ -1333,7 +1325,6 @@ export const IndexEntryDocument = gql`
       title
       id
       artist
-      issuer
     }
   }
 `
@@ -1544,7 +1535,6 @@ export const SignInWithTokenDocument = gql`
         title
         id
         artist
-        issuer
       }
     }
   }
@@ -1613,7 +1603,6 @@ export const SignInWithXdrDocument = gql`
         title
         id
         artist
-        issuer
       }
     }
   }
@@ -1876,7 +1865,6 @@ export const EntryDetailsDocument = gql`
       title
       id
       artist
-      issuer
       holders {
         account
         balance
@@ -2087,7 +2075,6 @@ export const AuthenticatedUserDocument = gql`
         title
         id
         artist
-        issuer
       }
       twitter
       instagram
@@ -2206,7 +2193,6 @@ export const UserCollectionDocument = gql`
       title
       id
       artist
-      issuer
     }
   }
 `
@@ -2270,7 +2256,6 @@ export const UserLikesDocument = gql`
       title
       id
       artist
-      issuer
     }
   }
 `
