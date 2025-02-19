@@ -20,6 +20,7 @@ const getChart = async () => {
   const res = await ratingEntriesIndex.search<Entry>('', {
     attributesToRetrieve: ['*'],
     cacheable: false,
+    facets: ['apr'],
   })
 
   if (isEmpty(res.hits)) {

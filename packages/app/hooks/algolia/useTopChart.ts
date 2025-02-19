@@ -13,6 +13,7 @@ const fetchChart = async (key: string) => {
     page,
     hitsPerPage: pageSize,
     attributesToRetrieve: ['*'],
+    facets: ['apr'],
     cacheable: false,
   })
   return filter(isSome, response.hits) as NonNullable<Entry>[]
