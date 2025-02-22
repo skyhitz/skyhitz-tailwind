@@ -38,7 +38,7 @@ export function BeatListEntry({
       {({ hovered }: PressableState): ReactElement => {
         return (
           <View className="flex flex-row items-center py-2">
-            <View className="aspect-[2/2] w-16 object-cover">
+            <View className="aspect-[2/2] w-12 object-cover">
               <SolitoImage
                 src={imageUrlSmall(entry.imageUrl)}
                 alt={entry.title}
@@ -49,7 +49,7 @@ export function BeatListEntry({
               />
             </View>
             {spot && (
-              <P className="ml-2 w-11 text-center text-2xl leading-none">
+              <P className="ml-2 w-8 text-center text-2xl leading-none">
                 {spot}
               </P>
             )}
