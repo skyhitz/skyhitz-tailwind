@@ -1,7 +1,7 @@
 import { SignInParam } from 'app/hooks/param/useSignInParam'
 import { useEffect } from 'react'
 import { useLogIn } from 'app/hooks/useLogIn'
-import { useSignInWithTokenMutation } from 'app/api/graphql'
+import { User, useSignInWithTokenMutation } from 'app/api/graphql'
 import { useRouter } from 'solito/navigation'
 import { P, ActivityIndicator } from 'app/design/typography'
 import { Button } from 'app/design/button'
@@ -26,7 +26,7 @@ export function AuthenticationView({
           },
         })
         if (data?.signInWithToken) {
-          logIn(data.signInWithToken)
+          logIn(data.signInWithToken as User)
         }
       } catch (ex) {
         //no-op

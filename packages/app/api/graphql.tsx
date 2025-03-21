@@ -467,9 +467,6 @@ export type CreateUserWithEmailMutation = {
         title: string
         id: string
         artist: string
-        apr: number
-        tvl: number
-        escrow: number
       } | null
     } | null
   }
@@ -551,9 +548,6 @@ export type SignInWithTokenMutation = {
       title: string
       id: string
       artist: string
-      apr: number
-      tvl: number
-      escrow: number
     } | null
   }
 }
@@ -1217,9 +1211,6 @@ export const CreateUserWithEmailDocument = gql`
           title
           id
           artist
-          apr
-          tvl
-          escrow
         }
       }
     }

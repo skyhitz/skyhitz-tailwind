@@ -10,7 +10,7 @@ import { Platform, TextInput, KeyboardAvoidingView } from 'react-native'
 import StyledTextInput from 'app/features/accounts/styledTextInput'
 import { Formik, FormikProps } from 'formik'
 import { useEffect, useRef, useState } from 'react'
-import { useCreateUserWithEmailMutation } from 'app/api/graphql'
+import { useCreateUserWithEmailMutation, User } from 'app/api/graphql'
 import { signUpFormSchema } from 'app/validation'
 import { useRouter } from 'solito/navigation'
 import { isEmpty } from 'ramda'
@@ -34,7 +34,7 @@ export function SignUp() {
     // if the user is returned, it means we are already logged in
     // cause we provided signedXDR
     if (data?.createUserWithEmail?.user) {
-      logIn(data.createUserWithEmail.user)
+      logIn(data.createUserWithEmail.user as User)
     } else if (data?.createUserWithEmail) {
       replace('/sign-in')
     }
