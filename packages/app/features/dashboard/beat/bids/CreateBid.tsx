@@ -1,6 +1,10 @@
 import { View } from 'react-native'
 import { Button } from 'app/design/button'
-import { Entry, useInvestEntryMutation } from 'app/api/graphql'
+import {
+  Entry,
+  useInvestEntryMutation,
+  useUserCreditsQuery,
+} from 'app/api/graphql'
 import Dollar from 'app/ui/icons/dollar'
 import { FormInputWithIcon } from 'app/ui/inputs/FormInputWithIcon'
 import PieChartIcon from 'app/ui/icons/pie'
@@ -27,6 +31,7 @@ export function CreateBid({ entry }: Props) {
   const [shares, setShares] = useState(0)
 
   const [invest] = useInvestEntryMutation()
+  const { refetch: refetchCredits } = useUserCreditsQuery()
 
   const [equityToBuy, setEquityToBuy] = useState('')
   const reportError = useErrorReport()
@@ -49,19 +54,43 @@ export function CreateBid({ entry }: Props) {
       if (!data?.investEntry.success) {
         throw Error('Error during transaction creation.')
       }
-      setLoading(false)
+
+      // Reset form fields
       setAmountToInvest('')
       setEquityToBuy('')
-      toast.show('You have successfully invested', {
-        type: 'success',
-      })
+
+      // Fetch updated data
       refetch()
-      fetchShares()
+      await fetchShares()
+
+      // Get the latest user credits data
+      const { data: creditsData } = await refetchCredits()
+      const newBalance = creditsData?.userCredits
+        ? stroopsToLumens(creditsData.userCredits)
+        : 0
+
+      // Show toast with balance information
+      toast.show(
+        `Investment successful! Your new balance is ${newBalance.toFixed(
+          2,
+        )} XLM`,
+        {
+          type: 'success',
+        },
+      )
+      setLoading(false)
     } catch (ex) {
       setLoading(false)
       reportError(ex)
     }
-  }, [amountToInvest, equityToBuy, setLoading, toast, reportError])
+  }, [
+    amountToInvest,
+    equityToBuy,
+    setLoading,
+    toast,
+    reportError,
+    refetchCredits,
+  ])
 
   const fetchShares = async () => {
     if (!user) {
