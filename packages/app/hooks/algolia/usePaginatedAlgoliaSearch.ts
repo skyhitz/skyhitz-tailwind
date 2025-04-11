@@ -33,6 +33,7 @@ export function usePaginatedAlgoliaSearch<T>({
     dedupingInterval: 10000,
     revalidateOnFocus: true,
     revalidateOnMount: true,
+    revalidateIfStale: true,
     revalidateAll: true,
   })
 
