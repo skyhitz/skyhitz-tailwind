@@ -64,9 +64,7 @@ export function CreateBid({ entry }: Props) {
 
       // Get the latest user credits data
       const { data: creditsData } = await refetchCredits()
-      const newBalance = creditsData?.userCredits
-        ? stroopsToLumens(creditsData.userCredits)
-        : 0
+      const newBalance = creditsData?.userCredits ?? 0
 
       // Show toast with balance information
       toast.show(
