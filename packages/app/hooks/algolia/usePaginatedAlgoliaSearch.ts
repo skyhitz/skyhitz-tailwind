@@ -30,7 +30,9 @@ export function usePaginatedAlgoliaSearch<T>({
   )
 
   const { data, error, size, setSize } = useSWRInfinite(getKey, fetcher, {
-    dedupingInterval: 300000,
+    dedupingInterval: 10000,
+    revalidateOnFocus: true,
+    revalidateOnMount: true,
     revalidateAll: true,
   })
 
@@ -44,7 +46,7 @@ export function usePaginatedAlgoliaSearch<T>({
     if (!isLoadingMore && loadMoreEnabled) {
       setSize(size + 1)
     }
-  }, [isLoadingMore])
+  }, [isLoadingMore, loadMoreEnabled, setSize, size])
 
   const flattenData = useMemo(() => {
     if (data) {
