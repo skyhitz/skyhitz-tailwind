@@ -557,11 +557,6 @@ export type SignInWithTokenMutation = {
       id: string
       artist: string
     } | null
-    claimEarnings?: {
-      __typename?: 'ClaimEarningsResponse'
-      success: boolean
-      totalClaimedAmount: number
-    } | null
   }
 }
 
@@ -2318,12 +2313,12 @@ export type UserLikesQueryResult = Apollo.QueryResult<
 
 export type ClaimEarningsMutationVariables = Exact<{ [key: string]: never }>
 
-export type ClaimEarningsMutation = { 
+export type ClaimEarningsMutation = {
   __typename?: 'Mutation'
-  claimEarnings: { 
+  claimEarnings: {
     __typename?: 'ClaimEarningsResponse'
-    success: boolean 
-    totalClaimedAmount: number 
+    success: boolean
+    totalClaimedAmount: number
   }
 }
 
