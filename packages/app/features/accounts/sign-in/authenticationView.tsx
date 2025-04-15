@@ -6,6 +6,7 @@ import { useRouter } from 'solito/navigation'
 import { P, ActivityIndicator } from 'app/design/typography'
 import { Button } from 'app/design/button'
 import { View } from 'react-native'
+import { useToast } from 'app/provider/toast'
 
 export function AuthenticationView({
   signInParam,
@@ -15,6 +16,7 @@ export function AuthenticationView({
   const [signIn, { error }] = useSignInWithTokenMutation()
   const { push } = useRouter()
   const logIn = useLogIn()
+  const toast = useToast()
 
   useEffect(() => {
     const trySignIn = async () => {
@@ -27,13 +29,24 @@ export function AuthenticationView({
         })
         if (data?.signInWithToken) {
           logIn(data.signInWithToken as User)
+
+          // Show toast for claimed earnings if successful
+          if (
+            data.signInWithToken.claimEarnings?.success &&
+            data.signInWithToken.claimEarnings.totalClaimedAmount > 0
+          ) {
+            toast.show(
+              `Successfully claimed ${data.signInWithToken.claimEarnings.totalClaimedAmount} XLM!`,
+              { type: 'success' },
+            )
+          }
         }
       } catch (ex) {
         //no-op
       }
     }
     trySignIn()
-  }, [signInParam, signIn, logIn])
+  }, [signInParam, signIn, logIn, toast])
 
   return (
     <View className="flex w-72 items-center">

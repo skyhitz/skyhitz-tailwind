@@ -223,12 +223,12 @@ export type MutationUpdatePricingArgs = {
 export type MutationUpdateUserArgs = {
   avatarUrl?: InputMaybe<Scalars['String']>
   backgroundUrl?: InputMaybe<Scalars['String']>
-  description?: InputMaybe<Scalars['String']>
   displayName?: InputMaybe<Scalars['String']>
-  email?: InputMaybe<Scalars['String']>
-  instagram?: InputMaybe<Scalars['String']>
-  twitter?: InputMaybe<Scalars['String']>
+  description?: InputMaybe<Scalars['String']>
   username?: InputMaybe<Scalars['String']>
+  email?: InputMaybe<Scalars['String']>
+  twitter?: InputMaybe<Scalars['String']>
+  instagram?: InputMaybe<Scalars['String']>
 }
 
 export type MutationWithdrawToExternalWalletArgs = {
@@ -549,6 +549,11 @@ export type SignInWithTokenMutation = {
       id: string
       artist: string
     } | null
+    claimEarnings?: {
+      __typename?: 'ClaimEarningsResponse'
+      success: boolean
+      totalClaimedAmount: number
+    } | null
   }
 }
 
@@ -671,8 +676,8 @@ export type EntryDetailsQuery = {
       tx: string
       offer?: string | null
       amount?: string | null
-      sourceAmount?: string | null
       price?: { __typename?: 'ActivityPrice'; n: number; d: number } | null
+      sourceAmount?: string | null
     }> | null
     tvl: number
     apr: number
