@@ -1,16 +1,11 @@
 import { SignInParam } from 'app/hooks/param/useSignInParam'
 import { useEffect } from 'react'
 import { useLogIn } from 'app/hooks/useLogIn'
-import {
-  User,
-  useSignInWithTokenMutation,
-  useClaimEarningsMutation,
-} from 'app/api/graphql'
+import { User, useSignInWithTokenMutation } from 'app/api/graphql'
 import { useRouter } from 'solito/navigation'
 import { P, ActivityIndicator } from 'app/design/typography'
 import { Button } from 'app/design/button'
 import { View } from 'react-native'
-import { useToast } from 'app/provider/toast'
 
 export function AuthenticationView({
   signInParam,
@@ -18,10 +13,8 @@ export function AuthenticationView({
   signInParam: SignInParam
 }) {
   const [signIn, { error }] = useSignInWithTokenMutation()
-  const [claimEarnings] = useClaimEarningsMutation()
   const { push } = useRouter()
   const logIn = useLogIn()
-  const toast = useToast()
 
   useEffect(() => {
     const trySignIn = async () => {
@@ -34,29 +27,13 @@ export function AuthenticationView({
         })
         if (data?.signInWithToken) {
           logIn(data.signInWithToken as User)
-
-          // After successful sign-in, claim earnings
-          try {
-            const earningsResult = await claimEarnings()
-            if (
-              earningsResult.data?.claimEarnings.success &&
-              earningsResult.data.claimEarnings.totalClaimedAmount > 0
-            ) {
-              toast.show(
-                `Successfully claimed ${earningsResult.data.claimEarnings.totalClaimedAmount} XLM!`,
-                { type: 'success' },
-              )
-            }
-          } catch (claimError) {
-            console.error('Error claiming earnings:', claimError)
-          }
         }
       } catch (ex) {
         //no-op
       }
     }
     trySignIn()
-  }, [signInParam, signIn, logIn, toast, claimEarnings])
+  }, [signInParam, signIn, logIn])
 
   return (
     <View className="flex w-72 items-center">

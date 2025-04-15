@@ -13,26 +13,55 @@ import { ProfileRow } from 'app/features/dashboard/profile/profileRow'
 import { Link, TextLink } from 'solito/link'
 import Dollar from 'app/ui/icons/dollar'
 import { useRouter } from 'solito/navigation'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { LowBalanceModal } from './LowBalanceModal'
 import {
   User,
   useUserCollectionQuery,
   useUserCreditsQuery,
   useUserLikesQuery,
+  useClaimEarningsMutation,
 } from 'app/api/graphql'
 import { Config } from 'app/config'
-import { P } from 'app/design/typography'
+import { P, ActivityIndicator } from 'app/design/typography'
+import { useToast } from 'app/provider/toast'
 import { WithdrawCredits } from 'app/features/dashboard/profile/edit/WithdrawCredits'
 
 export function ProfileScreen({ user }: { user: User }) {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
+  const [isClaimingEarnings, setIsClaimingEarnings] = useState(false)
   const { data: credits } = useUserCreditsQuery()
   const { push } = useRouter()
   const { data: userLikesData } = useUserLikesQuery()
   const { data: userCollectionData } = useUserCollectionQuery({
     variables: { userId: user.id },
   })
+  const [claimEarnings] = useClaimEarningsMutation()
+  const toast = useToast()
+
+  // Attempt to claim earnings when the profile screen loads
+  useEffect(() => {
+    const attemptClaimEarnings = async () => {
+      try {
+        setIsClaimingEarnings(true)
+        const earningsResult = await claimEarnings()
+        if (
+          earningsResult.data?.claimEarnings.success &&
+          earningsResult.data.claimEarnings.totalClaimedAmount > 0
+        ) {
+          toast.show(
+            `Successfully claimed ${earningsResult.data.claimEarnings.totalClaimedAmount} XLM!`,
+            { type: 'success' },
+          )
+        }
+      } catch (error) {
+        console.error('Error claiming earnings:', error)
+      } finally {
+        setIsClaimingEarnings(false)
+      }
+    }
+    attemptClaimEarnings()
+  }, [claimEarnings, toast])
 
   return (
     <SafeAreaView edges={['top']} className="w-full flex-1">
@@ -86,6 +115,12 @@ export function ProfileScreen({ user }: { user: User }) {
         />
         {Platform.OS !== 'ios' && <WithdrawCredits />}
       </View>
+      {isClaimingEarnings && (
+        <View className="mx-auto mt-4 flex-row items-center justify-center">
+          <ActivityIndicator size="small" />
+          <P className="ml-2">Claiming earnings...</P>
+        </View>
+      )}
       <View className="bg-blue mx-auto mt-4 w-32 rounded-lg">
         <TextLink href={'/top-up'} className="flex items-center justify-center">
           <P className="tracking-0.5 flex items-center justify-center p-2 text-sm font-bold text-white">
