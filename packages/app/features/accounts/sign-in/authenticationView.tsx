@@ -1,7 +1,11 @@
 import { SignInParam } from 'app/hooks/param/useSignInParam'
 import { useEffect } from 'react'
 import { useLogIn } from 'app/hooks/useLogIn'
-import { User, useSignInWithTokenMutation } from 'app/api/graphql'
+import {
+  User,
+  useSignInWithTokenMutation,
+  useClaimEarningsMutation,
+} from 'app/api/graphql'
 import { useRouter } from 'solito/navigation'
 import { P, ActivityIndicator } from 'app/design/typography'
 import { Button } from 'app/design/button'
@@ -14,6 +18,7 @@ export function AuthenticationView({
   signInParam: SignInParam
 }) {
   const [signIn, { error }] = useSignInWithTokenMutation()
+  const [claimEarnings] = useClaimEarningsMutation()
   const { push } = useRouter()
   const logIn = useLogIn()
   const toast = useToast()
@@ -30,15 +35,20 @@ export function AuthenticationView({
         if (data?.signInWithToken) {
           logIn(data.signInWithToken as User)
 
-          // Show toast for claimed earnings if successful
-          if (
-            data.signInWithToken.claimEarnings?.success &&
-            data.signInWithToken.claimEarnings.totalClaimedAmount > 0
-          ) {
-            toast.show(
-              `Successfully claimed ${data.signInWithToken.claimEarnings.totalClaimedAmount} XLM!`,
-              { type: 'success' },
-            )
+          // After successful sign-in, claim earnings
+          try {
+            const earningsResult = await claimEarnings()
+            if (
+              earningsResult.data?.claimEarnings.success &&
+              earningsResult.data.claimEarnings.totalClaimedAmount > 0
+            ) {
+              toast.show(
+                `Successfully claimed ${earningsResult.data.claimEarnings.totalClaimedAmount} XLM!`,
+                { type: 'success' },
+              )
+            }
+          } catch (claimError) {
+            console.error('Error claiming earnings:', claimError)
           }
         }
       } catch (ex) {
@@ -46,7 +56,7 @@ export function AuthenticationView({
       }
     }
     trySignIn()
-  }, [signInParam, signIn, logIn, toast])
+  }, [signInParam, signIn, logIn, toast, claimEarnings])
 
   return (
     <View className="flex w-72 items-center">

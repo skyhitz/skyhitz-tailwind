@@ -39,6 +39,12 @@ export type Asset = {
   asset_type: Scalars['String']
 }
 
+export type ClaimEarningsResponse = {
+  __typename?: 'ClaimEarningsResponse'
+  success: Scalars['Boolean']
+  totalClaimedAmount: Scalars['Int']
+}
+
 export type ConditionalUser = {
   __typename?: 'ConditionalUser'
   message: Scalars['String']
@@ -117,11 +123,13 @@ export type Mutation = {
   buyEntry: ConditionalXdr
   cancelBid: ConditionalXdr
   changeWallet: User
+  claimEarnings: ClaimEarningsResponse
   createBid: ConditionalXdr
   createEntry: ConditionalXdr
   createUserWithEmail: ConditionalUser
   hideBid: Scalars['Boolean']
   indexEntry: Entry
+  investEntry: ConditionalXdr
   likeEntry: Scalars['Boolean']
   removeEntry: Scalars['Boolean']
   requestToken: Scalars['Boolean']
@@ -2306,4 +2314,68 @@ export type UserLikesLazyQueryHookResult = ReturnType<
 export type UserLikesQueryResult = Apollo.QueryResult<
   UserLikesQuery,
   UserLikesQueryVariables
+>
+
+export type ClaimEarningsMutationVariables = Exact<{ [key: string]: never }>
+
+export type ClaimEarningsMutation = { 
+  __typename?: 'Mutation'
+  claimEarnings: { 
+    __typename?: 'ClaimEarningsResponse'
+    success: boolean 
+    totalClaimedAmount: number 
+  }
+}
+
+export const ClaimEarningsDocument = gql`
+  mutation claimEarnings {
+    claimEarnings {
+      success
+      totalClaimedAmount
+    }
+  }
+`
+
+export type ClaimEarningsMutationFn = Apollo.MutationFunction<
+  ClaimEarningsMutation,
+  ClaimEarningsMutationVariables
+>
+
+/**
+ * __useClaimEarningsMutation__
+ *
+ * To run a mutation, you first call `useClaimEarningsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useClaimEarningsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [claimEarningsMutation, { data, loading, error }] = useClaimEarningsMutation({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useClaimEarningsMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    ClaimEarningsMutation,
+    ClaimEarningsMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useMutation<
+    ClaimEarningsMutation,
+    ClaimEarningsMutationVariables
+  >(ClaimEarningsDocument, options)
+}
+
+export type ClaimEarningsMutationHookResult = ReturnType<
+  typeof useClaimEarningsMutation
+>
+export type ClaimEarningsMutationResult =
+  Apollo.MutationResult<ClaimEarningsMutation>
+export type ClaimEarningsMutationOptions = Apollo.BaseMutationOptions<
+  ClaimEarningsMutation,
+  ClaimEarningsMutationVariables
 >
