@@ -1535,10 +1535,6 @@ export const SignInWithTokenDocument = gql`
         id
         artist
       }
-      claimEarnings {
-        success
-        totalClaimedAmount
-      }
     }
   }
 `
