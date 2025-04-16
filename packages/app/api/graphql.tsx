@@ -39,10 +39,19 @@ export type Asset = {
   asset_type: Scalars['String']
 }
 
+export type ClaimedEntry = {
+  __typename?: 'ClaimedEntry'
+  entryId: Scalars['String']
+  amount: Scalars['Float']
+}
+
 export type ClaimEarningsResponse = {
   __typename?: 'ClaimEarningsResponse'
   success: Scalars['Boolean']
-  totalClaimedAmount: Scalars['Int']
+  totalClaimedAmount: Scalars['Float']
+  claimedEntries: Array<ClaimedEntry>
+  message?: Scalars['String']
+  lastClaimTime?: Scalars['String']
 }
 
 export type ConditionalUser = {
@@ -2315,6 +2324,13 @@ export type ClaimEarningsMutation = {
     __typename?: 'ClaimEarningsResponse'
     success: boolean
     totalClaimedAmount: number
+    claimedEntries: Array<{
+      __typename?: 'ClaimedEntry'
+      entryId: string
+      amount: number
+    }>
+    message?: string | null
+    lastClaimTime?: string | null
   }
 }
 
@@ -2323,6 +2339,12 @@ export const ClaimEarningsDocument = gql`
     claimEarnings {
       success
       totalClaimedAmount
+      claimedEntries {
+        entryId
+        amount
+      }
+      message
+      lastClaimTime
     }
   }
 `

@@ -14,7 +14,7 @@ import { Link, TextLink } from 'solito/link'
 import Dollar from 'app/ui/icons/dollar'
 import { useRouter } from 'solito/navigation'
 import { useState, useEffect } from 'react'
-import { SecureStorage } from 'app/utils/secure-storage'
+// SecureStorage no longer needed for cooldown
 import { LowBalanceModal } from './LowBalanceModal'
 import {
   User,
@@ -42,49 +42,51 @@ export function ProfileScreen({ user }: { user: User }) {
 
   // Attempt to claim earnings when the profile screen loads
   useEffect(() => {
-    const CLAIM_COOLDOWN_KEY = `last_claim_timestamp_${user.id}`
-    const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000 // 24 hours in milliseconds
-    
     const attemptClaimEarnings = async () => {
       try {
-        // Check when the user last claimed earnings
-        const lastClaimTimestamp = await SecureStorage.get(CLAIM_COOLDOWN_KEY)
-        const currentTime = Date.now()
-        
-        if (lastClaimTimestamp) {
-          const timeSinceLastClaim = currentTime - parseInt(lastClaimTimestamp)
-          
-          // If it's been less than a day since the last claim, don't claim again
-          if (timeSinceLastClaim < ONE_DAY_IN_MS) {
-            console.log('Earnings already claimed within the last 24 hours')
-            return
-          }
-        }
-        
         setIsClaimingEarnings(true)
         const earningsResult = await claimEarnings()
+        const response = earningsResult.data?.claimEarnings
         
-        if (
-          earningsResult.data?.claimEarnings.success &&
-          earningsResult.data.claimEarnings.totalClaimedAmount > 0
-        ) {
-          // Store the current timestamp as the last claim time
-          await SecureStorage.save(CLAIM_COOLDOWN_KEY, currentTime.toString())
-          
-          toast.show(
-            `Successfully claimed ${earningsResult.data.claimEarnings.totalClaimedAmount} XLM!`,
-            { type: 'success' },
-          )
+        if (response?.success) {
+          if (response.totalClaimedAmount > 0) {
+            toast.show(
+              `Successfully claimed ${response.totalClaimedAmount} XLM!`,
+              { type: 'success' },
+            )
+          } else {
+            // No earnings to claim
+            toast.show(
+              response.message || 'No earnings available to claim at this time',
+              { type: 'info' },
+            )
+          }
+        } else {
+          // Claim failed with a specific message
+          if (response?.message?.includes('24 hours') || response?.lastClaimTime) {
+            // This is a cooldown message
+            toast.show(
+              response.message || 'You can only claim earnings once every 24 hours',
+              { type: 'info' },
+            )
+          } else {
+            // Generic error
+            toast.show(
+              response?.message || 'Failed to claim earnings',
+              { type: 'danger' },
+            )
+          }
         }
       } catch (error) {
         console.error('Error claiming earnings:', error)
+        toast.show('Error claiming earnings. Please try again later.', { type: 'danger' })
       } finally {
         setIsClaimingEarnings(false)
       }
     }
     
     attemptClaimEarnings()
-  }, [claimEarnings, toast, user.id])
+  }, [claimEarnings, toast])
 
   return (
     <SafeAreaView edges={['top']} className="w-full flex-1">
