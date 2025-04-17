@@ -13,7 +13,7 @@ import { ProfileRow } from 'app/features/dashboard/profile/profileRow'
 import { Link, TextLink } from 'solito/link'
 import Dollar from 'app/ui/icons/dollar'
 import { useRouter } from 'solito/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 // SecureStorage no longer needed for cooldown
 import { LowBalanceModal } from './LowBalanceModal'
 import {
@@ -31,7 +31,7 @@ import { WithdrawCredits } from 'app/features/dashboard/profile/edit/WithdrawCre
 export function ProfileScreen({ user }: { user: User }) {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
   const [isClaimingEarnings, setIsClaimingEarnings] = useState(false)
-  const { data: credits } = useUserCreditsQuery()
+  const { data: credits, refetch: refetchUserCredits } = useUserCreditsQuery()
   const { push } = useRouter()
   const { data: userLikesData } = useUserLikesQuery()
   const { data: userCollectionData } = useUserCollectionQuery({
@@ -40,9 +40,18 @@ export function ProfileScreen({ user }: { user: User }) {
   const [claimEarnings] = useClaimEarningsMutation()
   const toast = useToast()
 
-  // Attempt to claim earnings when the profile screen loads
+  // Use a ref to track if we've already attempted to claim earnings
+  const hasAttemptedClaim = useRef(false)
+
+  // Attempt to claim earnings when the profile screen loads, but only once
   useEffect(() => {
+    // Skip if we've already attempted
+    if (hasAttemptedClaim.current) return
+    
     const attemptClaimEarnings = async () => {
+      // Mark that we've attempted to claim
+      hasAttemptedClaim.current = true
+      
       try {
         setIsClaimingEarnings(true)
         const earningsResult = await claimEarnings()
@@ -50,6 +59,13 @@ export function ProfileScreen({ user }: { user: User }) {
         
         if (response?.success) {
           if (response.totalClaimedAmount > 0) {
+            // Refresh user credits to show updated balance
+            try {
+              await refetchUserCredits()
+            } catch (refetchError) {
+              console.error('Error refreshing user credits:', refetchError)
+            }
+            
             toast.show(
               `Successfully claimed ${response.totalClaimedAmount} XLM!`,
               { type: 'success' },
@@ -86,7 +102,12 @@ export function ProfileScreen({ user }: { user: User }) {
     }
     
     attemptClaimEarnings()
-  }, [claimEarnings, toast])
+    
+    // Cleanup function to reset the ref when component unmounts
+    return () => {
+      hasAttemptedClaim.current = false
+    }
+  }, [refetchUserCredits])
 
   return (
     <SafeAreaView edges={['top']} className="w-full flex-1">
