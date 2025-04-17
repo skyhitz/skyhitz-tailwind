@@ -47,16 +47,16 @@ export function ProfileScreen({ user }: { user: User }) {
   useEffect(() => {
     // Skip if we've already attempted
     if (hasAttemptedClaim.current) return
-    
+
     const attemptClaimEarnings = async () => {
       // Mark that we've attempted to claim
       hasAttemptedClaim.current = true
-      
+
       try {
         setIsClaimingEarnings(true)
         const earningsResult = await claimEarnings()
         const response = earningsResult.data?.claimEarnings
-        
+
         if (response?.success) {
           if (response.totalClaimedAmount > 0) {
             // Refresh user credits to show updated balance
@@ -65,7 +65,7 @@ export function ProfileScreen({ user }: { user: User }) {
             } catch (refetchError) {
               console.error('Error refreshing user credits:', refetchError)
             }
-            
+
             toast.show(
               `Successfully claimed ${response.totalClaimedAmount} XLM!`,
               { type: 'success' },
@@ -79,30 +79,29 @@ export function ProfileScreen({ user }: { user: User }) {
           }
         } else {
           // Claim failed with a specific message
-          if (response?.message?.includes('24 hours') || response?.lastClaimTime) {
-            // This is a cooldown message
-            toast.show(
-              response.message || 'You can only claim earnings once every 24 hours',
-              { type: 'info' },
-            )
+          if (
+            response?.message?.includes('24 hours') ||
+            response?.lastClaimTime
+          ) {
           } else {
             // Generic error
-            toast.show(
-              response?.message || 'Failed to claim earnings',
-              { type: 'danger' },
-            )
+            toast.show(response?.message || 'Failed to claim earnings', {
+              type: 'danger',
+            })
           }
         }
       } catch (error) {
         console.error('Error claiming earnings:', error)
-        toast.show('Error claiming earnings. Please try again later.', { type: 'danger' })
+        toast.show('Error claiming earnings. Please try again later.', {
+          type: 'danger',
+        })
       } finally {
         setIsClaimingEarnings(false)
       }
     }
-    
+
     attemptClaimEarnings()
-    
+
     // Cleanup function to reset the ref when component unmounts
     return () => {
       hasAttemptedClaim.current = false
